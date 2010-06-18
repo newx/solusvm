@@ -5,35 +5,15 @@ require 'rubygems'
 require 'xmlsimple'
 
 module Solusvm
-  def self.config(api_id, api_key, options={})
-    @api_id       = api_id
-    @api_key      = api_key
-    @api_endpoint = URI.parse(options.delete(:url))
-    @api_options  = options
-  end
+  class << self
+    attr_accessor :api_endpoint, :api_id, :api_key
 
-  def self.api_endpoint
-    @api_endpoint
-  end
-
-  def self.api_endpoint=(value)
-    @api_endpoint = value
-  end
-
-  def self.api_id
-    @api_id
-  end
-
-  def self.api_id=(value)
-    @api_id = value
-  end
-
-  def self.api_key
-    @api_key
-  end
-
-  def self.api_key=(value)
-    @api_key = value
+    def config(api_id, api_key, options={})
+      @api_id       = api_id
+      @api_key      = api_key
+      @api_endpoint = URI.parse(options.delete(:url))
+      @api_options  = options
+    end
   end
 end
 

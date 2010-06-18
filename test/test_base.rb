@@ -15,7 +15,7 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_parse_response
-    FakeWeb.register_uri(:get, "#{base_uri}&action=test&vserverid=1", :body => load_response('base_create_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=test&vserverid=1", :body => load_response('server_create_success'))
     assert_nil @base.returned_parameters
     @base.perform_request(:action => 'test', :vserverid => 1)
     params = @base.returned_parameters
@@ -34,7 +34,7 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_successful
-    FakeWeb.register_uri(:get, "#{base_uri}&action=testsuccess&vserverid=1", :body => load_response('base_create_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=testsuccess&vserverid=1", :body => load_response('server_create_success'))
     FakeWeb.register_uri(:get, "#{base_uri}&action=testfail&vserverid=1", :body => load_response('error'))
 
     @base.perform_request(:action => 'testsuccess', :vserverid => 1)
@@ -53,7 +53,7 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_statusmsg
-    FakeWeb.register_uri(:get, "#{base_uri}&action=testsuccess&vserverid=1", :body => load_response('base_create_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=testsuccess&vserverid=1", :body => load_response('server_create_success'))
     @base.perform_request(:action => 'testsuccess', :vserverid => 1)
     assert_equal 'Virtual server created', @base.statusmsg
   end
