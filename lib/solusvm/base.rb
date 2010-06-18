@@ -6,7 +6,10 @@ module Solusvm
     def perform_request(options)
       options.merge!(api_login)
       http = Net::HTTP.new(api_endpoint.host, api_endpoint.port)
-      http.use_ssl = true if api_endpoint.port == 443
+      if api_endpoint.port == 443
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
       http.start do |http|
         request = Net::HTTP::Get.new("#{api_endpoint.path}?#{options.to_query}")
         response = http.request(request)
@@ -15,6 +18,7 @@ module Solusvm
       unless successful?
         raise SolusvmError, statusmsg
       end
+      statusmsg
     end
 
     def parse_response(body)

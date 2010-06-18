@@ -40,12 +40,11 @@ module Solusvm
 
     def exists?(vid)
       perform_request(:action => 'vserver-checkexists', :vserverid => vid)
-      statusmsg.match /Virtual server exists/
+      !statusmsg.match(/Virtual server exists/i).nil?
     end
 
     def status(vid)
       perform_request(:action => 'vserver-status', :vserverid => vid)
-      statusmsg
     end
 
     def add_ip(vid)
