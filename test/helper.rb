@@ -16,4 +16,12 @@ class Test::Unit::TestCase
     "#{Solusvm.api_endpoint}?id=api_id&key=api_key"
   end
 
+  def api_login
+    {:id => 'api_id', :key => 'api_key'}
+  end
+
+  def setup_solusvm
+    Solusvm.config(api_login[:id], api_login[:key], :url => 'http://www.example.com/api')
+  end
+
 end

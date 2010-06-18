@@ -5,7 +5,7 @@ module Solusvm
     # email      [email address]
     # firstname  [first name]
     # lastname   [last name]
-    def create(options)
+    def create(options ={})
       options.merge!(:action => 'client-create')
       perform_request(options)
     end

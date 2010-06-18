@@ -3,10 +3,9 @@ require 'helper'
 class TestBase < Test::Unit::TestCase
 
   def setup
-    @login = {:id => 'api_id', :key => 'api_key'}
     FakeWeb.allow_net_connect = false
     FakeWeb.clean_registry
-    Solusvm.config(@login[:id], @login[:key], :url => 'http://www.example.com/api')
+    setup_solusvm
     @base = Solusvm::Base.new
   end
 
@@ -50,7 +49,7 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_api_login
-    assert_equal @login, @base.api_login
+    assert_equal api_login, @base.api_login
   end
 
   def test_statusmsg
@@ -71,7 +70,5 @@ class TestBase < Test::Unit::TestCase
     rescue Solusvm::SolusvmError => e
       assert_equal 'Invalid Virtual Server type: bob', e.message
     end
-    
   end
-
 end
