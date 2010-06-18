@@ -18,7 +18,7 @@ module Solusvm
       unless successful?
         raise SolusvmError, statusmsg
       end
-      statusmsg
+      true
     end
 
     def parse_response(body)

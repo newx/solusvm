@@ -45,6 +45,7 @@ module Solusvm
 
     def status(vid)
       perform_request(:action => 'vserver-status', :vserverid => vid)
+      statusmsg
     end
 
     def add_ip(vid)
