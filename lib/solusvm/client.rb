@@ -9,5 +9,10 @@ module Solusvm
       options.merge!(:action => 'client-create')
       perform_request(options)
     end
+
+    def authenticate(username, password)
+      perform_request({:action => 'client-authenticate', :username => username, :password => password})
+      statusmsg.match /validated/i
+    end
   end
 end

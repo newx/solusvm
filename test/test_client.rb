@@ -32,4 +32,17 @@ class TestBase < Test::Unit::TestCase
       assert_equal 'Empty username field', e.message
     end
   end
+
+  def test_authenticate
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-authenticate&username=u&password=p", :body => load_response('client_authenticate_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-authenticate&username=u&password=notp", :body => load_response('client_authenticate_error'))
+    assert @client.authenticate('u', 'p')
+
+    begin
+      @client.authenticate('u', 'notp')
+    rescue Solusvm::SolusvmError => e
+      assert_equal 'invalid username or password', e.message
+    end
+    
+  end
 end
