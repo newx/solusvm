@@ -1,6 +1,6 @@
 module Solusvm
   class Base
-    attr_reader :returned_parameters
+    attr_reader :returned_parameters, :statusmsg
 
     def perform_request(options)
       http = Net::HTTP.new(api_endpoint.host, api_endpoint.port)
@@ -9,6 +9,9 @@ module Solusvm
         request = Net::HTTP::Get.new("#{self.api_endpoint.path}?#{options.to_query}")
         response = http.request(request)
         @returned_parameters = parse_response(response.body)
+      end
+      unless successful?
+        raise SolusvmError, statusmsg
       end
     end
 
@@ -22,6 +25,10 @@ module Solusvm
 
     def api_endpoint
       Solusvm.api_endpoint
+    end
+
+    def statusmsg
+      returned_parameters['statusmsg']
     end
   end
 end
