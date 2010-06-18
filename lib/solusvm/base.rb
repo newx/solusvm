@@ -43,6 +43,7 @@ module Solusvm
     end
 
     def validate_server_type!(type)
+      type.strip!
       unless VALID_SERVER_TYPES.include?(type)
         raise SolusvmError, "Invalid Virtual Server type: #{type}"
       end
