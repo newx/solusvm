@@ -5,6 +5,9 @@ module Solusvm
         :type         => 'xen',
         :username     => client,
         :ips          => 1,
+        :node         => nil,
+        :plan         => nil,
+        :template     => nil,
         :rootpassword => password,
         :hostname     => hostname
       ).merge!(:action => 'vserver-create')

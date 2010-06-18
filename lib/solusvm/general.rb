@@ -4,19 +4,19 @@ module Solusvm
       type.strip!
       validate_server_type!(type)
       perform_request(:action => 'listnodes', :type => type)
-      returned_paramaters['nodes']
+      returned_parameters['nodes'].split(',')
     end
 
     def templates(type)
       type.strip!
       validate_server_type!(type)
       perform_request(:action => 'listtemplates', :type => type)
-      returned_paramaters['templates']
+      returned_parameters['templates'].split(',')
     end
 
     def node_statistics(nodeid)
       perform_request(:action => 'node-statistics', :nodeid => nodeid)
-      returned_paramaters
+      returned_parameters
     end
   end
 end

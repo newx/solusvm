@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "solusvm"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = "A gem for interacting with the SolusVM API"
+    gem.description = "A gem for interacting with the SolusVM API"
     gem.email = "jmazzi@gmail.com"
     gem.homepage = "http://github.com/jmazzi/solusvm"
     gem.authors = ["Justin Mazzi"]
