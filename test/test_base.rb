@@ -61,7 +61,7 @@ class TestBase < Test::Unit::TestCase
 
   def test_validate_server_type
     Solusvm::Base::VALID_SERVER_TYPES.each do |type|
-      assert_nothing_raised  do
+      assert_nothing_raised do
         @base.validate_server_type!(type)
       end
     end
