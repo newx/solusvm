@@ -4,9 +4,9 @@ module Solusvm
 
     def perform_request(options)
       http = Net::HTTP.new(api_endpoint.host, api_endpoint.port)
-      http.use_ssl = true if self.api_endpoint.port == 443
+      http.use_ssl = true if api_endpoint.port == 443
       http.start do |http|
-        request = Net::HTTP::Get.new("#{self.api_endpoint.path}?#{options.to_query}")
+        request = Net::HTTP::Get.new("#{api_endpoint.path}?#{options.to_query}")
         response = http.request(request)
         @returned_parameters = parse_response(response.body)
       end
