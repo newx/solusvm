@@ -5,7 +5,6 @@ require 'xmlsimple'
 
 module Solusvm
   VALID_SERVER_TYPES = ['openvz', 'xen', 'xen hvm']
-
   def self.config(api_id, api_key, options={})
     @api_id       = api_id
     @api_key      = api_key
