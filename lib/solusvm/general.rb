@@ -18,6 +18,5 @@ module Solusvm
       perform_request(:action => 'node-statistics', :nodeid => nodeid)
       returned_paramaters
     end
-
   end
 end

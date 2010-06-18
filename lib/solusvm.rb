@@ -26,10 +26,10 @@ module Solusvm
       raise SolusvmError, "Invalid Virtual Server type: #{type}"
     end
   end
-
 end
 
 directory = File.expand_path(File.dirname(__FILE__))
+
 require File.join(directory, 'solusvm', 'exceptions')
 require File.join(directory, 'solusvm', 'hash')
 require File.join(directory, 'solusvm', 'base')
