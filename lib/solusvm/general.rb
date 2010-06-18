@@ -8,6 +8,7 @@ module Solusvm
     end
 
     def templates(type)
+      type.strip!
       validate_server_type!(type)
       perform_request(:action => 'listtemplates', :type => type)
       returned_paramaters['templates']
