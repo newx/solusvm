@@ -23,4 +23,39 @@ class TestGeneral < Test::Unit::TestCase
       assert e.message.match /Invalid Virtual Server type/
     end
   end
+
+  def test_templates
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listtemplates&type=xen", :body => load_response('general_templates_success'))
+    actual_templates = @general.templates('xen')
+    expected_templates = %w(template1 template2 template3)
+    assert_equal expected_templates, actual_templates
+  end
+
+  def test_nodes_error
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listtemplates&type=whatever", :body => load_response('error'))
+    begin
+      @general.templates('whatever')
+    rescue Solusvm::SolusvmError => e
+      assert e.message.match /Invalid Virtual Server type/
+    end
+  end
+
+  def test_node_statistics
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-statistics&nodeid=1", :body => load_response('general_node_statistics_success'))
+    node_statistics = @general.node_statistics(1)
+    
+    assert_equal '1000', node_statistics['freedisk']
+    assert_equal '22', node_statistics['sshport']
+    assert_equal 'city', node_statistics['city']
+    assert_equal 'name', node_statistics['name']
+    assert_equal '0', node_statistics['freeips']
+    assert_equal 'country', node_statistics['country']
+    assert_equal 'x86_64', node_statistics['arch']
+    assert_equal '1', node_statistics['id']
+    assert_equal '10', node_statistics['freememory']
+    assert_equal '2', node_statistics['virtualservers']
+    assert_equal '127.0.0.1', node_statistics['ip']
+    assert_equal 'hostname.com', node_statistics['hostname']
+    assert_equal 'success', node_statistics['status']
+  end
 end

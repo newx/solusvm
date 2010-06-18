@@ -1,0 +1,3 @@
+<status>success</status>
+<statusmsg></statusmsg>
+<templates>template1,template2,template3</templates>
