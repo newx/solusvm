@@ -1,6 +1,6 @@
-require 'helper'
+require File.dirname(__FILE__) + '/helper'
 
-class TestBase < Test::Unit::TestCase
+class TestClient < Test::Unit::TestCase
 
   def setup
     setup_solusvm
