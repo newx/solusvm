@@ -1,0 +1,2 @@
+<status>error</status>
+<statusmsg>Empty username field</statusmsg>
