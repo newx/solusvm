@@ -40,12 +40,8 @@ class TestBase < Test::Unit::TestCase
     @base.perform_request(:action => 'testsuccess', :vserverid => 1)
     assert @base.successful?
 
-    begin
-      @base.perform_request(:action => 'testfail', :vserverid => 1)
-    rescue Solusvm::SolusvmError => e
-      assert e.message.match /error message/
-      assert ! @base.successful?
-    end
+    assert ! @base.perform_request(:action => 'testfail', :vserverid => 1)
+    assert_equal "error message", @base.statusmsg
   end
 
   def test_api_login
@@ -67,6 +63,7 @@ class TestBase < Test::Unit::TestCase
 
     begin
       @base.validate_server_type!('bob')
+      flunk "Shouldn't get here"
     rescue Solusvm::SolusvmError => e
       assert_equal 'Invalid Virtual Server type: bob', e.message
     end

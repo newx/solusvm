@@ -15,10 +15,7 @@ module Solusvm
         response = http.request(request)
         @returned_parameters = parse_response(response.body)
       end
-      unless successful?
-        raise SolusvmError, statusmsg
-      end
-      true
+      successful?
     end
 
     def parse_response(body)

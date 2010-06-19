@@ -19,6 +19,7 @@ class TestGeneral < Test::Unit::TestCase
     FakeWeb.register_uri(:get, "#{base_uri}&action=listnodes&type=whatever", :body => load_response('error'))
     begin
       @general.nodes('whatever')
+      flunk "Shouldn't get here"
     rescue Solusvm::SolusvmError => e
       assert e.message.match /Invalid Virtual Server type/
     end
@@ -31,10 +32,11 @@ class TestGeneral < Test::Unit::TestCase
     assert_equal expected_templates, actual_templates
   end
 
-  def test_nodes_error
+  def test_template_error
     FakeWeb.register_uri(:get, "#{base_uri}&action=listtemplates&type=whatever", :body => load_response('error'))
     begin
       @general.templates('whatever')
+      flunk "Shouldn't get here"
     rescue Solusvm::SolusvmError => e
       assert e.message.match /Invalid Virtual Server type/
     end

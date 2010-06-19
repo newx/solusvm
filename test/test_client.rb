@@ -26,23 +26,16 @@ class TestClient < Test::Unit::TestCase
 
   def test_create_fail
     FakeWeb.register_uri(:get, "#{base_uri}&action=client-create", :body => load_response('client_create_error'))
-    begin
-      @client.create
-    rescue Solusvm::SolusvmError => e
-      assert_equal 'Empty username field', e.message
-    end
+    assert ! @client.create
+    assert_equal 'Empty username field', @client.statusmsg
   end
 
   def test_authenticate
     FakeWeb.register_uri(:get, "#{base_uri}&action=client-authenticate&username=u&password=p", :body => load_response('client_authenticate_success'))
     FakeWeb.register_uri(:get, "#{base_uri}&action=client-authenticate&username=u&password=notp", :body => load_response('client_authenticate_error'))
     assert @client.authenticate('u', 'p')
-
-    begin
-      @client.authenticate('u', 'notp')
-    rescue Solusvm::SolusvmError => e
-      assert_equal 'invalid username or password', e.message
-    end
+    assert ! @client.authenticate('u', 'notp')
+    assert_equal 'invalid username or password', @client.statusmsg
     
   end
 end
