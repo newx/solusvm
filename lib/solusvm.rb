@@ -8,6 +8,12 @@ module Solusvm
   class << self
     attr_accessor :api_endpoint, :api_id, :api_key
 
+    # Sepcifies the login and url for making requests
+    #
+    # example:
+    #
+    #   Solusvm.config('id', 'key', :url => 'http://www.example.com/api')
+    #
     def config(api_id, api_key, options={})
       @api_id       = api_id
       @api_key      = api_key

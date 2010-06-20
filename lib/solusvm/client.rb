@@ -1,15 +1,20 @@
 module Solusvm
+  # Solusvm::Client is the class for working with clients
   class Client < Base
-    # username   [username]
-    # password   [password]
-    # email      [email address]
-    # firstname  [first name]
-    # lastname   [last name]
+    # Creates a client
+    #
+    # Options:
+    # * <tt>:username</tt>
+    # * <tt>:password</tt>
+    # * <tt>:email</tt>
+    # * <tt>:firstname</tt>
+    # * <tt>:lastname</tt>
     def create(options ={})
       options.merge!(:action => 'client-create')
       perform_request(options)
     end
 
+    # Verify a clients login. Returns true when the specified login is correct
     def authenticate(username, password)
       perform_request({:action => 'client-authenticate', :username => username, :password => password})
       statusmsg.match /validated/i

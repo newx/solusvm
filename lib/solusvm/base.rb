@@ -1,9 +1,21 @@
 module Solusvm
+  # Solusvm::Base is the main class for mapping API resources as subclasses.
   class Base
     attr_reader :returned_parameters, :statusmsg
     VALID_SERVER_TYPES = ['openvz', 'xen', 'xen hvm']
 
-    def perform_request(options)
+    # Prepares and sends the API request to the URL specificed in Solusvm.config
+    #
+    #
+    #  class MyClass < Base
+    #    def create_server(name)
+    #      perform_request(:action => 'name', :id => 1)
+    #    end
+    #  end
+    # Options:
+    # * <tt>:action</tt> - Specifies which API method to execute
+    # All other options passed in are converted to http query arguments and are passed along to the API
+    def perform_request(options = {})
       options.merge!(api_login)
       http = Net::HTTP.new(api_endpoint.host, api_endpoint.port)
       if api_endpoint.port == 443
@@ -18,15 +30,22 @@ module Solusvm
       successful?
     end
 
+    # Converts the XML response to a Hash
     def parse_response(body)
       body = "<solusrequest>#{body}</solusrequest>"
       XmlSimple.xml_in(body, 'ForceArray' => false)
     end
 
+    # Returns true when a request has been successful
+    # 
+    #   my_class = MyClass.new
+    #   my_class.create_server('example.com')
+    #   my_class.successful? # => true
     def successful?
       returned_parameters['status'] == 'success'
     end
 
+    # URI parsed API URL
     def api_endpoint
       Solusvm.api_endpoint
     end
@@ -35,10 +54,12 @@ module Solusvm
       {:id => Solusvm.api_id, :key => Solusvm.api_key}
     end
 
+    # API response message
     def statusmsg
       returned_parameters['statusmsg']
     end
 
+    # Raises an exception unless a valid type is specified
     def validate_server_type!(type)
       type.strip!
       unless VALID_SERVER_TYPES.include?(type)
