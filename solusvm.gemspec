@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{solusvm}
-  s.version = "0.0.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Justin Mazzi"]
-  s.date = %q{2010-06-18}
+  s.date = %q{2010-06-21}
   s.description = %q{A gem for interacting with the SolusVM API}
   s.email = %q{jmazzi@gmail.com}
   s.extra_rdoc_files = [
@@ -30,7 +30,29 @@ Gem::Specification.new do |s|
      "lib/solusvm/general.rb",
      "lib/solusvm/hash.rb",
      "lib/solusvm/server.rb",
+     "solusvm.gemspec",
+     "test/fixtures/client_authenticate_error.txt",
+     "test/fixtures/client_authenticate_success.txt",
+     "test/fixtures/client_create_error.txt",
+     "test/fixtures/client_create_success.txt",
+     "test/fixtures/error.txt",
+     "test/fixtures/general_node_statistics_success.txt",
+     "test/fixtures/general_nodes_success.txt",
+     "test/fixtures/general_templates_success.txt",
+     "test/fixtures/server_boot_success.txt",
+     "test/fixtures/server_create_success.txt",
+     "test/fixtures/server_exists_success.txt",
+     "test/fixtures/server_reboot_success.txt",
+     "test/fixtures/server_resume_success.txt",
+     "test/fixtures/server_shutdown_success.txt",
+     "test/fixtures/server_suspend_success.txt",
+     "test/fixtures/server_terminate_success.txt",
      "test/helper.rb",
+     "test/test_base.rb",
+     "test/test_client.rb",
+     "test/test_general.rb",
+     "test/test_hash.rb",
+     "test/test_server.rb",
      "test/test_solusvm.rb"
   ]
   s.homepage = %q{http://github.com/jmazzi/solusvm}
@@ -40,6 +62,11 @@ Gem::Specification.new do |s|
   s.summary = %q{A gem for interacting with the SolusVM API}
   s.test_files = [
     "test/helper.rb",
+     "test/test_base.rb",
+     "test/test_client.rb",
+     "test/test_general.rb",
+     "test/test_hash.rb",
+     "test/test_server.rb",
      "test/test_solusvm.rb"
   ]
 

@@ -32,8 +32,7 @@ module Solusvm
 
     # Converts the XML response to a Hash
     def parse_response(body)
-      body = "<solusrequest>#{body}</solusrequest>"
-      XmlSimple.xml_in(body, 'ForceArray' => false)
+      XmlHelper.new("<solusrequest>#{body}</solusrequest>").output
     end
 
     # Returns true when a request has been successful

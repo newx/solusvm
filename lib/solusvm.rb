@@ -1,8 +1,6 @@
 require 'net/http'
 require 'net/https'
 require 'cgi'
-require 'rubygems'
-require 'xmlsimple'
 
 module Solusvm
   class << self
@@ -26,6 +24,7 @@ end
 directory = File.expand_path(File.dirname(__FILE__))
 
 require File.join(directory, 'solusvm', 'exceptions')
+require File.join(directory, 'solusvm', 'xml_helper')
 require File.join(directory, 'solusvm', 'hash')
 require File.join(directory, 'solusvm', 'base')
 require File.join(directory, 'solusvm', 'general')
