@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
      "test/test_server.rb",
      "test/test_solusvm.rb"
   ]
-  s.homepage = %q{http://github.com/jmazzi/solusvm}
+  s.homepage = %q{http://github.com/site5/solusvm}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
