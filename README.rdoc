@@ -1,6 +1,35 @@
-= solusvm
+= Solusvm
 
-Description goes here.
+Solusvm allows for easy interaction with the SolusVM Admin::API.
+== Basic Examples
+
+  Solusvm.config('api_id', 'api_password', :url => 'http://www.example.com/api')
+  server = Solusvm::Server.new
+
+  # 200 is the id of the virtual server
+  server.shutdown(200) # => true
+  server.boot(200) # => true
+  server.reboot(200) # => true
+  server.suspend(200) # => true
+  server.resume(200) # => true
+
+== Server creation
+  options = {:type => 'xen', :username => 'bob', :node => 'node1', :plan => 'plan1', :template => 'mytpl', :ips => 1}
+  result = sever.create('server.hostname.com', 'password', options}
+  p server.successful?
+  => true
+
+  p result
+  => {"mainipaddress"=>"127.0.0.1", "consoleuser"=>"console-user", "vserverid"=>"10", 
+  "statusmsg"=>"Virtual server created", "virtid"=>"vm10", "consolepassword"=>"myPassisL33t", 
+  "extraipaddress"=>{}, "hostname"=>"server.hostname", "rootpassword"=>"password", "status"=>"success"}
+
+
+== REQUIREMENTS:
+* xml-simple
+
+== INSTALL:
+* gem install solusvm
 
 == Note on Patches/Pull Requests
  
@@ -14,4 +43,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2010 Justin Mazzi. See LICENSE for details.
+Copyright (c) 2010 Site5. See LICENSE for details.
