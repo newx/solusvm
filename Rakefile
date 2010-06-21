@@ -8,7 +8,7 @@ begin
     gem.summary = "Wrapper for the SolusVM Admin::API"
     gem.description = "Solusvm allows for easy interaction with the SolusVM Admin::API."
     gem.email = "jmazzi@gmail.com"
-    gem.homepage = "http://github.com/jmazzi/solusvm"
+    gem.homepage = "http://github.com/site5/solusvm"
     gem.authors = ["Justin Mazzi"]
     gem.add_dependency 'xml-simple'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
