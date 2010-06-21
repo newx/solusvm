@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{solusvm}
-  s.version = "0.2.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Justin Mazzi"]
   s.date = %q{2010-06-21}
-  s.description = %q{A gem for interacting with the SolusVM API}
+  s.description = %q{Solusvm allows for easy interaction with the SolusVM Admin::API.}
   s.email = %q{jmazzi@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{A gem for interacting with the SolusVM API}
+  s.summary = %q{wrapper for the SolusVM API}
   s.test_files = [
     "test/helper.rb",
      "test/test_base.rb",
