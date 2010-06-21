@@ -26,13 +26,15 @@ module Solusvm
         request = Net::HTTP::Get.new("#{api_endpoint.path}?#{options.to_query}")
         response = http.request(request)
         @returned_parameters = parse_response(response.body)
+        log_messages(options)
       end
       successful?
     end
 
     # Converts the XML response to a Hash
     def parse_response(body)
-      XmlHelper.new("<solusrequest>#{body}</solusrequest>").output
+      body = "<solusrequest>#{body}</solusrequest>"
+      XmlSimple.xml_in(body, 'ForceArray' => false)
     end
 
     # Returns true when a request has been successful
@@ -51,6 +53,17 @@ module Solusvm
 
     def api_login
       {:id => Solusvm.api_id, :key => Solusvm.api_key}
+    end
+
+    # TODO: clean this up
+    def log_messages(options)
+      if Solusvm.api_options[:logger] && Solusvm.api_options[:logger].respond_to?(Solusvm.api_options[:logger_method])
+        Solusvm.api_options[:logger].send(Solusvm.api_options[:logger_method], "[Start] => #{options[:action]}")
+        returned_parameters.each do |k,v|
+          Solusvm.api_options[:logger].send(Solusvm.api_options[:logger_method], "   #{k} => #{v}")
+        end
+        Solusvm.api_options[:logger].send(Solusvm.api_options[:logger_method], "[End] => #{options[:action]}")
+      end
     end
 
     # API response message
