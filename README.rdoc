@@ -54,7 +54,7 @@ This library was first created for internal use at {Site5 LLC}[http://www.site5.
 
 == Default Config for Command Line
 The command line utility, solusvm, will look for a .solusvm.yml file in ~/. You can specify some defaults. 
-  ~/.soulsvm.yml
+  ~/.solusvm.yml
   id: api_id
   key: api_key
   # URL to the API endpoint
