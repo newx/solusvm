@@ -58,6 +58,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/site5/solusvm}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
+  s.rubyforge_project = %q{solusvm}
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Wrapper for the SolusVM Admin::API}
   s.test_files = [

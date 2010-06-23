@@ -1,6 +1,9 @@
 = Solusvm
 
 Solusvm allows for easy interaction with the SolusVM Admin::API.
+
+This library was first created for internal use at {Site5 LLC}[http://www.site5.com].
+
 == Basic Examples
 
   Solusvm.config('api_id', 'api_password', :url => 'http://www.example.com/api')
