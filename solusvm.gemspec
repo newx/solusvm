@@ -5,13 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{solusvm}
-  s.version = "0.3.3"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Justin Mazzi"]
-  s.date = %q{2010-06-21}
+  s.date = %q{2010-06-22}
+  s.default_executable = %q{solusvm}
   s.description = %q{Solusvm allows for easy interaction with the SolusVM Admin::API.}
   s.email = %q{jmazzi@gmail.com}
+  s.executables = ["solusvm"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
@@ -23,6 +25,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION.yml",
+     "bin/solusvm",
      "lib/solusvm.rb",
      "lib/solusvm/base.rb",
      "lib/solusvm/client.rb",
