@@ -5,7 +5,6 @@ Solusvm allows for easy interaction with the SolusVM Admin::API.
 This library was first created for internal use at {Site5 LLC}[http://www.site5.com].
 
 == Basic Examples
-
   Solusvm.config('api_id', 'api_password', :url => 'http://www.example.com/api')
   server = Solusvm::Server.new
 
@@ -64,6 +63,9 @@ The command line utility, solusvm, will look for a .solusvm.yml file in ~/. You 
 
 == REQUIREMENTS:
 * xml-simple
+
+== DOCUMENTATION
+* http://solusvm.rubyforge.org/solusvm/
 
 == INSTALL:
 * gem install solusvm
