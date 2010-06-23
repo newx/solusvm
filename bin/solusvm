@@ -67,7 +67,7 @@ OptionParser.new do |o|
   end
 end.parse!
 
-config_file = File.join(File.expand_path(ENV['HOME']), '.soulsvm.yml')
+config_file = File.join(File.expand_path(ENV['HOME']), '.solusvm.yml')
 server = Solusvm::Server.new
 if ARGV.empty?
   STDERR.puts "USAGE: #{File.basename($0)} [function] [options]"
