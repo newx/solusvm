@@ -8,16 +8,17 @@ $:.unshift(File.join(File.dirname(__FILE__), "/../lib"))
 require "solusvm"
 
 opts = {}
-examples = {}
-examples['server-create'] = "<hostname> <password> -t myimag -k xen -p myplan -i 1"
-examples['server-boot'] = "<vserverid>"
-examples['server-reboot'] = "<vserverid>"
-examples['server-shutdown'] = "<vserverid>"
-examples['server-suspend'] = "<vserverid>"
-examples['server-resume'] = "<vserverid>"
-examples['server-status'] = "<vserverid>"
-examples['server-addip'] = "<vserverid>"
-examples['server-changeplan'] = "<vserverid> <newplan>"
+shell_methods = {}
+shell_methods['server-create'] = "<hostname> <password> -t myimag -k xen -p myplan -i 1"
+shell_methods['server-boot'] = "<vserverid>"
+shell_methods['server-reboot'] = "<vserverid>"
+shell_methods['server-shutdown'] = "<vserverid>"
+shell_methods['server-suspend'] = "<vserverid>"
+shell_methods['server-resume'] = "<vserverid>"
+shell_methods['server-status'] = "<vserverid>"
+shell_methods['server-addip'] = "<vserverid>"
+shell_methods['server-changeplan'] = "<vserverid> <newplan>"
+shell_methods['server-check-exists'] = "<vserverid>"
 
 OptionParser.new do |o|
   o.banner = "USAGE: #{$0} <command> [options]"
@@ -60,7 +61,7 @@ OptionParser.new do |o|
   o.on("-h", "--help", "Show help documentation") do |h|
     puts o
     puts "Commands:"
-    puts examples.collect { |k,v| "  #{k} #{v}"}.join("\n")
+    puts shell_methods.collect { |k,v| "  #{k} #{v}"}.join("\n")
     
     exit
   end
@@ -81,28 +82,38 @@ else
     puts "Must supply the api id/key and URL"
     exit
   end
-  case ARGV[0]
-  when 'server-create'
+  meth = ARGV[0].chomp
+  if shell_methods.include?(meth)
     ARGV.shift
     if ARGV.empty?
-      puts "USAGE: " + examples['server-create']
+      p shell_methods[meth]
+      exit
     else
-      p server.create(ARGV[0], ARGV[1], :plan => opts[:plan], :ips => opts[:ips], :type => opts[:kind], 
-                    :username => opts[:username], :template => opts[:template], :node => opts[:node])
+      case meth
+      when 'server-create'
+        unless ARGV.size == 2
+          p shell_methods[meth]
+          exit
+        end
+        p server.create(ARGV[0], ARGV[1], :plan => opts[:plan], :ips => opts[:ips], :type => opts[:kind], 
+                        :username => opts[:username], :template => opts[:template], :node => opts[:node])
+      when 'server-status'
+        p server.status(ARGV[0])
+      when 'server-boot'
+        p server.boot(ARGV[0])
+      when 'server-reboot'
+        p server.reboot(ARGV[0])
+      when 'server-suspend'
+        p server.suspend(ARGV[0])
+      when 'server-resume'
+        p server.resume(ARGV[0])
+      when 'server-check-exists'
+        p server.exists?(ARGV[0])
+      when 'server-terminate'
+        p server.terminate(ARGV[0])
+      end
     end
-  when 'server-status'
-    ARGV.shift
-    if ARGV.empty?
-      puts "USAGE: " + examples['server-status']
-    else
-      p server.status(ARGV[0])
-    end
-  when 'server-terminate'
-    ARGV.shift
-    if ARGV.empty?
-      puts "USAGE: " + examples['server-terminate']
-    else
-      p server.terminate(ARGV[0])
-    end
+  else
+    puts "#{meth} is not a valid function"
   end
 end
