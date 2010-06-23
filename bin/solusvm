@@ -9,7 +9,7 @@ require "solusvm"
 
 opts = {}
 shell_methods = {}
-shell_methods['server-create'] = "<hostname> <password> -t myimag -k xen -p myplan -i 1"
+shell_methods['server-create'] = "<hostname> <password> -t myimage -k xen -p myplan -i 1"
 shell_methods['server-boot'] = "<vserverid>"
 shell_methods['server-reboot'] = "<vserverid>"
 shell_methods['server-shutdown'] = "<vserverid>"
