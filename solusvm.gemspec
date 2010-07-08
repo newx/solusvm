@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{solusvm}
-  s.version = "0.4.2"
+  s.version = "0.4.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Justin Mazzi"]
-  s.date = %q{2010-06-23}
+  s.date = %q{2010-07-08}
   s.default_executable = %q{solusvm}
   s.description = %q{Solusvm allows for easy interaction with the SolusVM Admin::API.}
   s.email = %q{jmazzi@gmail.com}
