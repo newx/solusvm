@@ -19,6 +19,7 @@ shell_methods['server-status'] = "<vserverid>"
 shell_methods['server-addip'] = "<vserverid>"
 shell_methods['server-changeplan'] = "<vserverid> <newplan>"
 shell_methods['server-check-exists'] = "<vserverid>"
+shell_methods['server-terminate'] = "<vserverid>"
 
 OptionParser.new do |o|
   o.banner = "USAGE: #{File.basename($0)} <command> [options]"
