@@ -1,0 +1,13 @@
+--- 
+dependencies: 
+  xml-simple: 
+    group: 
+    - :default
+    version: ">= 0"
+specs: 
+- xml-simple: 
+    version: 1.0.12
+hash: 386a7600abde8b96658948bfd5351cf687923086
+sources: 
+- Rubygems: 
+    uri: http://rubygems.org
