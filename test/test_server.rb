@@ -70,9 +70,9 @@ class TestServer < Test::Unit::TestCase
     assert_equal 'Virtual server terminated', @server.statusmsg
   end
 
-  def text_exists
+  def test_exists
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-checkexists&vserverid=1", :body => load_response('server_exists_success'))
-    assert @server.exists(1)
+    assert @server.exists?(1)
     assert_equal 'Virtual server exists', @server.statusmsg
   end
 

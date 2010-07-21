@@ -29,6 +29,13 @@ class TestClient < Test::Unit::TestCase
     assert ! @client.create
     assert_equal 'Empty username field', @client.statusmsg
   end
+  
+  def test_exists
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-checkexists&username=vps123", :body => load_response('client_exists_success'))
+    assert @client.exists?("vps123")
+    assert_equal 'Client exists', @client.statusmsg
+    
+  end
 
   def test_authenticate
     FakeWeb.register_uri(:get, "#{base_uri}&action=client-authenticate&username=u&password=p", :body => load_response('client_authenticate_success'))

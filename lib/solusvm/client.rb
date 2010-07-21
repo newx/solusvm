@@ -13,6 +13,11 @@ module Solusvm
       options.merge!(:action => 'client-create')
       perform_request(options)
     end
+    
+    def exists?(username)
+      perform_request({:action => 'client-checkexists', :username => username})
+      !statusmsg.match(/Client exists/i).nil?
+    end
 
     # Verify a clients login. Returns true when the specified login is correct
     def authenticate(username, password)

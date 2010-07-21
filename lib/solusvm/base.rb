@@ -25,6 +25,7 @@ module Solusvm
       http.start do |http|
         request = Net::HTTP::Get.new("#{api_endpoint.path}?#{options.to_query}")
         response = http.request(request)
+
         @returned_parameters = parse_response(response.body)
         log_messages(options)
       end
