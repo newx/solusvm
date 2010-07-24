@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{solusvm}
-  s.version = "0.4.3"
+  s.version = "0.5.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Justin Mazzi"]
-  s.date = %q{2010-07-08}
+  s.date = %q{2010-07-24}
   s.default_executable = %q{solusvm}
   s.description = %q{Solusvm allows for easy interaction with the SolusVM Admin::API.}
   s.email = %q{jmazzi@gmail.com}
@@ -21,6 +21,8 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "Gemfile",
+     "Gemfile.lock",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
@@ -36,8 +38,11 @@ Gem::Specification.new do |s|
      "solusvm.gemspec",
      "test/fixtures/client_authenticate_error.txt",
      "test/fixtures/client_authenticate_success.txt",
+     "test/fixtures/client_change_password_error.txt",
+     "test/fixtures/client_change_password_success.txt",
      "test/fixtures/client_create_error.txt",
      "test/fixtures/client_create_success.txt",
+     "test/fixtures/client_exists_success.txt",
      "test/fixtures/error.txt",
      "test/fixtures/general_node_statistics_success.txt",
      "test/fixtures/general_nodes_success.txt",
