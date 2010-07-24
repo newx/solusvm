@@ -13,7 +13,14 @@ module Solusvm
       options.merge!(:action => 'client-create')
       perform_request(options)
     end
-    
+
+    # change client password for the solus admin
+    def change_password(username, password)
+      perform_request({:action => "client-updatepassword", :username => username, :password => password})
+      !statusmsg.match(/success/i).nil?
+    end
+
+    # checks wether a specific client exists
     def exists?(username)
       perform_request({:action => 'client-checkexists', :username => username})
       !statusmsg.match(/Client exists/i).nil?

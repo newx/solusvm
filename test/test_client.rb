@@ -33,8 +33,14 @@ class TestClient < Test::Unit::TestCase
   def test_exists
     FakeWeb.register_uri(:get, "#{base_uri}&action=client-checkexists&username=vps123", :body => load_response('client_exists_success'))
     assert @client.exists?("vps123")
-    assert_equal 'Client exists', @client.statusmsg
-    
+    assert_equal 'Client exists', @client.statusmsg    
+  end
+  
+  def test_change_password
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-updatepassword&username=vps123&password=123456", :body => load_response('client_change_password_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-updatepassword&username=vps13&password=thecake", :body => load_response('client_change_password_error'))    
+    assert @client.change_password("vps123","123456")
+    assert !@client.change_password("vps13","thecake")
   end
 
   def test_authenticate
