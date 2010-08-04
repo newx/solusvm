@@ -68,4 +68,37 @@ class TestBase < Test::Unit::TestCase
       assert_equal 'Invalid Virtual Server type: bob', e.message
     end
   end
+
+  def test_unautorized_ip
+    FakeWeb.register_uri(:get, "#{base_uri}&action=unauthorized", :body => load_response('base_unauthorized_ip'))
+    message = ""
+    begin
+      @base.perform_request(:action => 'unauthorized')
+    rescue Exception => e
+      message = e  
+    end
+    assert_equal "This IP is not authorized to use the API", message.to_s
+  end
+
+  def test_invalid_key_or_id
+    FakeWeb.register_uri(:get, "#{base_uri}&action=badkey", :body => load_response('base_bad_key'))
+    message = ""
+    begin
+      @base.perform_request(:action => 'badkey')
+    rescue Exception => e
+      message = e  
+    end
+    assert_equal "Invalid ID or key", message.to_s
+  end
+
+  def test_node_does_not_exist
+    FakeWeb.register_uri(:get, "#{base_uri}&action=nodeexist", :body => load_response('base_node_does_not_exist'))
+    message = ""
+    begin
+      @base.perform_request(:action => 'nodeexist')
+    rescue Exception => e
+      message = e  
+    end
+    assert_equal "Node does not exist", message.to_s
+  end
 end

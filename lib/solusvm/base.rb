@@ -26,6 +26,7 @@ module Solusvm
         request = Net::HTTP::Get.new("#{api_endpoint.path}?#{options.to_query}")
         response = http.request(request)
 
+        handle_errors(response.body)
         @returned_parameters = parse_response(response.body)
         log_messages(options)
       end
@@ -36,6 +37,18 @@ module Solusvm
     def parse_response(body)
       body = "<solusrequest>#{body}</solusrequest>"
       XmlSimple.xml_in(body, 'ForceArray' => false)
+    end
+
+    # Look for known error messages
+    def handle_errors(body)
+      case body.downcase
+      when /invalid ipaddress/i
+        raise "This IP is not authorized to use the API"
+      when /Invalid id or key/i
+        raise "Invalid ID or key"
+      when /Node not found/i
+        raise "Node does not exist"
+      end
     end
 
     # Returns true when a request has been successful
