@@ -5,18 +5,18 @@
 
 Gem::Specification.new do |s|
   s.name = %q{solusvm}
-  s.version = "0.5.1"
+  s.version = "0.6.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Justin Mazzi"]
-  s.date = %q{2010-07-24}
+  s.date = %q{2010-08-04}
   s.default_executable = %q{solusvm}
   s.description = %q{Solusvm allows for easy interaction with the SolusVM Admin::API.}
   s.email = %q{jmazzi@gmail.com}
   s.executables = ["solusvm"]
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+     "README.markdown"
   ]
   s.files = [
     ".document",
@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
      "Gemfile",
      "Gemfile.lock",
      "LICENSE",
-     "README.rdoc",
+     "README.markdown",
      "Rakefile",
      "VERSION.yml",
      "bin/solusvm",
@@ -36,6 +36,9 @@ Gem::Specification.new do |s|
      "lib/solusvm/hash.rb",
      "lib/solusvm/server.rb",
      "solusvm.gemspec",
+     "test/fixtures/base_bad_key.txt",
+     "test/fixtures/base_node_does_not_exist.txt",
+     "test/fixtures/base_unauthorized_ip.txt",
      "test/fixtures/client_authenticate_error.txt",
      "test/fixtures/client_authenticate_success.txt",
      "test/fixtures/client_change_password_error.txt",
@@ -44,6 +47,8 @@ Gem::Specification.new do |s|
      "test/fixtures/client_create_success.txt",
      "test/fixtures/client_exists_success.txt",
      "test/fixtures/error.txt",
+     "test/fixtures/general_node_list_all_ips_available.txt",
+     "test/fixtures/general_node_list_all_ips_not_available.txt",
      "test/fixtures/general_node_statistics_success.txt",
      "test/fixtures/general_nodes_success.txt",
      "test/fixtures/general_templates_success.txt",
