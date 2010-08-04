@@ -20,7 +20,6 @@ module Solusvm
     # List a nodes available IPs
     def node_available_ips(nodeid)
       perform_request(:action => 'node-iplist', :nodeid => nodeid)
-      puts statusmsg
       if statusmsg.match /no available ip/i
         []
       else

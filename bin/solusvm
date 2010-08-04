@@ -125,7 +125,12 @@ else
         when 'server-terminate'
           p server.terminate(ARGV[0])
         when 'node-available-ips'
-          p general.node_available_ips(ARGV[0])
+          ips = general.node_available_ips(ARGV[0])
+          if ips.any?
+            puts ips.join("\n")
+          else
+            puts ips
+          end
         end
       rescue Exception => e
         puts "Error:  #{e}\n\n"
