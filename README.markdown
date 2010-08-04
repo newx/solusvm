@@ -46,14 +46,16 @@ Command Line Usage
         -i, --ips [number]               Number of ips to add to the VPS
         -h, --help                       Show help documentation
     Commands:
+      node-available-ips <nodeid>
       server-check-exists <vserverid>
       server-shutdown <vserverid>
+      server-terminate <vserverid>
       server-changeplan <vserverid> <newplan>
       server-resume <vserverid>
       server-reboot <vserverid>
       server-status <vserverid>
       server-boot <vserverid>
-      server-create <hostname> <password> -t myimag -k xen -p myplan -i 1
+      server-create <hostname> <password> -t myimage -k xen -p myplan -i 1
       server-suspend <vserverid>
       server-addip <vserverid>
 
