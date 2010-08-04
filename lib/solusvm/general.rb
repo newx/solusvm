@@ -16,5 +16,16 @@ module Solusvm
       perform_request(:action => 'node-statistics', :nodeid => nodeid)
       returned_parameters
     end
+
+    # List a nodes available IPs
+    def node_available_ips(nodeid)
+      perform_request(:action => 'node-iplist', :nodeid => nodeid)
+      puts statusmsg
+      if statusmsg.match /no available ip/i
+        []
+      else
+        returned_parameters['ips'].split(',')
+      end
+    end
   end
 end

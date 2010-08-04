@@ -60,4 +60,20 @@ class TestGeneral < Test::Unit::TestCase
     assert_equal 'hostname.com', node_statistics['hostname']
     assert_equal 'success', node_statistics['status']
   end
+
+  def test_list_all_ips_available
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-iplist&nodeid=1", :body => load_response('general_node_list_all_ips_available'))
+    avaialble_ips = @general.node_available_ips(1)
+
+    expected_ips = %w(123.123.123.123 124.124.124.124 125.125.125.125).sort
+    assert !avaialble_ips.empty?
+    assert_equal expected_ips, avaialble_ips.sort 
+  end
+
+  def test_list_all_ips_not_available
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-iplist&nodeid=1", :body => load_response('general_node_list_all_ips_not_available'))
+    avaialble_ips = @general.node_available_ips(1)
+
+    assert avaialble_ips.empty?
+  end
 end
