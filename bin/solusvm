@@ -21,6 +21,7 @@ $shell_methods['server-changeplan'] = "<vserverid> <newplan>"
 $shell_methods['server-check-exists'] = "<vserverid>"
 $shell_methods['server-terminate'] = "<vserverid>"
 
+$shell_methods['node-stats'] = "<nodeid>"
 $shell_methods['node-available-ips'] = "<nodeid>"
 
 def list_commands
@@ -130,6 +131,11 @@ else
             puts ips.join("\n")
           else
             puts ips
+          end
+        when 'node-stats'
+          stats = general.node_statistics(ARGV[0])
+          stats.each do |k,v|
+            puts "#{k} => #{v}"
           end
         end
       rescue Exception => e
