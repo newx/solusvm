@@ -85,7 +85,9 @@ class TestServer < Test::Unit::TestCase
   end
 
   def test_change_plan
-    flunk "Implement this"
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-change&vserverid=1&plan=newplan", :body => load_response('server_change_success'))
+    assert @server.change_plan(1, 'newplan')
+    assert_equal 'Virtual server updated', @server.statusmsg
   end
 
 end
