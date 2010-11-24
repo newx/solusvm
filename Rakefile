@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'rake'
+require 'redgreen'
 
 begin
   require 'jeweler'
@@ -11,6 +12,8 @@ begin
     gem.homepage = "http://www.site5.com"
     gem.authors = ["Justin Mazzi"]
     gem.add_dependency 'xml-simple'
+    gem.add_development_dependency 'redgreen'
+    gem.add_development_dependency 'fakeweb'
     gem.rubyforge_project = 'solusvm'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
