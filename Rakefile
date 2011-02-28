@@ -2,11 +2,6 @@ require 'rubygems'
 require 'rake'
 
 begin
-  require 'redgreen'
-rescue LoadError
-end
-
-begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "solusvm"
@@ -59,3 +54,5 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+task :default => :test
