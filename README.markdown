@@ -98,6 +98,7 @@ Note on Patches/Pull Requests
 =============================
  
 * Fork the project.
+* Add yourself to the Contributors list
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
   future version unintentionally.
