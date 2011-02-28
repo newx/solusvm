@@ -92,6 +92,7 @@ Contributors
 
 * [Justin Mazzi](http://github.com/jmazzi)
 * [Maran H.](http://github.com/maran)
+* [Joshua Priddle](http://github.com/itspriddle)
 
 Note on Patches/Pull Requests
 =============================
