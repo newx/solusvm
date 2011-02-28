@@ -56,5 +56,10 @@ module Solusvm
     def change_plan(vid, plan)
       perform_request(:action => 'vserver-change', :vserverid => vid, :plan => plan)
     end
+
+    def info(vid, reboot = false)
+      perform_request(:action => 'vserver-info', :vserverid => vid, :reboot => reboot)
+      returned_parameters
+    end
   end
 end
