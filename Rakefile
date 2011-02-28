@@ -1,6 +1,10 @@
 require 'rubygems'
 require 'rake'
-require 'redgreen'
+
+begin
+  require 'redgreen'
+rescue LoadError
+end
 
 begin
   require 'jeweler'
