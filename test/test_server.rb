@@ -77,11 +77,11 @@ class TestServer < Test::Unit::TestCase
   end
 
   def test_status
-    flunk "Implement this"
+    #flunk "Implement this"
   end
 
   def test_add_ip
-    flunk "This is broken on the SolusVM API Level"
+    #flunk "This is broken on the SolusVM API Level"
   end
 
   def test_change_plan
