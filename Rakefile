@@ -57,3 +57,4 @@ Rake::RDocTask.new do |rdoc|
 end
 
 task :default => :test
+task :spec => :test
