@@ -5,5 +5,6 @@ group :development, :test do
   gem 'redgreen'
   gem 'jeweler'
   gem 'fakeweb'
+  gem 'turn'
 end
 
