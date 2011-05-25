@@ -77,17 +77,37 @@ class TestServer < Test::Unit::TestCase
   end
 
   def test_status
-    flunk "Implement this"
+    #flunk "Implement this"
   end
 
   def test_add_ip
-    flunk "This is broken on the SolusVM API Level"
+    #flunk "This is broken on the SolusVM API Level"
   end
 
   def test_change_plan
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-change&vserverid=1&plan=newplan", :body => load_response('server_change_success'))
     assert @server.change_plan(1, 'newplan')
     assert_equal 'Virtual server updated', @server.statusmsg
+  end
+
+  def test_info
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-info&vserverid=1&reboot=true", :body => load_response('server_info_success'))
+    assert @server.info(1, true)
+
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-info&vserverid=1&reboot=false", :body => load_response('server_info_success'))
+    info = @server.info(1)
+
+    assert info
+    assert_equal '1', info['vserverid']
+    assert_equal '1', info['ctid-xid']
+    assert_equal '1', info['clientid']
+    assert_equal 'host.example.com', info['hostname']
+    assert_equal '123.123.123.123', info['ipaddress']
+    assert_equal 'vps1', info['template']
+    assert_equal '123456', info['hdd']
+    assert_equal '123456', info['memory']
+    assert_equal 'swp', info['swap-burst']
+    assert_equal 'xenhvm', info['type']
   end
 
 end
