@@ -8,3 +8,6 @@ group :development, :test do
   gem 'turn'
 end
 
+platforms :jruby do
+  gem 'jruby-openssl'
+end
