@@ -1,0 +1,11 @@
+script: "rake"
+notifications:
+  disabled: true
+rvm:
+  - 1.8.7
+  - 1.9.2
+  - 1.9.3
+  - ree
+  - rbx
+  - jruby
+  - rbx-2.0.0pre

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/helper'
+require 'helper'
 
 class TestHash < Test::Unit::TestCase
   def test_reverse_merge

@@ -13,6 +13,7 @@ begin
     gem.add_dependency 'xml-simple'
     gem.add_development_dependency 'redgreen'
     gem.add_development_dependency 'fakeweb'
+    gem.add_development_dependency 'rake', '~> 0.8.7'
     gem.rubyforge_project = 'solusvm'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
@@ -56,3 +57,4 @@ Rake::RDocTask.new do |rdoc|
 end
 
 task :default => :test
+task :spec => :test
