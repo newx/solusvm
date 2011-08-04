@@ -1,5 +1,5 @@
 SolusVM [![SolusVM Build Status][Build Icon]][Build Status]
------------------------------------------------------------
+===========================================================
 
 Solusvm allows for easy interaction with the [SolusVM Admin::API][].
 This library was first created for internal use at [Site5 LLC][].
@@ -10,7 +10,7 @@ This library was first created for internal use at [Site5 LLC][].
 [Build Icon]: https://secure.travis-ci.org/site5/solusvm.png?branch=master
 
 Basic Examples
-==============
+--------------
 
     Solusvm.config('api_id', 'api_password', :url => 'http://www.example.com/api')
     server = Solusvm::Server.new
@@ -23,7 +23,7 @@ Basic Examples
     server.resume(200) # => true
 
 Server creation
-===============
+---------------
 
     options = {:type => 'xen', :username => 'bob', :node => 'node1', :plan => 'plan1', :template => 'mytpl', :ips => 1}
     result = sever.create('server.hostname.com', 'password', options}
@@ -36,7 +36,7 @@ Server creation
     "extraipaddress"=>{}, "hostname"=>"server.hostname", "rootpassword"=>"password", "status"=>"success"}
 
 Command Line Usage
-==================
+------------------
 
     USAGE: solusvm <command> [options]
         -I, --api-login [id]             API ID
@@ -64,7 +64,7 @@ Command Line Usage
       server-addip <vserverid>
 
 Default Config for Command Line
-================================
+--------------------------------
 
 The command line utility, solusvm, will look for a .solusvm.yml file in ~/. You can specify some defaults. 
 
@@ -77,29 +77,29 @@ The command line utility, solusvm, will look for a .solusvm.yml file in ~/. You 
     username: bob
 
 Requirements
-============
+------------
 
 * xml-simple
 
 Documentation
-=============
+-------------
 
 * http://solusvm.rubyforge.org/solusvm/
 
 Installation
-============
+------------
 
     gem install solusvm
 
 Contributors
-============
+------------
 
 * [Justin Mazzi](http://github.com/jmazzi)
 * [Maran H.](http://github.com/maran)
 * [Joshua Priddle](http://github.com/itspriddle)
 
 Note on Patches/Pull Requests
-=============================
+-----------------------------
  
 * Fork the project.
 * Add yourself to the Contributors list
@@ -111,6 +111,6 @@ Note on Patches/Pull Requests
 * Send me a pull request. Bonus points for topic branches.
 
 Copyright
-=========
+---------
 
 Copyright (c) 2010-2011 Site5. See LICENSE for details.
