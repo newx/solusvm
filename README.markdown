@@ -1,8 +1,13 @@
-Solusvm
-=======
+SolusVM [![SolusVM Build Status][Build Icon]][Build Status]
+-----------------------------------------------------------
 
-Solusvm allows for easy interaction with the SolusVM Admin::API.
-This library was first created for internal use at {Site5 LLC}[http://www.site5.com].
+Solusvm allows for easy interaction with the [SolusVM Admin::API][].
+This library was first created for internal use at [Site5 LLC][].
+
+[Site5 LLC]: http://www.site5.com
+[SolusVM Admin::API]: http://wiki.solusvm.com/index.php/API:Admin
+[Build Status]: http://travis-ci.org/site5/solusvm
+[Build Icon]: https://secure.travis-ci.org/site5/solusvm.png?branch=master
 
 Basic Examples
 ==============
@@ -29,7 +34,6 @@ Server creation
     => {"mainipaddress"=>"127.0.0.1", "consoleuser"=>"console-user", "vserverid"=>"10", 
     "statusmsg"=>"Virtual server created", "virtid"=>"vm10", "consolepassword"=>"myPassisL33t", 
     "extraipaddress"=>{}, "hostname"=>"server.hostname", "rootpassword"=>"password", "status"=>"success"}
-
 
 Command Line Usage
 ==================
@@ -72,18 +76,18 @@ The command line utility, solusvm, will look for a .solusvm.yml file in ~/. You 
     # Default client to put servers under
     username: bob
 
-REQUIREMENTS
+Requirements
 ============
 
 * xml-simple
 
-DOCUMENTATION
+Documentation
 =============
 
 * http://solusvm.rubyforge.org/solusvm/
 
-INSTALL:
-========
+Installation
+============
 
     gem install solusvm
 
@@ -109,4 +113,4 @@ Note on Patches/Pull Requests
 Copyright
 =========
 
-Copyright (c) 2010 Site5. See LICENSE for details.
+Copyright (c) 2010-2011 Site5. See LICENSE for details.
