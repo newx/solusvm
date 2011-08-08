@@ -18,8 +18,5 @@ coverage
 rdoc
 pkg
 
-## PROJECT::SPECIFIC
-.rvmrc
-
 .bundle
 Gemfile.lock
