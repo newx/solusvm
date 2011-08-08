@@ -3,6 +3,12 @@ require 'test/unit'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+# Use TURN if available
+begin
+  require 'turn'
+rescue LoadError
+end
+
 require 'solusvm'
 require 'fake_web'
 
