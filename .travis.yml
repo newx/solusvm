@@ -1,4 +1,4 @@
-script: "rake"
+script: "bundle exec rake test"
 notifications:
   disabled: true
 rvm:
