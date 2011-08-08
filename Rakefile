@@ -27,6 +27,7 @@ rescue LoadError
 end
 
 require 'rake/testtask'
+
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
   test.test_files = FileList['test/**/test_*.rb']
@@ -46,7 +47,7 @@ rescue LoadError
   end
 end
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
