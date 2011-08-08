@@ -47,14 +47,20 @@ rescue LoadError
   end
 end
 
-require 'rdoc/task'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+begin
+  require 'rdoc/task'
+  Rake::RDocTask.new do |rdoc|
+    version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "solusvm #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+    rdoc.rdoc_dir = 'rdoc'
+    rdoc.title = "solusvm #{version}"
+    rdoc.rdoc_files.include('README*')
+    rdoc.rdoc_files.include('lib/**/*.rb')
+  end
+rescue LoadError
+  task :rdoc do
+    abort "rdoc is not available. In order to run rdoc, you must: sudo gem install rdoc"
+  end
 end
 
 task :default => :test
