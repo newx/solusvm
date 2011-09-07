@@ -61,5 +61,10 @@ module Solusvm
       perform_request(:action => 'vserver-info', :vserverid => vid, :reboot => reboot)
       returned_parameters
     end
+    
+    def info_all(vid)
+      perform_request(:action => 'vserver-infoall', :vserverid => vid)
+      returned_parameters
+    end
   end
 end

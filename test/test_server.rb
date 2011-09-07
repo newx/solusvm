@@ -109,5 +109,19 @@ class TestServer < Test::Unit::TestCase
     assert_equal 'swp', info['swap-burst']
     assert_equal 'xenhvm', info['type']
   end
-
+  
+  def test_info_all
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-infoall&vserverid=1", :body => load_response('server_infoall_success'))
+    info = @server.info_all(1)
+    assert_equal "success", info["status"]
+    assert_equal "123.123.123.123", info["mainipaddress"]
+    assert_equal "tydeus", info["node"]
+    assert_equal "openvz", info["type"]
+    assert_equal "16106127360000,5370261749139,10735865610861,33", info["bandwidth"]
+    assert_equal "1073741824,187097088,886644736,17", info["memory"]
+    assert_equal "236223201280,103640707072,132582494208,44", info["hdd"]
+    assert_equal "/graphs/9/214/214-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["trafficgraph"]
+    assert_equal "/graphs/9/214/214-load-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["loadgraph"]
+    assert_equal "/graphs/9/214/214-mem-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["memorygraph"]    
+  end
 end
