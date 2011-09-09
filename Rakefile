@@ -11,6 +11,7 @@ begin
     gem.homepage = "http://www.site5.com"
     gem.authors = ["Justin Mazzi"]
     gem.add_dependency 'xml-simple'
+    gem.add_dependency 'jruby-openssl' if RUBY_PLATFORM == 'java'
     gem.add_development_dependency 'redgreen'
     gem.add_development_dependency 'fakeweb'
     gem.add_development_dependency 'rake', '~> 0.8.7'
