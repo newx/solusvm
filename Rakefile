@@ -1,31 +1,6 @@
 require 'rubygems'
 require 'rake'
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "solusvm"
-    gem.summary = "Wrapper for the SolusVM Admin::API"
-    gem.description = "Solusvm allows for easy interaction with the SolusVM Admin::API."
-    gem.email = "jmazzi@gmail.com"
-    gem.homepage = "http://www.site5.com"
-    gem.authors = ["Justin Mazzi"]
-    gem.add_dependency 'xml-simple'
-    gem.add_dependency 'jruby-openssl' if RUBY_PLATFORM == 'java'
-    gem.add_development_dependency 'redgreen'
-    gem.add_development_dependency 'fakeweb'
-    gem.add_development_dependency 'rake', '~> 0.8.7'
-    gem.rubyforge_project = 'solusvm'
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-
-  Jeweler::RubyforgeTasks.new do |rubyforge|
-    rubyforge.doc_task = "rdoc"
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
-end
+require 'bundler/gem_tasks'
 
 require 'rake/testtask'
 
@@ -51,7 +26,7 @@ end
 begin
   require 'rdoc/task'
   Rake::RDocTask.new do |rdoc|
-    version = File.exist?('VERSION') ? File.read('VERSION') : ""
+    version = Solusvm::VERSION
 
     rdoc.rdoc_dir = 'rdoc'
     rdoc.title = "solusvm #{version}"

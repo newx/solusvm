@@ -1,13 +1,4 @@
-source 'http://rubygems.org'
-gem 'xml-simple'
+source "http://rubygems.org"
 
-group :development, :test do
-  gem 'redgreen'
-  gem 'jeweler'
-  gem 'fakeweb'
-  gem 'turn'
-end
-
-platforms :jruby do
-  gem 'jruby-openssl'
-end
+# Specify your gem's dependencies in lol.gemspec
+gemspec
