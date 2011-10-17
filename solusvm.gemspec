@@ -23,6 +23,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'redgreen'
   s.add_development_dependency 'fakeweb'
-  s.add_development_dependency 'turn'
   s.add_development_dependency 'rake', '~> 0.8.7'
 end
