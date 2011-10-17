@@ -2,7 +2,7 @@ require 'test/unit'
 
 # Use TURN if available
 begin
-  require 'turn'
+  require 'turn' if ENV['TURN']
 rescue LoadError
 end
 
