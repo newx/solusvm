@@ -30,6 +30,12 @@ class TestServer < Test::Unit::TestCase
     assert ! @server.successful?
   end
 
+  def test_rebuild
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-rebuild&vserverid=1&template=mytpl", :body => load_response('server_rebuild_success'))
+    assert @server.rebuild(1, "mytpl")
+    assert_equal 'Virtual server is being rebuilt', @server.statusmsg
+  end
+  
   def test_boot
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-boot&vserverid=1", :body => load_response('server_boot_success'))
     assert @server.boot(1)

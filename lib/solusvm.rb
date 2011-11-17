@@ -8,7 +8,7 @@ module Solusvm
   class << self
     attr_accessor :api_endpoint, :api_id, :api_key, :api_options
 
-    # Sepcifies the login and url for making requests
+    # Specifies the login and url for making requests
     #
     # example:
     #

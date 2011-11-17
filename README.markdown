@@ -60,6 +60,7 @@ Command Line Usage
       server-changeplan <vserverid> <newplan>
       server-resume <vserverid>
       server-reboot <vserverid>
+      server-rebuild <vserverid> -t myimage
       server-status <vserverid>
       server-boot <vserverid>
       server-create <hostname> <password> -t myimage -k xen -p myplan -i 1
@@ -100,6 +101,7 @@ Contributors
 * [Justin Mazzi](http://github.com/jmazzi)
 * [Maran H.](http://github.com/maran)
 * [Joshua Priddle](http://github.com/itspriddle)
+* [Vince Stratful](http://github.com/Vincepbell)
 
 Note on Patches/Pull Requests
 -----------------------------
