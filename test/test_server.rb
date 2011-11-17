@@ -31,7 +31,7 @@ class TestServer < Test::Unit::TestCase
   end
 
   def test_rebuild
-    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-rebuild&vserverid=1&template=mytpl", :body => load_response('server_rebuild_success');
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-rebuild&vserverid=1&template=mytpl", :body => load_response('server_rebuild_success'))
     assert @server.rebuild(1, "mytpl")
     assert_equal 'Virtual server is being rebuilt', @server.statusmsg
   end
