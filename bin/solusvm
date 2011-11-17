@@ -20,9 +20,9 @@ $shell_methods['server-addip'] = "<vserverid>"
 $shell_methods['server-changeplan'] = "<vserverid> <newplan>"
 $shell_methods['server-check-exists'] = "<vserverid>"
 $shell_methods['server-terminate'] = "<vserverid>"
-
 $shell_methods['node-stats'] = "<nodeid>"
 $shell_methods['node-available-ips'] = "<nodeid>"
+$shell_methods['server-rebuild'] = "<vserverid> -t myimage"
 
 def list_commands
   puts "Commands:"
@@ -137,6 +137,8 @@ else
           stats.each do |k,v|
             puts "#{k} => #{v}"
           end
+        when 'server-rebuild'
+           p server.rebuild(ARGV[0], opts[:template])
         end
       rescue Exception => e
         puts "Error:  #{e}\n\n"

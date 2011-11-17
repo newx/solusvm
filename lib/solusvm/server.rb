@@ -66,5 +66,10 @@ module Solusvm
       perform_request(:action => 'vserver-infoall', :vserverid => vid)
       returned_parameters
     end
+
+    def rebuild(vid, template)
+      perform_request(:action => 'vserver-rebuild', :vserverid => vid, :template => template)
+      returned_parameters
+    end
   end
 end
