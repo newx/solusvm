@@ -29,7 +29,6 @@ module Solusvm
         handle_errors(response.body)
         @returned_parameters = parse_response(response.body)
         log_messages(options)
-        puts(response.body)
       end
       successful?
     end
