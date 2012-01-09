@@ -113,10 +113,16 @@ else
                           :username => opts[:username], :template => opts[:template], :node => opts[:node])
         when 'server-status'
           p server.status(ARGV[0])
+        when 'server-changeplan'
+          p server.change_plan(ARGV[0], ARGV[1])
+        when 'server-addip'
+          p server.add_ip(ARGV[0])
         when 'server-boot'
           p server.boot(ARGV[0])
         when 'server-reboot'
           p server.reboot(ARGV[0])
+        when 'server-shutdown'
+          p server.shutdown(ARGV[0])
         when 'server-suspend'
           p server.suspend(ARGV[0])
         when 'server-resume'
