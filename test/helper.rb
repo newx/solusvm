@@ -8,6 +8,7 @@ end
 
 require 'solusvm'
 require 'fake_web'
+require 'mocha'
 
 class Test::Unit::TestCase
   def load_response(name)
