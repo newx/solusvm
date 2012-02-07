@@ -1,9 +1,10 @@
 require 'solusvm'
 require 'yaml'
 require 'thor'
+require 'thor/group'
 
 module Solusvm
-  class Cli < Thor
+  class BaseCli < Thor
     include Thor::Actions
 
     # Retrieves default options coming from a configuration file, if any.
@@ -24,87 +25,7 @@ module Solusvm
     class_option :api_key,   :type => :string, :desc => "API KEY. Required.", :aliases => ["-K", "--api-key"], :default => default_option(:key)
     class_option :api_url,   :type => :string, :desc => "API URL. Required.", :aliases => ["-U", "--api-url"], :default => default_option(:url)
 
-    desc "server-status VSERVERID", "Checks the status of a server"
-    def server_status(vserverid)
-      say server.status(vserverid)
-    end
-
-    desc "server-changeplan VSERVERID NEWPLAN", "Changes the plan of a server"
-    def server_changeplan(vserverid, newplan)
-      say server.change_plan(vserverid, newplan)
-    end
-
-    desc "server-addip VSERVERID", "Adds an ip to the server"
-    def server_addip(vserverid)
-      say server.add_ip(vserverid)
-    end
-
-    desc "server-boot VSERVERID", "Boots up a server"
-    def server_boot(vserverid)
-      say server.boot(vserverid)
-    end
-
-    desc "server-reboot VSERVERID", "Reboots a server"
-    def server_reboot(vserverid)
-      say server.reboot(vserverid)
-    end
-
-    desc "server-shutdown VSERVERID", "Shuts down a server"
-    def server_shutdown(vserverid)
-      say server.shutdown(vserverid)
-    end
-
-    desc "server-suspend VSERVERID", "Suspends a server"
-    def server_suspend(vserverid)
-      say server.suspend(vserverid)
-    end
-
-    desc "server-resume VSERVERID", "Resumes a server"
-    def server_resume(vserverid)
-      say server.resume(vserverid)
-    end
-
-    desc "server-check-exists VSERVERID", "Checks if a server exists"
-    def server_check_exists(vserverid)
-      say server.check_exists(vserverid)
-    end
-
-    desc "server-terminate VSERVERID", "Terminates a server"
-    def server_terminate(vserverid)
-      say server.terminate(vserverid)
-    end
-
-    desc "server-rebuild VSERVERID", "Rebuilds a server"
-    method_option :template, :type => :string, :desc => "VPS template to boot from",  :aliases => ["-t", "--template"]
-    def server_rebuild(vserverid)
-      say server.rebuild(vserverid, {:template => options[:template]})
-    end
-
-    desc "server-create HOSTNAME PASSWORD", "Creates a new server"
-    method_option :plan, :type => :string, :desc => "Plan to use",  :aliases => ["-p", "--plan"]
-    method_option :ips,  :type => :string, :desc => "Number of ips to add to the vps",  :aliases => ["-i", "--ips"]
-    method_option :kind, :type => :string, :desc => "Type of VPS (#{Solusvm::Server::VALID_SERVER_TYPES.join(',')})",  :aliases => ["-k", "--kind"]
-    method_option :username, :type => :string, :desc => "The client to put the VPS under",  :aliases => ["-u", "--username"]
-    method_option :template, :type => :string, :desc => "VPS template to boot from",  :aliases => ["-t", "--template"]
-    method_option :node, :type => :string, :desc => "Node to provision on",  :aliases => ["-n", "--node"]
-    def server_create(hostname, password)
-      server.create(hostname, password, {
-        :plan => options[:plan], :ips => options[:ips], :type => options[:kind], 
-        :username => options[:username], :template => options[:template], :node => options[:node]
-      })
-    end
-
-    desc "node-available-ips VSERVERID", "Lists the available ips for a given node"
-    def node_available_ips(vserverid)
-      say general.node_available_ips(vserverid).join("\n")
-    end
-
-    desc "node-stats VSERVERID", "Lists statistics for a given node"
-    def node_stats(vserverid)
-      say general.node_statistics(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
-    end
-
-    private
+    protected
 
     def configure
       Solusvm.config(options[:api_login], options[:api_key], :url => options[:api_url])
@@ -123,6 +44,94 @@ module Solusvm
         Solusvm::General.new
       end
     end
+  end
 
+  class ServerCli < BaseCli
+    desc "status VSERVERID", "Checks the status of a server"
+    def status(vserverid)
+      say server.status(vserverid)
+    end
+
+    desc "changeplan VSERVERID NEWPLAN", "Changes the plan of a server"
+    def changeplan(vserverid, newplan)
+      say server.change_plan(vserverid, newplan)
+    end
+
+    desc "addip VSERVERID", "Adds an ip to the server"
+    def addip(vserverid)
+      say server.add_ip(vserverid)
+    end
+
+    desc "boot VSERVERID", "Boots up a server"
+    def boot(vserverid)
+      say server.boot(vserverid)
+    end
+
+    desc "reboot VSERVERID", "Reboots a server"
+    def reboot(vserverid)
+      say server.reboot(vserverid)
+    end
+
+    desc "shutdown VSERVERID", "Shuts down a server"
+    def shutdown(vserverid)
+      say server.shutdown(vserverid)
+    end
+
+    desc "suspend VSERVERID", "Suspends a server"
+    def suspend(vserverid)
+      say server.suspend(vserverid)
+    end
+
+    desc "resume VSERVERID", "Resumes a server"
+    def resume(vserverid)
+      say server.resume(vserverid)
+    end
+
+    desc "check-exists VSERVERID", "Checks if a server exists"
+    def check_exists(vserverid)
+      say server.check_exists(vserverid)
+    end
+
+    desc "terminate VSERVERID", "Terminates a server"
+    def terminate(vserverid)
+      say server.terminate(vserverid)
+    end
+
+    desc "rebuild VSERVERID", "Rebuilds a server"
+    method_option :template, :type => :string, :desc => "VPS template to boot from",  :aliases => ["-t", "--template"]
+    def rebuild(vserverid)
+      say server.rebuild(vserverid, {:template => options[:template]})
+    end
+
+    desc "create HOSTNAME PASSWORD", "Creates a new server"
+    method_option :plan, :type => :string, :desc => "Plan to use",  :aliases => ["-p", "--plan"]
+    method_option :ips,  :type => :string, :desc => "Number of ips to add to the vps",  :aliases => ["-i", "--ips"]
+    method_option :kind, :type => :string, :desc => "Type of VPS (#{Solusvm::Server::VALID_SERVER_TYPES.join(',')})",  :aliases => ["-k", "--kind"]
+    method_option :username, :type => :string, :desc => "The client to put the VPS under",  :aliases => ["-u", "--username"]
+    method_option :template, :type => :string, :desc => "VPS template to boot from",  :aliases => ["-t", "--template"]
+    method_option :node, :type => :string, :desc => "Node to provision on",  :aliases => ["-n", "--node"]
+    def create(hostname, password)
+      server.create(hostname, password, {
+        :plan => options[:plan], :ips => options[:ips], :type => options[:kind], 
+        :username => options[:username], :template => options[:template], :node => options[:node]
+      })
+    end
+  end
+
+  class NodeCli < BaseCli
+    desc "available-ips VSERVERID", "Lists the available ips for a given node"
+    def available_ips(vserverid)
+      say general.node_available_ips(vserverid).join("\n")
+    end
+
+    desc "stats VSERVERID", "Lists statistics for a given node"
+    def stats(vserverid)
+      say general.node_statistics(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
+    end
+  end
+
+  class Cli < Thor
+    register(ServerCli, 'server', 'server <command>', 'Server commands')
+    register(NodeCli,   'node',   'node <command>',   'Node commands')
   end
 end
