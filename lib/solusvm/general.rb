@@ -6,6 +6,12 @@ module Solusvm
       returned_parameters['nodes'].split(',')
     end
 
+    def nodes_ids(type)
+      validate_server_type!(type)
+      perform_request(:action => 'node-idlist', :type => type)
+      returned_parameters['nodes'].split(',')
+    end
+
     def templates(type)
       validate_server_type!(type)
       perform_request(:action => 'listtemplates', :type => type)

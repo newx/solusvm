@@ -76,4 +76,21 @@ class TestGeneral < Test::Unit::TestCase
 
     assert avaialble_ips.empty?
   end
+
+  def test_nodes_ids
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-idlist&type=xen", :body => load_response('general_nodes_ids_success'))
+    actual_nodes = @general.nodes_ids('xen')
+    expected_nodes = %w(nodeid1 nodeid2 nodeid3 nodeid4)
+    assert_equal expected_nodes, actual_nodes
+  end
+
+  def test_nodes_ids_error
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-idlist&type=whatever", :body => load_response('error'))
+    begin
+      @general.nodes_ids('whatever')
+      flunk "Shouldn't get here"
+    rescue Solusvm::SolusvmError => e
+      assert e.message.match /Invalid Virtual Server type/
+    end
+  end
 end
