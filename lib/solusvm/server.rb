@@ -35,6 +35,10 @@ module Solusvm
       perform_request(:action => 'vserver-shutdown', :vserverid => vid)
     end
 
+    def tun_enable(vid)
+      perform_request(:action => 'vserver-tun-enable', :vserverid => vid)
+    end
+
     def terminate(vid, deleteclient = false)
       perform_request(:action => 'vserver-terminate', :vserverid => vid, :deleteclient => deleteclient)
     end

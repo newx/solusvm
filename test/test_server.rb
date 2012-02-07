@@ -76,6 +76,11 @@ class TestServer < Test::Unit::TestCase
     assert_equal 'Virtual server terminated', @server.statusmsg
   end
 
+  def test_tun_enable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-tun-enable&vserverid=1", :body => load_response('server_tun_enable_success'))
+    assert @server.tun_enable(1)
+  end
+
   def test_exists
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-checkexists&vserverid=1", :body => load_response('server_exists_success'))
     assert @server.exists?(1)
