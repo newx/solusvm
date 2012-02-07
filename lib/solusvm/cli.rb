@@ -21,6 +21,14 @@ module Solusvm
 
       @@yaml[key.to_s]
     end
+
+    # Convenience method to get the namespace from the class name. It's the
+    # same as Thor default except that the "_cli" at the end of the class
+    # is removed.
+    def self.namespace(name=nil)
+      return super if name
+      @namespace ||= super.sub(/_cli$/, '')
+    end
     
     class_option :api_login, :type => :string, :desc => "API ID. Required.",  :aliases => ["-I", "--api-login"], :default => default_option(:id)
     class_option :api_key,   :type => :string, :desc => "API KEY. Required.", :aliases => ["-K", "--api-key"], :default => default_option(:key)
@@ -28,7 +36,7 @@ module Solusvm
 
     # Overrides the default banner implementation to output the whole command
     def self.banner(task, namespace = true, subcommand = false)
-      "#{basename} #{task.formatted_usage(self, true, subcommand)}"
+      "#{self.namespace.split(":").join(" ")} #{task.formatted_usage(self, false, false)}"
     end
 
     protected
@@ -53,7 +61,6 @@ module Solusvm
   end
 
   class ServerCli < BaseCli
-    namespace :server
 
     desc "status VSERVERID", "Checks the status of a server"
     def status(vserverid)
@@ -127,7 +134,6 @@ module Solusvm
   end
 
   class NodeCli < BaseCli
-    namespace :node
 
     desc "available-ips VSERVERID", "Lists the available ips for a given node"
     def available_ips(vserverid)
