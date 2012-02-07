@@ -32,5 +32,16 @@ module Solusvm
         returned_parameters['ips'].split(',')
       end
     end
+
+    # List the node virtual servers
+    def node_virtualservers(nodeid)
+      perform_request({:action => "node-virtualservers", :nodeid => nodeid}, "virtualserver")
+
+      if returned_parameters["virtualservers"] && returned_parameters["virtualservers"]["virtualserver"]
+        returned_parameters["virtualservers"]["virtualserver"]
+      elsif returned_parameters["virtualservers"]
+        []
+      end
+    end
   end
 end

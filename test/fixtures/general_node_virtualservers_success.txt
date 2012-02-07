@@ -1,0 +1,15 @@
+<virtualservers>
+    <virtualserver>                              
+        <vserverid>theid</vserverid>
+        <ctid-xid>thexid</ctid-xid>
+        <clientid>theclientid</clientid>
+        <ipaddress>theip</ipaddress>
+        <hostname>thehostname</hostname>
+        <template>thetemplate</template>
+        <hdd>thediskspace</hdd>
+        <memory>thememory</memory>
+        <swap-burst>theswap</swap-burst>
+        <type>thetype</type>
+        <mac>themac</mac>
+    </virtualserver>
+</virtualservers> 

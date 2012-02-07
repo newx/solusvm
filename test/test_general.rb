@@ -93,4 +93,34 @@ class TestGeneral < Test::Unit::TestCase
       assert e.message.match /Invalid Virtual Server type/
     end
   end
+
+  def test_node_virtualservers
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-virtualservers&nodeid=1", :body => load_response('general_node_virtualservers_success'))
+
+    servers = @general.node_virtualservers(1)
+    assert_equal 1, servers.size
+
+    server = servers.first
+    assert_equal "theid", server["vserverid"]
+    assert_equal "thexid", server["ctid-xid"]
+    assert_equal "theclientid", server["clientid"]
+    assert_equal "theip", server["ipaddress"]
+    assert_equal "thehostname", server["hostname"]
+    assert_equal "thetemplate", server["template"]
+    assert_equal "thediskspace", server["hdd"]
+    assert_equal "thememory", server["memory"]
+    assert_equal "theswap", server["swap-burst"]
+    assert_equal "thetype", server["type"]
+    assert_equal "themac", server["mac"]
+  end
+
+  def test_node_virtualservers_empty
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-virtualservers&nodeid=1", :body => load_response('general_node_virtualservers_success_empty'))
+    assert @general.node_virtualservers(1).empty?
+  end
+
+  def test_node_virtualservers_fail
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-virtualservers&nodeid=1", :body => load_response('error'))
+    assert_nil @general.node_virtualservers(1)
+  end
 end
