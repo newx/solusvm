@@ -19,9 +19,12 @@ Gem::Specification.new do |s|
   s.require_paths     = ["lib"]
 
   s.add_runtime_dependency 'xml-simple'
+  s.add_runtime_dependency 'thor'
   s.add_runtime_dependency 'jruby-openssl' if RUBY_PLATFORM == 'java'
 
   s.add_development_dependency 'redgreen', '~> 1.2.2'
   s.add_development_dependency 'fakeweb', '~> 1.3.0'
+  s.add_development_dependency 'mocha', '~> 0.10.3'
+  s.add_development_dependency 'rdoc'
   s.add_development_dependency 'rake', '~> 0.9.2.2'
 end

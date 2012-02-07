@@ -41,31 +41,15 @@ Server creation
 Command Line Usage
 ------------------
 
-    USAGE: solusvm <command> [options]
-        -I, --api-login [id]             API ID
-        -K, --api-key [key]              API KEY
-        -N, --node [node]                Node to provision on
-        -U, --api-url [URL]              URL to the API
-        -u, --username [username]        The client to put the VPS under
-        -k, --kind [kind]                Type of VPS (openvz,xen,xen hvm)
-        -t, --template [template]        VPS template to boot from
-        -p, --plan [plan]                Plan to use
-        -i, --ips [number]               Number of ips to add to the VPS
-        -h, --help                       Show help documentation
-    Commands:
-      node-available-ips <nodeid>
-      server-check-exists <vserverid>
-      server-shutdown <vserverid>
-      server-terminate <vserverid>
-      server-changeplan <vserverid> <newplan>
-      server-resume <vserverid>
-      server-reboot <vserverid>
-      server-rebuild <vserverid> -t myimage
-      server-status <vserverid>
-      server-boot <vserverid>
-      server-create <hostname> <password> -t myimage -k xen -p myplan -i 1
-      server-suspend <vserverid>
-      server-addip <vserverid>
+  There are commands to run server and node actions. To check all available actions, you can execute the
+  following command:
+
+    solusvm server
+    solusvm node
+
+  To check the available options for a given action, you can execute the following command:
+
+    solusvm server help create
 
 Default Config for Command Line
 --------------------------------
