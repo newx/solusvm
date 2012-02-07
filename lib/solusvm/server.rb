@@ -43,6 +43,10 @@ module Solusvm
       perform_request(:action => 'vserver-network-enable', :vserverid => vid)
     end
 
+    def network_disable(vid)
+      perform_request(:action => 'vserver-network-disable', :vserverid => vid)
+    end
+
     def terminate(vid, deleteclient = false)
       perform_request(:action => 'vserver-terminate', :vserverid => vid, :deleteclient => deleteclient)
     end

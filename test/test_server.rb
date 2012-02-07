@@ -86,6 +86,11 @@ class TestServer < Test::Unit::TestCase
     assert @server.network_enable(1)
   end
 
+  def test_network_disable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-network-disable&vserverid=1", :body => load_response('server_network_disable_success'))
+    assert @server.network_disable(1)
+  end
+
   def test_exists
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-checkexists&vserverid=1", :body => load_response('server_exists_success'))
     assert @server.exists?(1)
