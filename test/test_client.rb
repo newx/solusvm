@@ -66,4 +66,33 @@ class TestClient < Test::Unit::TestCase
     FakeWeb.register_uri(:get, "#{base_uri}&action=client-delete&username=vps123", :body => load_response('client_delete_error'))
     assert !@client.delete("vps123")
   end
+
+  def test_list
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-list", :body => load_response('client_list_success'))
+
+    clients = @client.list
+    assert_equal 1, clients.size
+
+    client = clients.first
+    assert_equal "1", client["id"]
+    assert_equal "vps123", client["username"]
+    assert_equal "vps123@email.com", client["email"]
+    assert_equal "phill", client["firstname"]
+    assert_equal "smith", client["lastname"]
+    assert_equal "VPS Co", client["company"]
+    assert_equal "Client", client["level"]
+    assert_equal "Active", client["status"]
+    assert_equal "2009-01-01", client["created"]
+    assert_equal "2010-04-23", client["lastlogin"]
+  end
+
+  def test_list_empty
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-list", :body => load_response('client_list_success_empty'))
+    assert @client.list.empty?
+  end
+
+  def test_list_fail
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-list", :body => load_response('client_list_error'))
+    assert_nil @client.list
+  end
 end

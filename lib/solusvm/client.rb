@@ -17,25 +17,32 @@ module Solusvm
     # Change client password for the solus admin
     def change_password(username, password)
       perform_request({:action => "client-updatepassword", :username => username, :password => password})
-      statusmsg.match /success/i
     end
 
     # Checks wether a specific client exists
     def exists?(username)
       perform_request({:action => 'client-checkexists', :username => username})
-      statusmsg.match /client exists/i
     end
 
     # Verify a clients login. Returns true when the specified login is correct
     def authenticate(username, password)
       perform_request({:action => 'client-authenticate', :username => username, :password => password})
-      statusmsg.match /validated/i
     end
 
     # Deletes a client
     def delete(username)
       perform_request({:action => "client-delete", :username => username})
-      successful?
+    end
+
+    # Lists clients
+    def list
+      perform_request({:action => "client-list"}, "client")
+
+      if returned_parameters["clients"] && returned_parameters["clients"]["client"]
+        returned_parameters["clients"]["client"]
+      elsif returned_parameters["clients"]
+        []
+      end
     end
   end
 end
