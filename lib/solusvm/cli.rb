@@ -135,6 +135,21 @@ module Solusvm
 
   class NodeCli < BaseCli
 
+    desc "list VSERVERID", "Lists existing nodes for a given type"
+    def list(type)
+      say general.nodes(type)
+    end
+
+    desc "list-ids VSERVERID", "Lists existing nodes ids for a given type"
+    def list_ids(type)
+      say general.nodes_ids(type)
+    end
+
+    desc "templates VSERVERID", "Lists existing templates for a given type"
+    def templates(type)
+      say general.templates(type)
+    end
+
     desc "available-ips VSERVERID", "Lists the available ips for a given node"
     def available_ips(vserverid)
       say general.node_available_ips(vserverid).join("\n")
@@ -143,6 +158,16 @@ module Solusvm
     desc "stats VSERVERID", "Lists statistics for a given node"
     def stats(vserverid)
       say general.node_statistics(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
+    end
+
+    desc "xenresources VSERVERID", "Lists xen resources for a given node"
+    def xenresources(vserverid)
+      say general.node_xenresources(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
+    end
+
+    desc "virtualservers VSERVERID", "Lists the virtual servers for a given node"
+    def virtualservers(vserverid)
+      say general.node_virtualservers(vserverid)
     end
   end
 

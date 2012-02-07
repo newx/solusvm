@@ -141,6 +141,48 @@ class TestCli < Test::Unit::TestCase
     Solusvm::Cli.start(expand_base_arguments(["node", "stats", "thevserverid"]))
   end
 
+  def test_should_delegate_node_xenresources_to_general
+    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
+    Solusvm::General.stubs(:new => mock{ expects(:node_xenresources).with("thevserverid").returns({
+      :stat1 => "val1", :stat2 => "val2"
+    })})
+
+    $stdout.expects(:puts).with("stat1 => val1\nstat2 => val2")
+    Solusvm::Cli.start(expand_base_arguments(["node", "xenresources", "thevserverid"]))
+  end
+
+  def test_should_delegate_node_virtualservers_to_general
+    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
+    Solusvm::General.stubs(:new => mock{ expects(:node_virtualservers).with("thevserverid").returns("thedata")})
+
+    $stdout.expects(:puts).with("thedata")
+    Solusvm::Cli.start(expand_base_arguments(["node", "virtualservers", "thevserverid"]))
+  end
+
+  def test_should_delegate_nodes_to_general
+    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
+    Solusvm::General.stubs(:new => mock{ expects(:nodes).with("type").returns("thenodes")})
+
+    $stdout.expects(:puts).with("thenodes")
+    Solusvm::Cli.start(expand_base_arguments(["node", "list", "type"]))
+  end
+
+  def test_should_delegate_nodes_ids_to_general
+    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
+    Solusvm::General.stubs(:new => mock{ expects(:nodes_ids).with("type").returns("thenodes")})
+
+    $stdout.expects(:puts).with("thenodes")
+    Solusvm::Cli.start(expand_base_arguments(["node", "list-ids", "type"]))
+  end
+
+  def test_should_delegate_templates_to_general
+    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
+    Solusvm::General.stubs(:new => mock{ expects(:templates).with("type").returns("thetemplates")})
+
+    $stdout.expects(:puts).with("thetemplates")
+    Solusvm::Cli.start(expand_base_arguments(["node", "templates", "type"]))
+  end
+
   protected
 
   def expand_base_arguments(options)
