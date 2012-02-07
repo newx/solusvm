@@ -26,6 +26,11 @@ module Solusvm
     class_option :api_key,   :type => :string, :desc => "API KEY. Required.", :aliases => ["-K", "--api-key"], :default => default_option(:key)
     class_option :api_url,   :type => :string, :desc => "API URL. Required.", :aliases => ["-U", "--api-url"], :default => default_option(:url)
 
+    # Overrides the default banner implementation to output the whole command
+    def self.banner(task, namespace = true, subcommand = false)
+      "#{basename} #{task.formatted_usage(self, true, subcommand)}"
+    end
+
     protected
 
     def configure
@@ -48,6 +53,8 @@ module Solusvm
   end
 
   class ServerCli < BaseCli
+    namespace :server
+
     desc "status VSERVERID", "Checks the status of a server"
     def status(vserverid)
       say server.status(vserverid)
@@ -120,6 +127,8 @@ module Solusvm
   end
 
   class NodeCli < BaseCli
+    namespace :node
+
     desc "available-ips VSERVERID", "Lists the available ips for a given node"
     def available_ips(vserverid)
       say general.node_available_ips(vserverid).join("\n")
