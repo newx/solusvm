@@ -14,13 +14,13 @@ module Solusvm
       perform_request(options)
     end
 
-    # change client password for the solus admin
+    # Change client password for the solus admin
     def change_password(username, password)
       perform_request({:action => "client-updatepassword", :username => username, :password => password})
       statusmsg.match /success/i
     end
 
-    # checks wether a specific client exists
+    # Checks wether a specific client exists
     def exists?(username)
       perform_request({:action => 'client-checkexists', :username => username})
       statusmsg.match /client exists/i
@@ -30,6 +30,12 @@ module Solusvm
     def authenticate(username, password)
       perform_request({:action => 'client-authenticate', :username => username, :password => password})
       statusmsg.match /validated/i
+    end
+
+    # Deletes a client
+    def delete(username)
+      perform_request({:action => "client-delete", :username => username})
+      successful?
     end
   end
 end

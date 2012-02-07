@@ -37,18 +37,33 @@ class TestClient < Test::Unit::TestCase
   end
   
   def test_change_password
-    FakeWeb.register_uri(:get, "#{base_uri}&action=client-updatepassword&username=vps123&password=123456", :body => load_response('client_change_password_success'))
-    FakeWeb.register_uri(:get, "#{base_uri}&action=client-updatepassword&username=vps13&password=thecake", :body => load_response('client_change_password_error'))    
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-updatepassword&username=vps123&password=123456", :body => load_response('client_change_password_success'))    
     assert @client.change_password("vps123","123456")
+  end
+
+  def test_change_password_fail
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-updatepassword&username=vps13&password=thecake", :body => load_response('client_change_password_error'))
     assert !@client.change_password("vps13","thecake")
   end
 
   def test_authenticate
     FakeWeb.register_uri(:get, "#{base_uri}&action=client-authenticate&username=u&password=p", :body => load_response('client_authenticate_success'))
-    FakeWeb.register_uri(:get, "#{base_uri}&action=client-authenticate&username=u&password=notp", :body => load_response('client_authenticate_error'))
     assert @client.authenticate('u', 'p')
+  end
+
+  def test_authenticate_fail
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-authenticate&username=u&password=notp", :body => load_response('client_authenticate_error'))
     assert ! @client.authenticate('u', 'notp')
     assert_equal 'invalid username or password', @client.statusmsg
-    
+  end
+
+  def test_delete
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-delete&username=vps123", :body => load_response('client_delete_success'))
+    assert @client.delete("vps123")
+  end
+
+  def test_delete_fail
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-delete&username=vps123", :body => load_response('client_delete_error'))
+    assert !@client.delete("vps123")
   end
 end
