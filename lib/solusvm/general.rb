@@ -23,6 +23,11 @@ module Solusvm
       returned_parameters
     end
 
+    def node_xenresources(nodeid)
+      perform_request(:action => 'node-xenresources', :nodeid => nodeid)
+      returned_parameters
+    end
+
     # List a nodes available IPs
     def node_available_ips(nodeid)
       perform_request(:action => 'node-iplist', :nodeid => nodeid)

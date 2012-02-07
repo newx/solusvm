@@ -123,4 +123,12 @@ class TestGeneral < Test::Unit::TestCase
     FakeWeb.register_uri(:get, "#{base_uri}&action=node-virtualservers&nodeid=1", :body => load_response('error'))
     assert_nil @general.node_virtualservers(1)
   end
+
+  def test_node_xenresources
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-xenresources&nodeid=1", :body => load_response('general_node_xenresources_success'))
+    node_resources = @general.node_xenresources(1)
+    
+    assert_equal 'thefreememory', node_resources['freememory']
+    assert_equal 'thefreehdd', node_resources['freehdd']
+  end
 end
