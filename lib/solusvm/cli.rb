@@ -4,6 +4,7 @@ require 'thor'
 
 module Solusvm
   class Cli < Thor
+    include Thor::Actions
 
     # Retrieves default options coming from a configuration file, if any.
     def self.default_option(key)
@@ -25,58 +26,58 @@ module Solusvm
 
     desc "server-status VSERVERID", "Checks the status of a server"
     def server_status(vserverid)
-      server.status(vserverid)
+      say server.status(vserverid)
     end
 
     desc "server-changeplan VSERVERID NEWPLAN", "Changes the plan of a server"
     def server_changeplan(vserverid, newplan)
-      server.change_plan(vserverid, newplan)
+      say server.change_plan(vserverid, newplan)
     end
 
     desc "server-addip VSERVERID", "Adds an ip to the server"
     def server_addip(vserverid)
-      server.add_ip(vserverid)
+      say server.add_ip(vserverid)
     end
 
     desc "server-boot VSERVERID", "Boots up a server"
     def server_boot(vserverid)
-      server.boot(vserverid)
+      say server.boot(vserverid)
     end
 
     desc "server-reboot VSERVERID", "Reboots a server"
     def server_reboot(vserverid)
-      server.reboot(vserverid)
+      say server.reboot(vserverid)
     end
 
     desc "server-shutdown VSERVERID", "Shuts down a server"
     def server_shutdown(vserverid)
-      server.shutdown(vserverid)
+      say server.shutdown(vserverid)
     end
 
     desc "server-suspend VSERVERID", "Suspends a server"
     def server_suspend(vserverid)
-      server.suspend(vserverid)
+      say server.suspend(vserverid)
     end
 
     desc "server-resume VSERVERID", "Resumes a server"
     def server_resume(vserverid)
-      server.resume(vserverid)
+      say server.resume(vserverid)
     end
 
     desc "server-check-exists VSERVERID", "Checks if a server exists"
     def server_check_exists(vserverid)
-      server.check_exists(vserverid)
+      say server.check_exists(vserverid)
     end
 
     desc "server-terminate VSERVERID", "Terminates a server"
     def server_terminate(vserverid)
-      server.terminate(vserverid)
+      say server.terminate(vserverid)
     end
 
     desc "server-rebuild VSERVERID", "Rebuilds a server"
     method_option :template, :type => :string, :desc => "VPS template to boot from",  :aliases => ["-t", "--template"]
     def server_rebuild(vserverid)
-      server.rebuild(vserverid, {:template => options[:template]})
+      say server.rebuild(vserverid, {:template => options[:template]})
     end
 
     desc "server-create HOSTNAME PASSWORD", "Creates a new server"
@@ -95,12 +96,12 @@ module Solusvm
 
     desc "node-available-ips VSERVERID", "Lists the available ips for a given node"
     def node_available_ips(vserverid)
-      general.node_available_ips(vserverid).join("\n")
+      say general.node_available_ips(vserverid).join("\n")
     end
 
     desc "node-stats VSERVERID", "Lists statistics for a given node"
     def node_stats(vserverid)
-      general.node_statistics(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
+      say general.node_statistics(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
     end
 
     private
