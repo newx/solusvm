@@ -41,15 +41,39 @@ Server creation
 Command Line Usage
 ------------------
 
-  There are commands to run server and node actions. To check all available actions, you can execute the
-  following command:
+    Tasks:
+        solusvm help [TASK]       # Describe available tasks or one specific task
+        solusvm node <command>    # Node commands
+        solusvm server <command>  # Server commands
+        solusvm version           # Outputs the current program version
 
-    solusvm server
-    solusvm node
+        solusvm node available-ips VSERVERID  # Lists the available ips for a given node
+        solusvm node help [COMMAND]           # Describe subcommands or one specific subcommand
+        solusvm node stats VSERVERID          # Lists statistics for a given node
 
-  To check the available options for a given action, you can execute the following command:
+        solusvm server addip VSERVERID               # Adds an ip to the server
+        solusvm server boot VSERVERID                # Boots up a server
+        solusvm server changeplan VSERVERID NEWPLAN  # Changes the plan of a server
+        solusvm server check-exists VSERVERID        # Checks if a server exists
+        solusvm server create HOSTNAME PASSWORD      # Creates a new server
+        solusvm server help [COMMAND]                # Describe subcommands or one specific subcommand
+        solusvm server reboot VSERVERID              # Reboots a server
+        solusvm server rebuild VSERVERID             # Rebuilds a server
+        solusvm server resume VSERVERID              # Resumes a server
+        solusvm server shutdown VSERVERID            # Shuts down a server
+        solusvm server status VSERVERID              # Checks the status of a server
+        solusvm server suspend VSERVERID             # Suspends a server
+        solusvm server terminate VSERVERID           # Terminates a server
 
-    solusvm server help create
+    Options:
+        -I, --api-login, [--api-login=API_LOGIN]  # API ID. Required.
+        -K, --api-key, [--api-key=API_KEY]        # API KEY. Required.
+        -U, --api-url, [--api-url=API_URL]        # API URL. Required.
+
+
+    To check the available options for a given action, you can execute the following command:
+
+        solusvm server help create
 
 Default Config for Command Line
 --------------------------------
