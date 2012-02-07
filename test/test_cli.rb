@@ -7,6 +7,11 @@ class TestCli < Test::Unit::TestCase
     @base_arguments = ["--api-login", "thelogin", "--api-key", "thekey", "--api-url", "theurl"]
   end
 
+  def test_should_print_version
+    $stdout.expects(:puts).with(Solusvm::VERSION)
+    Solusvm::Cli.start(expand_base_arguments(["version"]))
+  end
+
   def test_should_delegate_server_status_to_server
     Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
     Solusvm::Server.stubs(:new => mock{ expects(:status).with("thevserverid").returns("theresult") })

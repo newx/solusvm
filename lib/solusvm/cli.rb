@@ -1,7 +1,8 @@
-require 'solusvm'
 require 'yaml'
 require 'thor'
 require 'thor/group'
+require 'solusvm'
+require 'solusvm/version'
 
 module Solusvm
   class BaseCli < Thor
@@ -133,5 +134,10 @@ module Solusvm
   class Cli < Thor
     register(ServerCli, 'server', 'server <command>', 'Server commands')
     register(NodeCli,   'node',   'node <command>',   'Node commands')
+
+    desc "version", "Outputs the current program version"
+    def version
+      say Solusvm::VERSION
+    end
   end
 end
