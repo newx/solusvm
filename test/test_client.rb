@@ -63,7 +63,7 @@ class TestClient < Test::Unit::TestCase
   end
 
   def test_delete_fail
-    FakeWeb.register_uri(:get, "#{base_uri}&action=client-delete&username=vps123", :body => load_response('client_delete_error'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-delete&username=vps123", :body => load_response('error'))
     assert !@client.delete("vps123")
   end
 
@@ -92,7 +92,7 @@ class TestClient < Test::Unit::TestCase
   end
 
   def test_list_fail
-    FakeWeb.register_uri(:get, "#{base_uri}&action=client-list", :body => load_response('client_list_error'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=client-list", :body => load_response('error'))
     assert_nil @client.list
   end
 end
