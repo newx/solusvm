@@ -57,6 +57,10 @@ module Solusvm
       perform_request(:action => 'vserver-change', :vserverid => vid, :plan => plan)
     end
 
+    def change_owner(vid, client_id)
+      perform_request(:action => 'vserver-changeowner', :vserverid => vid, :clientid => client_id)
+    end
+
     def info(vid, reboot = false)
       perform_request(:action => 'vserver-info', :vserverid => vid, :reboot => reboot)
       returned_parameters

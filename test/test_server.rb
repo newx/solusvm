@@ -96,6 +96,11 @@ class TestServer < Test::Unit::TestCase
     assert_equal 'Virtual server updated', @server.statusmsg
   end
 
+  def test_change_owner
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-changeowner&vserverid=1&clientid=2", :body => load_response('server_change_owner_success'))
+    assert @server.change_owner(1, 2)
+  end
+
   def test_info
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-info&vserverid=1&reboot=true", :body => load_response('server_info_success'))
     assert @server.info(1, true)
