@@ -116,6 +116,11 @@ class TestServer < Test::Unit::TestCase
     assert @server.change_owner(1, 2)
   end
 
+  def test_change_consolepass
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-consolepass&vserverid=1&consolepassword=thepassword", :body => load_response('server_change_consolepass_success'))
+    assert @server.change_consolepass(1, "thepassword")
+  end
+
   def test_info
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-info&vserverid=1&reboot=true", :body => load_response('server_info_success'))
     assert @server.info(1, true)
