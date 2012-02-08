@@ -81,6 +81,11 @@ class TestServer < Test::Unit::TestCase
     assert @server.tun_enable(1)
   end
 
+  def test_tun_disable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-tun-disable&vserverid=1", :body => load_response('server_tun_disable_success'))
+    assert @server.tun_disable(1)
+  end
+
   def test_network_enable
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-network-enable&vserverid=1", :body => load_response('server_network_enable_success'))
     assert @server.network_enable(1)

@@ -39,6 +39,10 @@ module Solusvm
       perform_request(:action => 'vserver-tun-enable', :vserverid => vid)
     end
 
+    def tun_disable(vid)
+      perform_request(:action => 'vserver-tun-disable', :vserverid => vid)
+    end
+
     def network_enable(vid)
       perform_request(:action => 'vserver-network-enable', :vserverid => vid)
     end
