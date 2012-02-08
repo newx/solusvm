@@ -108,5 +108,9 @@ module Solusvm
     def rebuild(vid, template)
       perform_request(:action => 'vserver-rebuild', :vserverid => vid, :template => template)
     end
+
+    def mountiso(vid, iso)
+      perform_request(:action => 'vserver-mountiso', :vserverid => vid, :iso => iso)
+    end
   end
 end

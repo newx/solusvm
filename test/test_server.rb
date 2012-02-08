@@ -188,4 +188,9 @@ class TestServer < Test::Unit::TestCase
     assert_equal "/graphs/9/214/214-load-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["loadgraph"]
     assert_equal "/graphs/9/214/214-mem-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["memorygraph"]    
   end
+
+  def test_mountiso
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-mountiso&vserverid=1&iso=theiso", :body => load_response('server_mountiso_success'))
+    assert @server.mountiso(1, "theiso")
+  end
 end
