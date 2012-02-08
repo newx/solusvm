@@ -141,6 +141,11 @@ class TestServer < Test::Unit::TestCase
     assert @server.change_vncpass(1, "thepassword")
   end
 
+  def test_change_rootpassword
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-rootpassword&vserverid=1&rootpassword=thepassword", :body => load_response('server_rootpassword_success'))
+    assert @server.change_rootpassword(1, "thepassword")
+  end
+
   def test_info
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-info&vserverid=1&reboot=true", :body => load_response('server_info_success'))
     assert @server.info(1, true)
