@@ -193,4 +193,9 @@ class TestServer < Test::Unit::TestCase
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-mountiso&vserverid=1&iso=theiso", :body => load_response('server_mountiso_success'))
     assert @server.mountiso(1, "theiso")
   end
+
+  def test_unmountiso
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-unmountiso&vserverid=1", :body => load_response('server_unmountiso_success'))
+    assert @server.unmountiso(1)
+  end
 end

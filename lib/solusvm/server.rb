@@ -112,5 +112,9 @@ module Solusvm
     def mountiso(vid, iso)
       perform_request(:action => 'vserver-mountiso', :vserverid => vid, :iso => iso)
     end
+
+    def unmountiso(vid)
+      perform_request(:action => 'vserver-unmountiso', :vserverid => vid)
+    end
   end
 end
