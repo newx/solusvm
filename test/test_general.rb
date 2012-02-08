@@ -10,9 +10,7 @@ class TestGeneral < Test::Unit::TestCase
 
   def test_nodes
     FakeWeb.register_uri(:get, "#{base_uri}&action=listnodes&type=xen", :body => load_response('general_nodes_success'))
-    actual_nodes = @general.nodes('xen')
-    expected_nodes = %w(node1 node2 node3 node4)
-    assert_equal expected_nodes, actual_nodes
+    assert_equal %w(node1 node2 node3 node4), @general.nodes('xen')
   end
 
   def test_nodes_error
@@ -27,15 +25,28 @@ class TestGeneral < Test::Unit::TestCase
 
   def test_templates
     FakeWeb.register_uri(:get, "#{base_uri}&action=listtemplates&type=xen", :body => load_response('general_templates_success'))
-    actual_templates = @general.templates('xen')
-    expected_templates = %w(template1 template2 template3)
-    assert_equal expected_templates, actual_templates
+    assert_equal %w(template1 template2 template3), @general.templates('xen')
   end
 
-  def test_template_error
+  def test_templates_error
     FakeWeb.register_uri(:get, "#{base_uri}&action=listtemplates&type=whatever", :body => load_response('error'))
     begin
       @general.templates('whatever')
+      flunk "Shouldn't get here"
+    rescue Solusvm::SolusvmError => e
+      assert e.message.match /Invalid Virtual Server type/
+    end
+  end
+
+  def test_plans
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listplans&type=xen", :body => load_response('general_plans_success'))
+    assert_equal %w(plan1 plan2 plan3 plan4), @general.plans('xen')
+  end
+
+  def test_plans_error
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listplans&type=whatever", :body => load_response('error'))
+    begin
+      @general.plans('whatever')
       flunk "Shouldn't get here"
     rescue Solusvm::SolusvmError => e
       assert e.message.match /Invalid Virtual Server type/
@@ -63,25 +74,17 @@ class TestGeneral < Test::Unit::TestCase
 
   def test_list_all_ips_available
     FakeWeb.register_uri(:get, "#{base_uri}&action=node-iplist&nodeid=1", :body => load_response('general_node_list_all_ips_available'))
-    avaialble_ips = @general.node_available_ips(1)
-
-    expected_ips = %w(123.123.123.123 124.124.124.124 125.125.125.125).sort
-    assert !avaialble_ips.empty?
-    assert_equal expected_ips, avaialble_ips.sort 
+    assert_equal %w(123.123.123.123 124.124.124.124 125.125.125.125).sort, @general.node_available_ips(1).sort 
   end
 
   def test_list_all_ips_not_available
     FakeWeb.register_uri(:get, "#{base_uri}&action=node-iplist&nodeid=1", :body => load_response('general_node_list_all_ips_not_available'))
-    avaialble_ips = @general.node_available_ips(1)
-
-    assert avaialble_ips.empty?
+    assert @general.node_available_ips(1).empty?
   end
 
   def test_nodes_ids
     FakeWeb.register_uri(:get, "#{base_uri}&action=node-idlist&type=xen", :body => load_response('general_nodes_ids_success'))
-    actual_nodes = @general.nodes_ids('xen')
-    expected_nodes = %w(nodeid1 nodeid2 nodeid3 nodeid4)
-    assert_equal expected_nodes, actual_nodes
+    assert_equal %w(nodeid1 nodeid2 nodeid3 nodeid4), @general.nodes_ids('xen')
   end
 
   def test_nodes_ids_error

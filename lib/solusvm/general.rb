@@ -18,6 +18,12 @@ module Solusvm
       returned_parameters['templates'].split(',')
     end
 
+    def plans(type)
+      validate_server_type!(type)
+      perform_request(:action => 'listplans', :type => type)
+      returned_parameters['plans'].split(',')
+    end
+
     def node_statistics(nodeid)
       perform_request(:action => 'node-statistics', :nodeid => nodeid)
       returned_parameters
