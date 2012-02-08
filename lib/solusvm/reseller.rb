@@ -13,5 +13,10 @@ module Solusvm
       perform_request({:action => 'reseller-info', :username => username}) && returned_parameters
     end
 
+    def list
+      perform_request(:action => 'reseller-list')
+      returned_parameters['usernames'].split(',')
+    end
+
   end
 end

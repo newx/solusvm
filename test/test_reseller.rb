@@ -62,4 +62,9 @@ class TestReseller < Test::Unit::TestCase
     assert !@reseller.info("vps13")
   end
 
+  def test_list
+    FakeWeb.register_uri(:get, "#{base_uri}&action=reseller-list", :body => load_response('reseller_list_success'))
+    assert_equal %w(username1 username2 username3), @reseller.list
+  end
+
 end
