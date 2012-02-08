@@ -51,6 +51,14 @@ module Solusvm
       perform_request(:action => 'vserver-network-disable', :vserverid => vid)
     end
 
+    def pae_enable(vid)
+      perform_request(:action => 'vserver-pae', :vserverid => vid, :pae => "on")
+    end
+
+    def pae_disable(vid)
+      perform_request(:action => 'vserver-pae', :vserverid => vid, :pae => "off")
+    end
+
     def terminate(vid, deleteclient = false)
       perform_request(:action => 'vserver-terminate', :vserverid => vid, :deleteclient => deleteclient)
     end

@@ -96,6 +96,16 @@ class TestServer < Test::Unit::TestCase
     assert @server.network_disable(1)
   end
 
+  def test_pae_enable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-pae&vserverid=1&pae=on", :body => load_response('server_pae_success'))
+    assert @server.pae_enable(1)
+  end
+
+  def test_pae_disable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-pae&vserverid=1&pae=off", :body => load_response('server_pae_success'))
+    assert @server.pae_disable(1)
+  end
+
   def test_exists
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-checkexists&vserverid=1", :body => load_response('server_exists_success'))
     assert @server.exists?(1)
