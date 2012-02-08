@@ -16,4 +16,20 @@ class TestGeneralCli < Test::Unit::TestCase
     $stdout.expects(:puts).with("thetemplates")
     Solusvm::Cli.start(cli_expand_base_arguments(["general", "templates", "type"]))
   end
+
+  def test_should_delegate_plans_to_general
+    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
+    Solusvm::General.stubs(:new => mock{ expects(:plans).with("type").returns("theplans")})
+
+    $stdout.expects(:puts).with("theplans")
+    Solusvm::Cli.start(cli_expand_base_arguments(["general", "plans", "type"]))
+  end
+
+  def test_should_delegate_isos_to_general
+    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
+    Solusvm::General.stubs(:new => mock{ expects(:isos).with("type").returns("theisos")})
+
+    $stdout.expects(:puts).with("theisos")
+    Solusvm::Cli.start(cli_expand_base_arguments(["general", "isos", "type"]))
+  end
 end
