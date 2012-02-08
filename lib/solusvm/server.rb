@@ -90,6 +90,11 @@ module Solusvm
       perform_request(:action => 'vserver-vnc', :vserverid => vid)
       returned_parameters
     end
+
+    def console(vid)
+      perform_request(:action => 'vserver-console', :vserverid => vid)
+      returned_parameters
+    end
     
     def info_all(vid)
       perform_request(:action => 'vserver-infoall', :vserverid => vid)

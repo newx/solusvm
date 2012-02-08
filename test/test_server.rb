@@ -156,6 +156,18 @@ class TestServer < Test::Unit::TestCase
     assert_equal 'thevncport', info['vncport']
     assert_equal 'thevncpassword', info['vncpassword']
   end
+
+  def test_console
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-console&vserverid=1", :body => load_response('server_console_success'))
+    info = @server.console(1)
+
+    assert info
+    assert_equal 'thetype', info['type']
+    assert_equal 'theconsoleip', info['consoleip']
+    assert_equal 'theconsoleport', info['consoleport']
+    assert_equal 'theconsolepassword', info['consolepassword']
+    assert_equal 'theconsoleusername', info['consoleusername']
+  end
   
   def test_info_all
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-infoall&vserverid=1", :body => load_response('server_infoall_success'))
