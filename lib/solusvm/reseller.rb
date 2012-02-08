@@ -9,5 +9,9 @@ module Solusvm
       perform_request(options.merge(:action => 'reseller-modifyresources', :username => username)) && returned_parameters
     end
 
+    def info(username)
+      perform_request({:action => 'reseller-info', :username => username}) && returned_parameters
+    end
+
   end
 end

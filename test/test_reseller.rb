@@ -44,4 +44,22 @@ class TestReseller < Test::Unit::TestCase
     assert !@reseller.change_resources("vps13")
   end
 
+  def test_info
+    FakeWeb.register_uri(:get, "#{base_uri}&action=reseller-info&username=vps123", :body => load_response('reseller_info_success'))    
+    
+    params = @reseller.info("vps123")
+    
+    assert params
+    assert_equal "reseller123", params['username']
+    assert_equal "Phill", params['firstname']
+    assert_equal "Smith", params['lastname']
+    assert_equal "123456", params['password']
+    assert_equal "reseller3@email.com", params['email']
+  end
+
+  def test_info_fail
+    FakeWeb.register_uri(:get, "#{base_uri}&action=reseller-info&username=vps13", :body => load_response('error'))
+    assert !@reseller.info("vps13")
+  end
+
 end
