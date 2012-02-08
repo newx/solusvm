@@ -145,6 +145,17 @@ class TestServer < Test::Unit::TestCase
     assert_equal 'swp', info['swap-burst']
     assert_equal 'xenhvm', info['type']
   end
+
+  def test_vnc
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-vnc&vserverid=1", :body => load_response('server_vnc_success'))
+    info = @server.vnc(1)
+
+    assert info
+    assert_equal 'thetype', info['type']
+    assert_equal 'thevncip', info['vncip']
+    assert_equal 'thevncport', info['vncport']
+    assert_equal 'thevncpassword', info['vncpassword']
+  end
   
   def test_info_all
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-infoall&vserverid=1", :body => load_response('server_infoall_success'))
