@@ -101,6 +101,10 @@ module Solusvm
       perform_request(:action => 'vserver-bootorder', :vserverid => vid, :bootorder => bootorder.to_s)
     end
 
+    def change_hostname(vid, hostname)
+      perform_request(:action => 'vserver-hostname', :vserverid => vid, :hostname => hostname)
+    end
+
     def info(vid, reboot = false)
       perform_request(:action => 'vserver-info', :vserverid => vid, :reboot => reboot)
       returned_parameters

@@ -151,6 +151,11 @@ class TestServer < Test::Unit::TestCase
     assert @server.change_bootorder(1, :c)
   end
 
+  def test_change_hostname
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-hostname&vserverid=1&hostname=thehostname", :body => load_response('server_hostname_success'))
+    assert @server.change_hostname(1, "thehostname")
+  end
+
   def test_info
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-info&vserverid=1&reboot=true", :body => load_response('server_info_success'))
     assert @server.info(1, true)
