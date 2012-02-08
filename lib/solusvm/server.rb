@@ -124,5 +124,9 @@ module Solusvm
     def unmountiso(vid)
       perform_request(:action => 'vserver-unmountiso', :vserverid => vid)
     end
+
+    def bootorder(vid, bootorder)
+      perform_request(:action => 'vserver-bootorder', :vserverid => vid, :bootorder => bootorder.to_s)
+    end
   end
 end

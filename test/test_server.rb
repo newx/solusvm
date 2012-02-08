@@ -208,4 +208,9 @@ class TestServer < Test::Unit::TestCase
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-unmountiso&vserverid=1", :body => load_response('server_unmountiso_success'))
     assert @server.unmountiso(1)
   end
+
+  def test_bootorder
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-bootorder&vserverid=1&bootorder=c", :body => load_response('server_bootorder_success'))
+    assert @server.bootorder(1, :c)
+  end
 end
