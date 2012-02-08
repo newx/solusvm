@@ -1,27 +1,23 @@
 module Solusvm
   class General < Base
     def nodes(type)
-      validate_server_type!(type)
-      perform_request(:action => 'listnodes', :type => type)
-      returned_parameters['nodes'].split(',')
+      list 'listnodes', type, 'nodes'
     end
 
     def nodes_ids(type)
-      validate_server_type!(type)
-      perform_request(:action => 'node-idlist', :type => type)
-      returned_parameters['nodes'].split(',')
+      list 'node-idlist', type, 'nodes'
     end
 
     def templates(type)
-      validate_server_type!(type)
-      perform_request(:action => 'listtemplates', :type => type)
-      returned_parameters['templates'].split(',')
+      list 'listtemplates', type, 'templates'
     end
 
     def plans(type)
-      validate_server_type!(type)
-      perform_request(:action => 'listplans', :type => type)
-      returned_parameters['plans'].split(',')
+      list 'listplans', type, 'plans'
+    end
+
+    def isos(type)
+      list 'listiso', type, 'iso'
     end
 
     def node_statistics(nodeid)
@@ -53,6 +49,14 @@ module Solusvm
       elsif returned_parameters["virtualservers"]
         []
       end
+    end
+
+    private
+
+    def list(action, type, xmlelement)
+      validate_server_type!(type)
+      perform_request(:action => action, :type => type)
+      returned_parameters[xmlelement].split(',')
     end
   end
 end

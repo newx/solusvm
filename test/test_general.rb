@@ -53,6 +53,21 @@ class TestGeneral < Test::Unit::TestCase
     end
   end
 
+  def test_isos
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listiso&type=xen", :body => load_response('general_isos_success'))
+    assert_equal %w(iso1 iso2 iso3), @general.isos('xen')
+  end
+
+  def test_isos_error
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listiso&type=whatever", :body => load_response('error'))
+    begin
+      @general.isos('whatever')
+      flunk "Shouldn't get here"
+    rescue Solusvm::SolusvmError => e
+      assert e.message.match /Invalid Virtual Server type/
+    end
+  end
+
   def test_node_statistics
     FakeWeb.register_uri(:get, "#{base_uri}&action=node-statistics&nodeid=1", :body => load_response('general_node_statistics_success'))
     node_statistics = @general.node_statistics(1)
