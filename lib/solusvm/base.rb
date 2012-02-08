@@ -75,14 +75,15 @@ module Solusvm
       {:id => Solusvm.api_id, :key => Solusvm.api_key}
     end
 
-    # TODO: clean this up
     def log_messages(options)
-      if Solusvm.api_options[:logger] && Solusvm.api_options[:logger].respond_to?(Solusvm.api_options[:logger_method])
-        Solusvm.api_options[:logger].send(Solusvm.api_options[:logger_method], "[Start] => #{options[:action]}")
+      logger, logger_method = Solusvm.api_options[:logger], Solusvm.api_options[:logger_method]
+      
+      if logger && logger.respond_to?(logger_method)
+        logger.send(logger_method, "[Start] => #{options[:action]}")
         returned_parameters.each do |k,v|
-          Solusvm.api_options[:logger].send(Solusvm.api_options[:logger_method], "   #{k} => #{v}")
+          logger.send(logger_method, "   #{k} => #{v}")
         end
-        Solusvm.api_options[:logger].send(Solusvm.api_options[:logger_method], "[End] => #{options[:action]}")
+        logger.send(logger_method, "[End] => #{options[:action]}")
       end
     end
 
