@@ -26,13 +26,11 @@ module Solusvm
   end
 end
 
-directory = File.expand_path(File.dirname(__FILE__))
-
-require File.join(directory, 'solusvm', 'exceptions')
-require File.join(directory, 'solusvm', 'hash')
-require File.join(directory, 'solusvm', 'base')
-require File.join(directory, 'solusvm', 'general')
-require File.join(directory, 'solusvm', 'client')
-require File.join(directory, 'solusvm', 'server')
-require File.join(directory, 'solusvm', 'reseller')
-require File.join(directory, 'solusvm', 'node')
+require 'solusvm/exceptions'
+require 'solusvm/hash'
+require 'solusvm/base'
+require 'solusvm/general'
+require 'solusvm/client'
+require 'solusvm/server'
+require 'solusvm/reseller'
+require 'solusvm/node'
