@@ -76,6 +76,36 @@ class TestServer < Test::Unit::TestCase
     assert_equal 'Virtual server terminated', @server.statusmsg
   end
 
+  def test_tun_enable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-tun-enable&vserverid=1", :body => load_response('server_tun_enable_success'))
+    assert @server.tun_enable(1)
+  end
+
+  def test_tun_disable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-tun-disable&vserverid=1", :body => load_response('server_tun_disable_success'))
+    assert @server.tun_disable(1)
+  end
+
+  def test_network_enable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-network-enable&vserverid=1", :body => load_response('server_network_enable_success'))
+    assert @server.network_enable(1)
+  end
+
+  def test_network_disable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-network-disable&vserverid=1", :body => load_response('server_network_disable_success'))
+    assert @server.network_disable(1)
+  end
+
+  def test_pae_enable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-pae&vserverid=1&pae=on", :body => load_response('server_pae_success'))
+    assert @server.pae_enable(1)
+  end
+
+  def test_pae_disable
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-pae&vserverid=1&pae=off", :body => load_response('server_pae_success'))
+    assert @server.pae_disable(1)
+  end
+
   def test_exists
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-checkexists&vserverid=1", :body => load_response('server_exists_success'))
     assert @server.exists?(1)
@@ -83,7 +113,8 @@ class TestServer < Test::Unit::TestCase
   end
 
   def test_status
-    #flunk "Implement this"
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-status&vserverid=1", :body => load_response('server_status_success'))
+    assert_equal 'online', @server.status(1)
   end
 
   def test_add_ip
@@ -94,6 +125,36 @@ class TestServer < Test::Unit::TestCase
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-change&vserverid=1&plan=newplan", :body => load_response('server_change_success'))
     assert @server.change_plan(1, 'newplan')
     assert_equal 'Virtual server updated', @server.statusmsg
+  end
+
+  def test_change_owner
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-changeowner&vserverid=1&clientid=2", :body => load_response('server_change_owner_success'))
+    assert @server.change_owner(1, 2)
+  end
+
+  def test_change_consolepass
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-consolepass&vserverid=1&consolepassword=thepassword", :body => load_response('server_change_consolepass_success'))
+    assert @server.change_consolepass(1, "thepassword")
+  end
+
+  def test_change_vncpass
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-vncpass&vserverid=1&vncpassword=thepassword", :body => load_response('server_change_vncpass_success'))
+    assert @server.change_vncpass(1, "thepassword")
+  end
+
+  def test_change_rootpassword
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-rootpassword&vserverid=1&rootpassword=thepassword", :body => load_response('server_rootpassword_success'))
+    assert @server.change_rootpassword(1, "thepassword")
+  end
+
+  def test_change_bootorder
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-bootorder&vserverid=1&bootorder=c", :body => load_response('server_bootorder_success'))
+    assert @server.change_bootorder(1, :c)
+  end
+
+  def test_change_hostname
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-hostname&vserverid=1&hostname=thehostname", :body => load_response('server_hostname_success'))
+    assert @server.change_hostname(1, "thehostname")
   end
 
   def test_info
@@ -115,6 +176,29 @@ class TestServer < Test::Unit::TestCase
     assert_equal 'swp', info['swap-burst']
     assert_equal 'xenhvm', info['type']
   end
+
+  def test_vnc
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-vnc&vserverid=1", :body => load_response('server_vnc_success'))
+    info = @server.vnc(1)
+
+    assert info
+    assert_equal 'thetype', info['type']
+    assert_equal 'thevncip', info['vncip']
+    assert_equal 'thevncport', info['vncport']
+    assert_equal 'thevncpassword', info['vncpassword']
+  end
+
+  def test_console
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-console&vserverid=1", :body => load_response('server_console_success'))
+    info = @server.console(1)
+
+    assert info
+    assert_equal 'thetype', info['type']
+    assert_equal 'theconsoleip', info['consoleip']
+    assert_equal 'theconsoleport', info['consoleport']
+    assert_equal 'theconsolepassword', info['consolepassword']
+    assert_equal 'theconsoleusername', info['consoleusername']
+  end
   
   def test_info_all
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-infoall&vserverid=1", :body => load_response('server_infoall_success'))
@@ -129,5 +213,15 @@ class TestServer < Test::Unit::TestCase
     assert_equal "/graphs/9/214/214-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["trafficgraph"]
     assert_equal "/graphs/9/214/214-load-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["loadgraph"]
     assert_equal "/graphs/9/214/214-mem-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["memorygraph"]    
+  end
+
+  def test_mountiso
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-mountiso&vserverid=1&iso=theiso", :body => load_response('server_mountiso_success'))
+    assert @server.mountiso(1, "theiso")
+  end
+
+  def test_unmountiso
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-unmountiso&vserverid=1", :body => load_response('server_unmountiso_success'))
+    assert @server.unmountiso(1)
   end
 end

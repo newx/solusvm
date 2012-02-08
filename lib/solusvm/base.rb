@@ -6,16 +6,18 @@ module Solusvm
 
     # Prepares and sends the API request to the URL specificed in Solusvm.config
     #
-    #
     #  class MyClass < Base
     #    def create_server(name)
     #      perform_request(:action => 'name', :id => 1)
     #    end
     #  end
+    #
     # Options:
     # * <tt>:action</tt> - Specifies which API method to execute
     # All other options passed in are converted to http query arguments and are passed along to the API
-    def perform_request(options = {})
+    #
+    # <tt>force_array</tt> - see parse_response
+    def perform_request(options = {}, force_array = false)
       options.merge!(api_login)
       http = Net::HTTP.new(api_endpoint.host, api_endpoint.port)
       if api_endpoint.port == 443
@@ -27,16 +29,20 @@ module Solusvm
         response = http.request(request)
 
         handle_errors(response.body)
-        @returned_parameters = parse_response(response.body)
+        @returned_parameters = parse_response(response.body, force_array)
         log_messages(options)
       end
       successful?
     end
 
     # Converts the XML response to a Hash
-    def parse_response(body)
+    #
+    # <tt>force_array</tt> - Parses the xml element as an array; can be a string with the element name
+    #     or an array with element names
+    def parse_response(body, force_array = false)
+      force_array = Array(force_array) if force_array
       body = "<solusrequest>#{body}</solusrequest>"
-      XmlSimple.xml_in(body, 'ForceArray' => false)
+      XmlSimple.xml_in(body, 'ForceArray' => force_array)
     end
 
     # Look for known error messages
@@ -69,14 +75,15 @@ module Solusvm
       {:id => Solusvm.api_id, :key => Solusvm.api_key}
     end
 
-    # TODO: clean this up
     def log_messages(options)
-      if Solusvm.api_options[:logger] && Solusvm.api_options[:logger].respond_to?(Solusvm.api_options[:logger_method])
-        Solusvm.api_options[:logger].send(Solusvm.api_options[:logger_method], "[Start] => #{options[:action]}")
+      logger, logger_method = Solusvm.api_options[:logger], Solusvm.api_options[:logger_method]
+      
+      if logger && logger.respond_to?(logger_method)
+        logger.send(logger_method, "[Start] => #{options[:action]}")
         returned_parameters.each do |k,v|
-          Solusvm.api_options[:logger].send(Solusvm.api_options[:logger_method], "   #{k} => #{v}")
+          logger.send(logger_method, "   #{k} => #{v}")
         end
-        Solusvm.api_options[:logger].send(Solusvm.api_options[:logger_method], "[End] => #{options[:action]}")
+        logger.send(logger_method, "[End] => #{options[:action]}")
       end
     end
 

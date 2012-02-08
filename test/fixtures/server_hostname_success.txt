@@ -1,0 +1,3 @@
+<status>success</status>
+<statusmsg>Virtual server hostname changed</statusmsg>
+<hostname>hostname</hostname>

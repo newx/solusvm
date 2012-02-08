@@ -1,0 +1,2 @@
+<status>success</status>
+<statusmsg>Client deleted</statusmsg>

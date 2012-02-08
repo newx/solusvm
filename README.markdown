@@ -42,28 +42,70 @@ Command Line Usage
 ------------------
 
     Tasks:
-        solusvm help [TASK]       # Describe available tasks or one specific task
-        solusvm node <command>    # Node commands
-        solusvm server <command>  # Server commands
-        solusvm version           # Outputs the current program version
+        solusvm client <command>    # Client commands
+        solusvm general <command>   # General commands
+        solusvm help [TASK]         # Describe available tasks or one specific task
+        solusvm node <command>      # Node commands
+        solusvm reseller <command>  # Reseller commands
+        solusvm server <command>    # Server commands
+        solusvm version             # Outputs the current program version
 
-        solusvm node available-ips VSERVERID  # Lists the available ips for a given node
-        solusvm node help [COMMAND]           # Describe subcommands or one specific subcommand
-        solusvm node stats VSERVERID          # Lists statistics for a given node
+        solusvm client authenticate USERNAME NEWPASSWORD     # Verify a clients login. Returns true when the specified login is correct
+        solusvm client change-password USERNAME NEWPASSWORD  # Changes the password of an existing client
+        solusvm client check-exists USERNAME                 # Checks if a client exists
+        solusvm client create                                # Creates a new client
+        solusvm client delete USERNAME                       # Deletes an existing client
+        solusvm client help [COMMAND]                        # Describe subcommands or one specific subcommand
+        solusvm client list                                  # Lists existing clients
 
-        solusvm server addip VSERVERID               # Adds an ip to the server
-        solusvm server boot VSERVERID                # Boots up a server
-        solusvm server changeplan VSERVERID NEWPLAN  # Changes the plan of a server
-        solusvm server check-exists VSERVERID        # Checks if a server exists
-        solusvm server create HOSTNAME PASSWORD      # Creates a new server
-        solusvm server help [COMMAND]                # Describe subcommands or one specific subcommand
-        solusvm server reboot VSERVERID              # Reboots a server
-        solusvm server rebuild VSERVERID             # Rebuilds a server
-        solusvm server resume VSERVERID              # Resumes a server
-        solusvm server shutdown VSERVERID            # Shuts down a server
-        solusvm server status VSERVERID              # Checks the status of a server
-        solusvm server suspend VSERVERID             # Suspends a server
-        solusvm server terminate VSERVERID           # Terminates a server
+        solusvm general help [COMMAND]  # Describe subcommands or one specific subcommand
+        solusvm general isos TYPE       # Lists existing isos for a given type [openvz|xen|xen hvm|kvm]
+        solusvm general plans TYPE      # Lists existing plans for a given type [openvz|xen|xen hvm|kvm]
+        solusvm general templates TYPE  # Lists existing templates for a given type [openvz|xen|xen hvm|kvm]
+
+        solusvm node available-ips VSERVERID   # Lists the available ips for a given node
+        solusvm node help [COMMAND]            # Describe subcommands or one specific subcommand
+        solusvm node list TYPE                 # Lists existing nodes for a given type [openvz|xen|xen hvm|kvm]
+        solusvm node list-ids TYPE             # Lists existing nodes ids for a given type [openvz|xen|xen hvm|kvm]
+        solusvm node stats VSERVERID           # Lists statistics for a given node
+        solusvm node virtualservers VSERVERID  # Lists the virtual servers for a given node
+        solusvm node xenresources VSERVERID    # Lists xen resources for a given node
+
+        solusvm reseller change           # Changes the available resources of a reseller
+        solusvm reseller create           # Creates a new reseller
+        solusvm reseller delete USERNAME  # Deletes an existing reseller
+        solusvm reseller help [COMMAND]   # Describe subcommands or one specific subcommand
+        solusvm reseller info USERNAME    # Retrieves information from an existing reseller
+        solusvm reseller list             # Lists existing resellers
+
+        solusvm server addip VSERVERID                            # Adds an ip to the server
+        solusvm server boot VSERVERID                             # Boots up a server
+        solusvm server change-bootorder VSERVERID BOOTORDER       # Changes the boot order of a server [cd(Hard Disk CDROM)|dc(CDROM Hard Disk)|c(Hard Di...
+        solusvm server change-consolepass VSERVERID NEWPASSWORD   # Changes the console password of a server
+        solusvm server change-hostname VSERVERID HOSTNAME         # Changes the hostname of a server
+        solusvm server change-owner VSERVERID CLIENTID            # Changes the owner of a server
+        solusvm server change-plan VSERVERID NEWPLAN              # Changes the plan of a server
+        solusvm server change-rootpass VSERVERID NEWPASSWORD      # Changes the root password of a server
+        solusvm server change-vncpass VSERVERID NEWPASSWORD       # Changes the vnc password of a server
+        solusvm server check-exists VSERVERID                     # Checks if a server exists
+        solusvm server console VSERVERID                          # Retrieves console information from a server
+        solusvm server create HOSTNAME PASSWORD                   # Creates a new server
+        solusvm server help [COMMAND]                             # Describe subcommands or one specific subcommand
+        solusvm server info VSERVERID                             # Retrieves information from a server
+        solusvm server info-all VSERVERID                         # Retrieves all availavle information from a server
+        solusvm server mountiso VSERVERID ISO                     # Mounts an iso
+        solusvm server network-switcher VSERVERID SWITCH(on|off)  # Enable/Disable Network mode
+        solusvm server pae-switcher VSERVERID SWITCH(on|off)      # Enable/Disable PAE
+        solusvm server reboot VSERVERID                           # Reboots a server
+        solusvm server rebuild VSERVERID                          # Rebuilds a server
+        solusvm server resume VSERVERID                           # Resumes a server
+        solusvm server shutdown VSERVERID                         # Shuts down a server
+        solusvm server status VSERVERID                           # Checks the status of a server
+        solusvm server suspend VSERVERID                          # Suspends a server
+        solusvm server terminate VSERVERID                        # Terminates a server
+        solusvm server tun-switcher VSERVERID SWITCH(on|off)      # Enable/Disable TUN/TAP
+        solusvm server unmountiso VSERVERID                       # Unmounts an iso
+        solusvm server vnc VSERVERID                              # Retrieves vnc information from a server
 
     Options:
         -I, --api-login, [--api-login=API_LOGIN]  # API ID. Required.

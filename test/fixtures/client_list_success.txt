@@ -1,0 +1,14 @@
+<clients>
+  <client>
+    <id>1</id> 
+    <username>vps123</username> 
+    <email>vps123@email.com</email> 
+    <firstname>phill</firstname> 
+    <lastname>smith</lastname> 
+    <company>VPS Co</company> 
+    <level>Client</level> 
+    <status>Active</status> 
+    <created>2009-01-01</created> 
+    <lastlogin>2010-04-23</lastlogin> 
+  </client>
+</clients>
