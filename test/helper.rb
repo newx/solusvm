@@ -27,4 +27,9 @@ class Test::Unit::TestCase
     Solusvm.config(api_login[:id], api_login[:key], :url => 'http://www.example.com/api')
   end
 
+  def cli_expand_base_arguments(options)
+    arguments = ["--api-login", "thelogin", "--api-key", "thekey", "--api-url", "theurl"]
+    options + arguments
+  end
+
 end
