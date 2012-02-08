@@ -10,8 +10,7 @@ module Solusvm
     # * <tt>:firstname</tt>
     # * <tt>:lastname</tt>
     def create(options ={})
-      options.merge!(:action => 'client-create')
-      perform_request(options)
+      perform_request(options.merge(:action => 'client-create')) && returned_parameters
     end
 
     # Change client password for the solus admin

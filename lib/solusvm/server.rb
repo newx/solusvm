@@ -11,8 +11,7 @@ module Solusvm
         :password     => password,
         :hostname     => hostname
       ).merge!(:action => 'vserver-create')
-      perform_request(options)
-      returned_parameters
+      perform_request(options) && returned_parameters
     end
 
     def boot(vid)

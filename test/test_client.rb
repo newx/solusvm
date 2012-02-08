@@ -12,9 +12,9 @@ class TestClient < Test::Unit::TestCase
   def test_create
     options = {:username => 'vps123', :password=> '123456', :email=> 'email@address.com', :firstname => 'phill', :lastname => 'smith'}
     FakeWeb.register_uri(:get, "#{base_uri}&action=client-create&#{options.to_query}", :body => load_response('client_create_success'))
-    assert @client.create(options)
 
-    params = @client.returned_parameters
+    params = @client.create(options)
+    assert params
     assert_equal options[:username], params['username']
     assert_equal options[:firstname], params['firstname']
     assert_equal options[:lastname], params['lastname']
