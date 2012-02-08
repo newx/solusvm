@@ -97,6 +97,10 @@ module Solusvm
       perform_request(:action => 'vserver-rootpassword', :vserverid => vid, :rootpassword => password)
     end
 
+    def change_bootorder(vid, bootorder)
+      perform_request(:action => 'vserver-bootorder', :vserverid => vid, :bootorder => bootorder.to_s)
+    end
+
     def info(vid, reboot = false)
       perform_request(:action => 'vserver-info', :vserverid => vid, :reboot => reboot)
       returned_parameters
@@ -127,10 +131,6 @@ module Solusvm
 
     def unmountiso(vid)
       perform_request(:action => 'vserver-unmountiso', :vserverid => vid)
-    end
-
-    def bootorder(vid, bootorder)
-      perform_request(:action => 'vserver-bootorder', :vserverid => vid, :bootorder => bootorder.to_s)
     end
   end
 end

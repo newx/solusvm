@@ -146,6 +146,11 @@ class TestServer < Test::Unit::TestCase
     assert @server.change_rootpassword(1, "thepassword")
   end
 
+  def test_change_bootorder
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-bootorder&vserverid=1&bootorder=c", :body => load_response('server_bootorder_success'))
+    assert @server.change_bootorder(1, :c)
+  end
+
   def test_info
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-info&vserverid=1&reboot=true", :body => load_response('server_info_success'))
     assert @server.info(1, true)
@@ -212,10 +217,5 @@ class TestServer < Test::Unit::TestCase
   def test_unmountiso
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-unmountiso&vserverid=1", :body => load_response('server_unmountiso_success'))
     assert @server.unmountiso(1)
-  end
-
-  def test_bootorder
-    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-bootorder&vserverid=1&bootorder=c", :body => load_response('server_bootorder_success'))
-    assert @server.bootorder(1, :c)
   end
 end
