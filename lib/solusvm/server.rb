@@ -77,6 +77,10 @@ module Solusvm
       perform_request(:action => 'vserver-consolepass', :vserverid => vid, :consolepassword => password)
     end
 
+    def change_vncpass(vid, password)
+      perform_request(:action => 'vserver-vncpass', :vserverid => vid, :vncpassword => password)
+    end
+
     def info(vid, reboot = false)
       perform_request(:action => 'vserver-info', :vserverid => vid, :reboot => reboot)
       returned_parameters
