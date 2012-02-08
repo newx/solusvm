@@ -5,5 +5,9 @@ module Solusvm
       perform_request(options.merge(:action => 'reseller-create')) && returned_parameters
     end
 
+    def change_resources(username, options={})
+      perform_request(options.merge(:action => 'reseller-modifyresources', :username => username)) && returned_parameters
+    end
+
   end
 end
