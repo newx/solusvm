@@ -67,4 +67,9 @@ class TestReseller < Test::Unit::TestCase
     assert_equal %w(username1 username2 username3), @reseller.list
   end
 
+  def test_delete
+    FakeWeb.register_uri(:get, "#{base_uri}&action=reseller-delete&username=vps123", :body => load_response('reseller_delete_success'))    
+    assert @reseller.delete("vps123")
+  end
+
 end
