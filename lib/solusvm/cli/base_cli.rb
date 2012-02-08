@@ -29,9 +29,9 @@ module Solusvm
       @namespace ||= super.sub(/_cli$/, '')
     end
     
-    class_option :api_login, :type => :string, :desc => "API ID. Required.",  :aliases => ["-I", "--api-login"], :default => default_option(:id)
-    class_option :api_key,   :type => :string, :desc => "API KEY. Required.", :aliases => ["-K", "--api-key"], :default => default_option(:key)
-    class_option :api_url,   :type => :string, :desc => "API URL. Required.", :aliases => ["-U", "--api-url"], :default => default_option(:url)
+    class_option :api_login, :type => :string, :desc => "API ID; Required.",  :aliases => ["-I", "--api-login"], :default => default_option(:id)
+    class_option :api_key,   :type => :string, :desc => "API KEY; Required.", :aliases => ["-K", "--api-key"], :default => default_option(:key)
+    class_option :api_url,   :type => :string, :desc => "API URL; Required.", :aliases => ["-U", "--api-url"], :default => default_option(:url)
 
     # Overrides the default banner implementation to output the whole command
     def self.banner(task, namespace = true, subcommand = false)
