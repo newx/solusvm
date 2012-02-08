@@ -113,7 +113,8 @@ class TestServer < Test::Unit::TestCase
   end
 
   def test_status
-    #flunk "Implement this"
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-status&vserverid=1", :body => load_response('server_status_success'))
+    assert_equal 'online', @server.status(1)
   end
 
   def test_add_ip
