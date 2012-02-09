@@ -13,7 +13,12 @@ class TestGeneral < Test::Unit::TestCase
     assert_equal %w(template1 template2 template3), @general.templates('xen')
   end
 
-  def test_templates_error
+  def test_templates_empty
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listtemplates&type=xen", :body => load_response('error'))
+    assert !@general.templates('xen')
+  end
+
+  def test_templates_with_invalid_type
     FakeWeb.register_uri(:get, "#{base_uri}&action=listtemplates&type=whatever", :body => load_response('error'))
     begin
       @general.templates('whatever')
@@ -28,7 +33,12 @@ class TestGeneral < Test::Unit::TestCase
     assert_equal %w(plan1 plan2 plan3 plan4), @general.plans('xen')
   end
 
-  def test_plans_error
+  def test_plans_empty
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listplans&type=xen", :body => load_response('error'))
+    assert !@general.plans('xen')
+  end
+
+  def test_plans_with_invalid_type
     FakeWeb.register_uri(:get, "#{base_uri}&action=listplans&type=whatever", :body => load_response('error'))
     begin
       @general.plans('whatever')
@@ -43,7 +53,12 @@ class TestGeneral < Test::Unit::TestCase
     assert_equal %w(iso1 iso2 iso3), @general.isos('xen')
   end
 
-  def test_isos_error
+  def test_isos_empty
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listiso&type=xen", :body => load_response('error'))
+    assert !@general.isos('xen')
+  end
+
+  def test_isos_with_invalid_type
     FakeWeb.register_uri(:get, "#{base_uri}&action=listiso&type=whatever", :body => load_response('error'))
     begin
       @general.isos('whatever')

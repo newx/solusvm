@@ -10,7 +10,7 @@ module Solusvm
     def templates(type)
       validate_server_type!(type)
       perform_request(:action => 'listtemplates', :type => type)
-      returned_parameters['templates'].split(',')
+      parse_returned_params_as_list('templates')
     end
 
     # Lists available plans.
@@ -21,7 +21,7 @@ module Solusvm
     def plans(type)
       validate_server_type!(type)
       perform_request(:action => 'listplans', :type => type)
-      returned_parameters['plans'].split(',')
+      parse_returned_params_as_list('plans')
     end
 
     # Lists available isos.
@@ -32,7 +32,7 @@ module Solusvm
     def isos(type)
       validate_server_type!(type)
       perform_request(:action => 'listiso', :type => type)
-      returned_parameters['iso'].split(',')
+      parse_returned_params_as_list('iso')
     end
   end
 end

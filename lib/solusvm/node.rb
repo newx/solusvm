@@ -10,7 +10,7 @@ module Solusvm
     def list(type)
       validate_server_type!(type)
       perform_request(:action => 'listnodes', :type => type)
-      returned_parameters['nodes'].split(',')
+      parse_returned_params_as_list('nodes')
     end
 
     # Lists existing nodes ids of a given type.

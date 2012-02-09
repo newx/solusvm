@@ -13,7 +13,12 @@ class TestNode < Test::Unit::TestCase
     assert_equal %w(node1 node2 node3 node4), @nodes.list('xen')
   end
 
-  def test_nodes_error
+  def test_list_empty
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listnodes&type=xen", :body => load_response('error'))
+    assert !@nodes.list('xen')
+  end
+
+  def test_nodes_with_invalid_type
     FakeWeb.register_uri(:get, "#{base_uri}&action=listnodes&type=whatever", :body => load_response('error'))
     begin
       @nodes.list('whatever')
