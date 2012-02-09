@@ -75,7 +75,7 @@ class TestBase < Test::Unit::TestCase
     begin
       @base.perform_request(:action => 'unauthorized')
     rescue Exception => e
-      message = e  
+      message = e
     end
     assert_equal "This IP is not authorized to use the API", message.to_s
   end
@@ -86,7 +86,7 @@ class TestBase < Test::Unit::TestCase
     begin
       @base.perform_request(:action => 'badkey')
     rescue Exception => e
-      message = e  
+      message = e
     end
     assert_equal "Invalid ID or key", message.to_s
   end
@@ -97,8 +97,19 @@ class TestBase < Test::Unit::TestCase
     begin
       @base.perform_request(:action => 'nodeexist')
     rescue Exception => e
-      message = e  
+      message = e
     end
     assert_equal "Node does not exist", message.to_s
+  end
+
+  def test_invalid_http_status
+    FakeWeb.register_uri(:get, "#{base_uri}&action=httperror", :body => "", :status => ["404", "Not Found"])
+    message = ""
+    begin
+      @base.perform_request(:action => 'httperror')
+    rescue Solusvm::SolusvmError => e
+      message = e
+    end
+    assert_equal "Bad HTTP Status: 404", message.to_s
   end
 end
