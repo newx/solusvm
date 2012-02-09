@@ -17,8 +17,11 @@ module Solusvm
       # same as Thor default except that the "_cli" at the end of the class
       # is removed.
       def namespace(name=nil)
-        return super if name
-        @namespace ||= super.sub(/_cli$/, '')
+        if name
+          super
+        else
+          @namespace ||= super.sub(/_cli$/, '')
+        end
       end
 
       # Retrieves default options coming from a configuration file, if any.
