@@ -45,6 +45,13 @@ module Solusvm
       XmlSimple.xml_in(body, 'ForceArray' => force_array)
     end
 
+    # Parses a returned_parameters value as a list, if present.
+    def parse_returned_params_as_list(attribute)
+      if returned_parameters[attribute] && !returned_parameters[attribute].empty?
+        returned_parameters[attribute].to_s.split(',')
+      end
+    end
+
     # Look for known error messages
     def handle_errors(body)
       case body.downcase

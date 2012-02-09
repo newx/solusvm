@@ -9,11 +9,16 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_list
-    FakeWeb.register_uri(:get, "#{base_uri}&action=listnodes&type=xen", :body => load_response('general_nodes_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listnodes&type=xen", :body => load_response('nodes_list_success'))
     assert_equal %w(node1 node2 node3 node4), @nodes.list('xen')
   end
 
-  def test_nodes_error
+  def test_list_empty
+    FakeWeb.register_uri(:get, "#{base_uri}&action=listnodes&type=xen", :body => load_response('error'))
+    assert !@nodes.list('xen')
+  end
+
+  def test_nodes_with_invalid_type
     FakeWeb.register_uri(:get, "#{base_uri}&action=listnodes&type=whatever", :body => load_response('error'))
     begin
       @nodes.list('whatever')
@@ -24,7 +29,7 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_statistics
-    FakeWeb.register_uri(:get, "#{base_uri}&action=node-statistics&nodeid=1", :body => load_response('general_node_statistics_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-statistics&nodeid=1", :body => load_response('node_statistics_success'))
     node_statistics = @nodes.statistics(1)
     
     assert_equal '1000', node_statistics['freedisk']
@@ -43,17 +48,17 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_list_all_ips_available
-    FakeWeb.register_uri(:get, "#{base_uri}&action=node-iplist&nodeid=1", :body => load_response('general_node_list_all_ips_available'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-iplist&nodeid=1", :body => load_response('node_list_all_ips_available'))
     assert_equal %w(123.123.123.123 124.124.124.124 125.125.125.125).sort, @nodes.available_ips(1).sort 
   end
 
   def test_list_all_ips_not_available
-    FakeWeb.register_uri(:get, "#{base_uri}&action=node-iplist&nodeid=1", :body => load_response('general_node_list_all_ips_not_available'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-iplist&nodeid=1", :body => load_response('node_list_all_ips_not_available'))
     assert @nodes.available_ips(1).empty?
   end
 
   def test_ids
-    FakeWeb.register_uri(:get, "#{base_uri}&action=node-idlist&type=xen", :body => load_response('general_nodes_ids_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-idlist&type=xen", :body => load_response('nodes_ids_success'))
     assert_equal %w(nodeid1 nodeid2 nodeid3 nodeid4), @nodes.ids('xen')
   end
 
@@ -68,7 +73,7 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_virtualservers
-    FakeWeb.register_uri(:get, "#{base_uri}&action=node-virtualservers&nodeid=1", :body => load_response('general_node_virtualservers_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-virtualservers&nodeid=1", :body => load_response('node_virtualservers_success'))
 
     servers = @nodes.virtualservers(1)
     assert_equal 1, servers.size
@@ -88,7 +93,7 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_virtualservers_empty
-    FakeWeb.register_uri(:get, "#{base_uri}&action=node-virtualservers&nodeid=1", :body => load_response('general_node_virtualservers_success_empty'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-virtualservers&nodeid=1", :body => load_response('node_virtualservers_success_empty'))
     assert @nodes.virtualservers(1).empty?
   end
 
@@ -98,7 +103,7 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_xenresources
-    FakeWeb.register_uri(:get, "#{base_uri}&action=node-xenresources&nodeid=1", :body => load_response('general_node_xenresources_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=node-xenresources&nodeid=1", :body => load_response('node_xenresources_success'))
     node_resources = @nodes.xenresources(1)
     
     assert_equal 'thefreememory', node_resources['freememory']

@@ -65,7 +65,7 @@ module Solusvm
     # Lists existing resellers.
     def list
       perform_request(:action => 'reseller-list')
-      returned_parameters['usernames'].split(',')
+      parse_returned_params_as_list('usernames')
     end
 
   end
