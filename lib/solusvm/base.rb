@@ -28,7 +28,7 @@ module Solusvm
         request = Net::HTTP::Get.new("#{api_endpoint.path}?#{options.to_query}")
         response = http.request(request)
 
-        handle_errors(response.body)
+        handle_errors(response)
         @returned_parameters = parse_response(response.body, force_array)
         log_messages(options)
       end
@@ -53,19 +53,24 @@ module Solusvm
     end
 
     # Look for known error messages
-    def handle_errors(body)
-      case body.downcase
-      when /invalid ipaddress/i
-        raise "This IP is not authorized to use the API"
-      when /Invalid id or key/i
-        raise "Invalid ID or key"
-      when /Node not found/i
-        raise "Node does not exist"
+    def handle_errors(response)
+      if (200..299).include? response.code.to_i
+        # Checks for application errors
+        case response.body.downcase
+        when /invalid ipaddress/i
+          raise "This IP is not authorized to use the API"
+        when /Invalid id or key/i
+          raise "Invalid ID or key"
+        when /Node not found/i
+          raise "Node does not exist"
+        end
+      else
+        raise SolusvmError, "Bad HTTP Status: #{response.code}"
       end
     end
 
     # Returns true when a request has been successful
-    # 
+    #
     #   my_class = MyClass.new
     #   my_class.create_server('example.com')
     #   my_class.successful? # => true
@@ -84,7 +89,7 @@ module Solusvm
 
     def log_messages(options)
       logger, logger_method = Solusvm.api_options[:logger], Solusvm.api_options[:logger_method]
-      
+
       if logger && logger.respond_to?(logger_method)
         logger.send(logger_method, "[Start] => #{options[:action]}")
         returned_parameters.each do |k,v|
