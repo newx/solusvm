@@ -93,7 +93,7 @@ module Solusvm
 
     desc "check-exists VSERVERID", "Checks if a server exists"
     def check_exists(vserverid)
-      output server.check_exists(vserverid)
+      output server.exists?(vserverid)
     end
 
     desc "terminate VSERVERID", "Terminates a server"

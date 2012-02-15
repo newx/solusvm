@@ -123,7 +123,7 @@ class TestServerCli < Test::Unit::TestCase
 
   def test_should_delegate_server_check_exists_to_server
     Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Server.stubs(:new => mock{ expects(:check_exists).with("thevserverid").returns("theresult") })
+    Solusvm::Server.stubs(:new => mock{ expects(:exists?).with("thevserverid").returns("theresult") })
 
     $stdout.expects(:puts).with("theresult")
     Solusvm::Cli.start(cli_expand_base_arguments(["server", "check-exists", "thevserverid"]))
@@ -245,16 +245,16 @@ class TestServerCli < Test::Unit::TestCase
   def test_should_delegate_server_create_to_server
     Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
     Solusvm::Server.stubs(:new => mock{ expects(:create).with(
-      "thehostname", "thepassword", 
-      :plan => "theplan", :ips => "theips", :type => "thekind", 
+      "thehostname", "thepassword",
+      :plan => "theplan", :ips => "theips", :type => "thekind",
       :username => "theusername", :template => "thetemplate", :node => "thenode"
     ).returns("theresult") })
 
     $stdout.expects(:puts).with("theresult")
     Solusvm::Cli.start(cli_expand_base_arguments([
-      "server", "create", 
-      "thehostname", 
-      "thepassword", 
+      "server", "create",
+      "thehostname",
+      "thepassword",
       "--plan", "theplan",
       "--ips", "theips",
       "--kind", "thekind",
