@@ -45,10 +45,18 @@ module Solusvm
     class_option :api_url,   :type => :string, :desc => "API URL; Required.", :aliases => ["-U", "--api-url"]
 
     no_tasks do
-      # prints one message element per line, in case it is a list
-      def output(message="", color=nil, force_new_line=(message.to_s !~ /( |\t)$/))
-        Array(message).each do |entry|
-          say(entry, color, force_new_line)
+      def api
+        raise NotImplementedError
+      end
+
+      # prints one result element per line, in case it is a list
+      def output(result="", color=nil, force_new_line=(result.to_s !~ /( |\t)$/))
+        if api.successful?
+          Array(result).each do |entry|
+            say(entry, color, force_new_line)
+          end
+        else
+          say("Request failed: #{api.statusmsg}", color, force_new_line)
         end
       end
     end

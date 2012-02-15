@@ -3,108 +3,108 @@ module Solusvm
 
     desc "status VSERVERID", "Checks the status of a server"
     def status(vserverid)
-      output server.status(vserverid)
+      output api.status(vserverid)
     end
 
     desc "info VSERVERID", "Retrieves information from a server"
     def info(vserverid)
-      output server.info(vserverid)
+      output api.info(vserverid)
     end
 
     desc "vnc VSERVERID", "Retrieves vnc information from a server"
     def vnc(vserverid)
-      output server.vnc(vserverid)
+      output api.vnc(vserverid)
     end
 
     desc "console VSERVERID", "Retrieves console information from a server"
     def console(vserverid)
-      output server.console(vserverid)
+      output api.console(vserverid)
     end
 
     desc "info-all VSERVERID", "Retrieves all availavle information from a server"
     def info_all(vserverid)
-      output server.info_all(vserverid)
+      output api.info_all(vserverid)
     end
 
     desc "change-plan VSERVERID NEWPLAN", "Changes the plan of a server"
     def change_plan(vserverid, newplan)
-      output server.change_plan(vserverid, newplan)
+      output api.change_plan(vserverid, newplan)
     end
 
     desc "change-owner VSERVERID CLIENTID", "Changes the owner of a server"
     def change_owner(vserverid, clientid)
-      output server.change_owner(vserverid, clientid)
+      output api.change_owner(vserverid, clientid)
     end
 
     desc "change-consolepass VSERVERID NEWPASSWORD", "Changes the console password of a server"
     def change_consolepass(vserverid, newpassword)
-      output server.change_consolepass(vserverid, newpassword)
+      output api.change_consolepass(vserverid, newpassword)
     end
 
     desc "change-vncpass VSERVERID NEWPASSWORD", "Changes the vnc password of a server"
     def change_vncpass(vserverid, newpassword)
-      output server.change_vncpass(vserverid, newpassword)
+      output api.change_vncpass(vserverid, newpassword)
     end
 
     desc "change-rootpass VSERVERID NEWPASSWORD", "Changes the root password of a server"
     def change_rootpass(vserverid, newpassword)
-      output server.change_rootpassword(vserverid, newpassword)
+      output api.change_rootpassword(vserverid, newpassword)
     end
 
     desc "change-bootorder VSERVERID BOOTORDER", "Changes the boot order of a server [cd(Hard Disk CDROM)|dc(CDROM Hard Disk)|c(Hard Disk)|d(CDROM)]"
     def change_bootorder(vserverid, newbootorder)
-      output server.change_bootorder(vserverid, newbootorder)
+      output api.change_bootorder(vserverid, newbootorder)
     end
 
     desc "change-hostname VSERVERID HOSTNAME", "Changes the hostname of a server"
     def change_hostname(vserverid, newhostname)
-      output server.change_hostname(vserverid, newhostname)
+      output api.change_hostname(vserverid, newhostname)
     end
 
     desc "addip VSERVERID", "Adds an ip to the server"
     def addip(vserverid)
-      output server.add_ip(vserverid)
+      output api.add_ip(vserverid)
     end
 
     desc "boot VSERVERID", "Boots up a server"
     def boot(vserverid)
-      output server.boot(vserverid)
+      output api.boot(vserverid)
     end
 
     desc "reboot VSERVERID", "Reboots a server"
     def reboot(vserverid)
-      output server.reboot(vserverid)
+      output api.reboot(vserverid)
     end
 
     desc "shutdown VSERVERID", "Shuts down a server"
     def shutdown(vserverid)
-      output server.shutdown(vserverid)
+      output api.shutdown(vserverid)
     end
 
     desc "suspend VSERVERID", "Suspends a server"
     def suspend(vserverid)
-      output server.suspend(vserverid)
+      output api.suspend(vserverid)
     end
 
     desc "resume VSERVERID", "Resumes a server"
     def resume(vserverid)
-      output server.resume(vserverid)
+      output api.resume(vserverid)
     end
 
     desc "check-exists VSERVERID", "Checks if a server exists"
     def check_exists(vserverid)
-      output server.exists?(vserverid)
+      output api.exists?(vserverid)
     end
 
     desc "terminate VSERVERID", "Terminates a server"
     def terminate(vserverid)
-      output server.terminate(vserverid)
+      output api.terminate(vserverid)
     end
 
     desc "rebuild VSERVERID", "Rebuilds a server"
     method_option :template, :type => :string, :desc => "VPS template to boot from",  :aliases => ["-t", "--template"]
     def rebuild(vserverid)
-      output server.rebuild(vserverid, {:template => options[:template]})
+      output api.rebuild(vserverid, {:template => options[:template]})
     end
 
     desc "tun-switcher VSERVERID SWITCH(on|off)", "Enable/Disable TUN/TAP"
@@ -124,12 +124,12 @@ module Solusvm
 
     desc "mountiso VSERVERID ISO", "Mounts an iso"
     def mountiso(vserverid, iso)
-      output server.mountiso(vserverid, iso)
+      output api.mountiso(vserverid, iso)
     end
 
     desc "unmountiso VSERVERID", "Unmounts an iso"
     def unmountiso(vserverid)
-      output server.unmountiso(vserverid)
+      output api.unmountiso(vserverid)
     end
 
     desc "create HOSTNAME PASSWORD", "Creates a new server"
@@ -140,7 +140,7 @@ module Solusvm
     method_option :template, :type => :string, :desc => "VPS template to boot from",  :aliases => ["-t", "--template"]
     method_option :node, :type => :string, :desc => "Node to provision on",  :aliases => ["-n", "--node"]
     def create(hostname, password)
-      output server.create(hostname, password, {
+      output api.create(hostname, password, {
         :plan => options[:plan], :ips => options[:ips], :type => options[:kind],
         :username => options[:username], :template => options[:template], :node => options[:node]
       })
@@ -148,7 +148,7 @@ module Solusvm
 
     private
 
-    def server
+    def api
       @server ||= begin
         configure
         Solusvm::Server.new
@@ -157,9 +157,9 @@ module Solusvm
 
     def switch(vserverid, switch_value, on_method, off_method)
       if switch_value == "on"
-        server.send(on_method, vserverid)
+        api.send(on_method, vserverid)
       elsif switch_value == "off"
-        server.send(off_method, vserverid)
+        api.send(off_method, vserverid)
       else
         "Invalid switch value. Valid values are on|off"
       end
