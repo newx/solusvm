@@ -13,17 +13,17 @@ module Solusvm
 
     desc "available-ips VSERVERID", "Lists the available ips for a given node"
     def available_ips(vserverid)
-      output api.available_ips(vserverid).join("\n")
+      output api.available_ips(vserverid)
     end
 
     desc "stats VSERVERID", "Lists statistics for a given node"
     def stats(vserverid)
-      output api.statistics(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
+      output api.statistics(vserverid)
     end
 
     desc "xenresources VSERVERID", "Lists xen resources for a given node"
     def xenresources(vserverid)
-      output api.xenresources(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
+      output api.xenresources(vserverid)
     end
 
     desc "virtualservers VSERVERID", "Lists the virtual servers for a given node"
