@@ -1,39 +1,39 @@
-module Solusvm 
+module Solusvm
   class NodeCli < BaseCli
 
     desc "list TYPE", "Lists existing nodes for a given type [openvz|xen|xen hvm|kvm]"
     def list(type)
-      say node.list(type)
+      output api.list(type)
     end
 
     desc "list-ids TYPE", "Lists existing nodes ids for a given type [openvz|xen|xen hvm|kvm]"
     def list_ids(type)
-      say node.ids(type)
+      output api.ids(type)
     end
 
     desc "available-ips VSERVERID", "Lists the available ips for a given node"
     def available_ips(vserverid)
-      say node.available_ips(vserverid).join("\n")
+      output api.available_ips(vserverid).join("\n")
     end
 
     desc "stats VSERVERID", "Lists statistics for a given node"
     def stats(vserverid)
-      say node.statistics(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
+      output api.statistics(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
     end
 
     desc "xenresources VSERVERID", "Lists xen resources for a given node"
     def xenresources(vserverid)
-      say node.xenresources(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
+      output api.xenresources(vserverid).map{|k, v| "#{k} => #{v}" }.join("\n")
     end
 
     desc "virtualservers VSERVERID", "Lists the virtual servers for a given node"
     def virtualservers(vserverid)
-      say node.virtualservers(vserverid)
+      output api.virtualservers(vserverid)
     end
 
     private
 
-    def node
+    def api
       @node ||= begin
         configure
         Solusvm::Node.new
