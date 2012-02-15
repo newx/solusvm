@@ -1,4 +1,4 @@
-module Solusvm 
+module Solusvm
   class ClientCli < BaseCli
 
     desc "create", "Creates a new client"
@@ -9,32 +9,32 @@ module Solusvm
     method_option :lastname, :type => :string, :desc => "Lastname",  :aliases => ["-l", "--lastname"]
     method_option :company, :type => :string, :desc => "Company",  :aliases => ["-c", "--company"]
     def create
-      say client.create(options)
+      output client.create(options)
     end
 
     desc "change-password USERNAME NEWPASSWORD", "Changes the password of an existing client"
     def change_password(username, password)
-      say client.change_password(username, password)
+      output client.change_password(username, password)
     end
 
     desc "authenticate USERNAME NEWPASSWORD", "Verify a clients login. Returns true when the specified login is correct"
     def authenticate(username, password)
-      say client.authenticate(username, password)
+      output client.authenticate(username, password)
     end
 
     desc "check-exists USERNAME", "Checks if a client exists"
     def check_exists(username)
-      say client.exists?(username)
+      output client.exists?(username)
     end
 
     desc "delete USERNAME", "Deletes an existing client"
     def delete(username)
-      say client.delete(username)
+      output client.delete(username)
     end
 
     desc "list", "Lists existing clients"
     def list
-      say client.list
+      output client.list
     end
 
     private

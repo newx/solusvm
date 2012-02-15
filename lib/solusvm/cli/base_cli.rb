@@ -6,7 +6,7 @@ require 'solusvm/version'
 module Solusvm
   class BaseCli < Thor
     include Thor::Actions
-    
+
     class << self
       # Overrides the default banner implementation to output the whole command
       def banner(task, namespace = true, subcommand = false)
@@ -43,6 +43,15 @@ module Solusvm
     class_option :api_login, :type => :string, :desc => "API ID; Required.",  :aliases => ["-I", "--api-login"], :default => default_option(:id)
     class_option :api_key,   :type => :string, :desc => "API KEY; Required.", :aliases => ["-K", "--api-key"], :default => default_option(:key)
     class_option :api_url,   :type => :string, :desc => "API URL; Required.", :aliases => ["-U", "--api-url"], :default => default_option(:url)
+
+    no_tasks do
+      # prints one message element per line, in case it is a list
+      def output(message="", color=nil, force_new_line=(message.to_s !~ /( |\t)$/))
+        Array(message).each do |entry|
+          say(entry, color, force_new_line)
+        end
+      end
+    end
 
     protected
 
