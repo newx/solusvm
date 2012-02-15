@@ -40,9 +40,9 @@ module Solusvm
     end
 
     # Default required options
-    class_option :api_login, :type => :string, :desc => "API ID; Required.",  :aliases => ["-I", "--api-login"], :default => default_option(:id)
-    class_option :api_key,   :type => :string, :desc => "API KEY; Required.", :aliases => ["-K", "--api-key"], :default => default_option(:key)
-    class_option :api_url,   :type => :string, :desc => "API URL; Required.", :aliases => ["-U", "--api-url"], :default => default_option(:url)
+    class_option :api_login, :type => :string, :desc => "API ID; Required.",  :aliases => ["-I", "--api-login"]
+    class_option :api_key,   :type => :string, :desc => "API KEY; Required.", :aliases => ["-K", "--api-key"]
+    class_option :api_url,   :type => :string, :desc => "API URL; Required.", :aliases => ["-U", "--api-url"]
 
     no_tasks do
       # prints one message element per line, in case it is a list
@@ -56,7 +56,15 @@ module Solusvm
     protected
 
     def configure
-      Solusvm.config(options[:api_login], options[:api_key], :url => options[:api_url])
+      Solusvm.config(
+        present_or_exit(:api_login, :id, "api_login required"),
+        present_or_exit(:api_key, :key, "api_key required"),
+        :url => present_or_exit(:api_url, :url, "api_url required")
+      )
+    end
+
+    def present_or_exit(options_key, default_option_key, message)
+      options[options_key] || BaseCli.default_option(default_option_key) || (say(message) && raise(SystemExit))
     end
   end
 end
