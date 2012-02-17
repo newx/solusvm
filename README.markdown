@@ -168,4 +168,4 @@ Note on Patches/Pull Requests
 Copyright
 ---------
 
-Copyright (c) 2010-2011 Site5. See LICENSE for details.
+Copyright (c) 2010-2012 Site5.com. See LICENSE for details.
