@@ -1,4 +1,4 @@
-module Solusvm 
+module Solusvm
   class ResellerCli < BaseCli
 
     desc "create", "Creates a new reseller"
@@ -24,7 +24,7 @@ module Solusvm
     method_option :xenhvm, :type => :string, :desc => "y|n Allow building of xen hvm virtual servers (optional)",  :aliases => ["-xhvm", "--xenhvm"]
     method_option :kvm, :type => :string, :desc => "y|n Allow building of kvmvirtual servers (optional)",  :aliases => ["-kvm"]
     def create
-      say reseller.create(options)
+      output api.create(options)
     end
 
     desc "change", "Changes the available resources of a reseller"
@@ -43,27 +43,27 @@ module Solusvm
     method_option :xenhvm, :type => :string, :desc => "y|n Allow building of xen hvm virtual servers (optional)",  :aliases => ["-xhvm", "--xenhvm"]
     method_option :kvm, :type => :string, :desc => "y|n Allow building of kvmvirtual servers (optional)",  :aliases => ["-kvm"]
     def change_resources
-      say reseller.change_resources(options)
+      output api.change_resources(options)
     end
 
     desc "info USERNAME", "Retrieves information from an existing reseller"
     def info(username)
-      say reseller.info(username)
+      output api.info(username)
     end
 
     desc "delete USERNAME", "Deletes an existing reseller"
     def delete(username)
-      say reseller.delete(username)
+      output api.delete(username)
     end
 
     desc "list", "Lists existing resellers"
     def list
-      say reseller.list
+      output api.list
     end
 
     private
 
-    def reseller
+    def api
       @reseller ||= begin
         configure
         Solusvm::Reseller.new
