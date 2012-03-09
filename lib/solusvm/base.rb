@@ -58,7 +58,7 @@ module Solusvm
 
     # URI parsed API URL
     def api_endpoint
-      Solusvm.api_endpoint
+      Solusvm.api_endpoint.dup
     end
 
     def api_login

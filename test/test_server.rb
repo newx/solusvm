@@ -161,7 +161,7 @@ class TestServer < Test::Unit::TestCase
     FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-info&vserverid=1&reboot=true", :body => load_response('server_info_success'))
     assert @server.info(1, true)
 
-    FakeWeb.register_uri(:get, "http://www.example.com/api?id=api_id&key=api_key&action=vserver-info&vserverid=1&reboot=false", :body => load_response('server_info_success'))
+    FakeWeb.register_uri(:get, "#{base_uri}&action=vserver-info&vserverid=1&reboot=false", :body => load_response('server_info_success'))
     info = @server.info(1)
 
     assert info
