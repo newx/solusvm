@@ -1,8 +1,7 @@
-require 'net/http'
-require 'net/https'
 require 'cgi'
 require 'rubygems'
 require 'xmlsimple'
+require 'faraday'
 
 module Solusvm
   class << self
@@ -28,6 +27,7 @@ end
 
 require 'solusvm/exceptions'
 require 'solusvm/hash'
+require 'solusvm/solusvm_errors'
 require 'solusvm/base'
 require 'solusvm/general'
 require 'solusvm/client'
