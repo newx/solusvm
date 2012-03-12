@@ -1,4 +1,15 @@
 require 'test/unit'
+require 'solusvm'
+require 'fake_web'
+require 'mocha'
+require 'vcr'
+
+VCR.configure do |c|
+  c.allow_http_connections_when_no_cassette = true
+  c.cassette_library_dir = 'test/vcr_cassettes'
+  c.hook_into :fakeweb
+  c.default_cassette_options = { :record => :none }
+end
 
 # Use TURN if available
 begin
@@ -6,11 +17,8 @@ begin
 rescue LoadError
 end
 
-require 'solusvm'
-require 'fake_web'
-require 'mocha'
-
 class Test::Unit::TestCase
+
   def load_response(name)
     File.read(File.join(File.dirname(__FILE__), "fixtures/#{name}.txt"))
   end

@@ -15,9 +15,10 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_parse_response
-    FakeWeb.register_uri(:get, "#{base_uri}&action=test&vserverid=1", :body => load_response('server_create_success'))
     assert_nil @base.returned_parameters
-    @base.perform_request(:action => 'test', :vserverid => 1)
+    VCR.use_cassette "base/parse_response" do
+      @base.perform_request(:action => 'test', :vserverid => 1)
+    end
     params = @base.returned_parameters
 
     assert_equal 10, params.size
