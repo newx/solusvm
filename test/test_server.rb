@@ -25,7 +25,7 @@ class TestServer < Test::Unit::TestCase
   end
 
   def test_create_error
-    FakeWeb.register_uri(:get, "#{base_uri}&type=xen&plan=&action=vserver-create&template=&hostname=&ips=1&username=&password=&node=", :body => load_response('error'))
+    FakeWeb.register_uri(:get, "#{base_uri}&type=xen&plan&action=vserver-create&template&hostname=&ips=1&username&password=&node", :body => load_response('error'))
     @server.create('', '')
     assert ! @server.successful?
   end

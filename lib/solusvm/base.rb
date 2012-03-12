@@ -1,3 +1,5 @@
+Faraday.register_middleware :response, :solusvm_errors => Solusvm::SolusvmErrors
+
 module Solusvm
   # Solusvm::Base is the main class for mapping API resources as subclasses.
   class Base
@@ -18,20 +20,13 @@ module Solusvm
     #
     # <tt>force_array</tt> - see parse_response
     def perform_request(options = {}, force_array = false)
-      options.merge!(api_login)
-      http = Net::HTTP.new(api_endpoint.host, api_endpoint.port)
-      if api_endpoint.port == 443
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      end
-      http.start do |http|
-        request = Net::HTTP::Get.new("#{api_endpoint.path}?#{options.to_query}")
-        response = http.request(request)
-
-        handle_errors(response)
-        @returned_parameters = parse_response(response.body, force_array)
-        log_messages(options)
-      end
+      response = Faraday.new(:url => api_endpoint, :ssl => {:verify_mode => OpenSSL::SSL::VERIFY_NONE}) do |c|
+        c.params = options.merge(api_login)
+        c.response :solusvm_errors
+        c.adapter :net_http
+      end.get
+      @returned_parameters = parse_response(response.body, force_array)
+      log_messages(options)
       successful?
     end
 
@@ -52,23 +47,6 @@ module Solusvm
       end
     end
 
-    # Look for known error messages
-    def handle_errors(response)
-      if (200..299).include? response.code.to_i
-        # Checks for application errors
-        case response.body.downcase
-        when /invalid ipaddress/i
-          raise "This IP is not authorized to use the API"
-        when /Invalid id or key/i
-          raise "Invalid ID or key"
-        when /Node not found/i
-          raise "Node does not exist"
-        end
-      else
-        raise SolusvmError, "Bad HTTP Status: #{response.code}"
-      end
-    end
-
     # Returns true when a request has been successful
     #
     #   my_class = MyClass.new
@@ -80,7 +58,7 @@ module Solusvm
 
     # URI parsed API URL
     def api_endpoint
-      Solusvm.api_endpoint
+      Solusvm.api_endpoint.dup
     end
 
     def api_login
