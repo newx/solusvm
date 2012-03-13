@@ -11,6 +11,11 @@ VCR.configure do |c|
   c.cassette_library_dir = 'test/vcr_cassettes'
   c.hook_into :fakeweb
   c.default_cassette_options = { :record => :none }
+  c.register_request_matcher :uri do |request1, request2|
+    path1, params1 = request1.uri.split('?')
+    path2, params2 = request1.uri.split('?')
+    path1 == path2 && (params1.split('&') - params2.split('&')).empty?
+  end
 end
 
 # Use TURN if available
