@@ -20,3 +20,6 @@ pkg
 
 .bundle
 Gemfile.lock
+
+.rvmrc
+.rbenv-version
