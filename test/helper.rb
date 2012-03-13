@@ -5,6 +5,7 @@ require 'solusvm'
 require 'fake_web'
 require 'mocha'
 require 'vcr'
+require 'set'
 
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = true
@@ -14,7 +15,7 @@ VCR.configure do |c|
   c.register_request_matcher :uri do |request1, request2|
     path1, params1 = request1.uri.split('?')
     path2, params2 = request2.uri.split('?')
-    path1 == path2 && (params1.split('&') - params2.split('&')).empty?
+    path1 == path2 && Set.new(params1.split('&')) == Set.new(params2.split('&'))
   end
 end
 
