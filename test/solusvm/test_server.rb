@@ -1,4 +1,4 @@
-require 'helper'
+require 'test_helper'
 
 class TestServer < Test::Unit::TestCase
   def setup

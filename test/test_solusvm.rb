@@ -1,4 +1,4 @@
-require 'helper'
+require 'test_helper'
 
 class TestSolusvm < Test::Unit::TestCase
   def test_config

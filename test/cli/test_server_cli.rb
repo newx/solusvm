@@ -1,4 +1,4 @@
-require 'helper'
+require 'test_helper'
 require 'solusvm/cli'
 
 class TestServerCli < Test::Unit::TestCase

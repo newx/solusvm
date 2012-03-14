@@ -1,4 +1,4 @@
-require 'helper'
+require 'test_helper'
 
 class TestHash < Test::Unit::TestCase
   def test_reverse_merge
