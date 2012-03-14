@@ -1,4 +1,4 @@
-require 'helper'
+require 'test_helper'
 
 class TestNode < Test::Unit::TestCase
   def setup
