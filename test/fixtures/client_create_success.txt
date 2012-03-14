@@ -1,7 +1,0 @@
-<status>success</status>
-<statusmsg>Successfully added client</statusmsg>
-<username>vps123</username>
-<password>123456</password>
-<email>email@address.com</email>
-<firstname>phill</firstname>
-<lastname>smith</lastname>

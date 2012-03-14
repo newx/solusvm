@@ -1,0 +1,42 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://www.example.com/api?username=vps123&password=123456&email=email%40address.com&firstname=phill&lastname=smith&action=client-create&id=api_id&key=api_key
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: 
+      encoding: UTF-8
+      string: <status>success</status>
+        <statusmsg>Successfully added client</statusmsg>
+        <username>vps123</username>
+        <password>123456</password>
+        <email>email@address.com</email>
+        <firstname>phill</firstname>
+        <lastname>smith</lastname>
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request: 
+    method: get
+    uri: http://www.example.com/api?action=client-create&id=api_id&key=api_key
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: 
+      encoding: UTF-8
+      string: <status>error</status>
+        <statusmsg>Empty username field</statusmsg>
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+recorded_with: VCR 2.0.0

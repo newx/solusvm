@@ -1,2 +1,0 @@
-<status>success</status>
-<statusmsg>Enabled|Disabled</statusmsg>

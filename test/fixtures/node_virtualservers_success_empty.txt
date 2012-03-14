@@ -1,2 +1,0 @@
-<virtualservers>
-</virtualservers> 

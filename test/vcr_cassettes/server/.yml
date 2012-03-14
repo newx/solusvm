@@ -1,0 +1,1017 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server booted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Boot order changed</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: ! '<status>success</status><statusmsg>Virtual server console password changed</statusmsg>
+      <consolepassword></consolepassword> '
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Successfully changed owner</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server updated</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server vnc password changed</statusmsg>
+      <vncpassword></vncpassword>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg></statusmsg> <type>thetype</type><consoleip>theconsoleip</consoleip><consoleport>theconsoleport</consoleport><consolepassword>theconsolepassword</consolepassword><consoleusername>theconsoleusername</consoleusername>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server created</statusmsg><mainipaddress>123.123.123.123</mainipaddress><extraipaddress>122.122.122.122,111.111.111.111</extraipaddress><rootpassword>123456</rootpassword><vserverid>100</vserverid><consoleuser>console-123</consoleuser><consolepassword>123456</consolepassword><hostname>server.hostname.com</hostname><virtid>vm101|101</virtid>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server exists</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server hostname changed</statusmsg><hostname>hostname</hostname>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <vserverid>1</vserverid><ctid-xid>1</ctid-xid><clientid>1</clientid><ipaddress>123.123.123.123</ipaddress><hostname>host.example.com</hostname><template>vps1</template><hdd>123456</hdd><memory>123456</memory><swap-burst>swp</swap-burst><type>xenhvm</type>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg></statusmsg><node>tydeus</node><state>online</state><mainipaddress>123.123.123.123</mainipaddress><ipaddresses>123.123.123.123</ipaddresses><type>openvz</type><bandwidth>16106127360000,5370261749139,10735865610861,33</bandwidth>.<memory>1073741824,187097088,886644736,17</memory>.<hdd>236223201280,103640707072,132582494208,44</hdd>.<trafficgraph>/graphs/9/214/214-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png</trafficgraph>.<loadgraph>/graphs/9/214/214-load-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png</loadgraph>.<memorygraph>/graphs/9/214/214-mem-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png</memorygraph>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>ISO mounted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server network disabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: ! '<status>success</status><statusmsg>Virtual server network enabled</statusmsg>                       '
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Enabled|Disabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server rebooted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server is being rebuilt</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server unsuspended</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server root password changed</statusmsg><rootpassword>rootpassword</rootpassword>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server shutdown</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>online</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server suspended</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server terminated</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Disabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Enabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>ISO unmounted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg></statusmsg> <type>thetype</type><vncip>thevncip</vncip><vncport>thevncport</vncport><vncpassword>thevncpassword</vncpassword>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server booted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Boot order changed</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: ! '<status>success</status><statusmsg>Virtual server console password changed</statusmsg>
+      <consolepassword></consolepassword> '
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Successfully changed owner</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server updated</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server vnc password changed</statusmsg>
+      <vncpassword></vncpassword>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg></statusmsg> <type>thetype</type><consoleip>theconsoleip</consoleip><consoleport>theconsoleport</consoleport><consolepassword>theconsolepassword</consolepassword><consoleusername>theconsoleusername</consoleusername>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server created</statusmsg><mainipaddress>123.123.123.123</mainipaddress><extraipaddress>122.122.122.122,111.111.111.111</extraipaddress><rootpassword>123456</rootpassword><vserverid>100</vserverid><consoleuser>console-123</consoleuser><consolepassword>123456</consolepassword><hostname>server.hostname.com</hostname><virtid>vm101|101</virtid>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server exists</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server hostname changed</statusmsg><hostname>hostname</hostname>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <vserverid>1</vserverid><ctid-xid>1</ctid-xid><clientid>1</clientid><ipaddress>123.123.123.123</ipaddress><hostname>host.example.com</hostname><template>vps1</template><hdd>123456</hdd><memory>123456</memory><swap-burst>swp</swap-burst><type>xenhvm</type>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg></statusmsg><node>tydeus</node><state>online</state><mainipaddress>123.123.123.123</mainipaddress><ipaddresses>123.123.123.123</ipaddresses><type>openvz</type><bandwidth>16106127360000,5370261749139,10735865610861,33</bandwidth>.<memory>1073741824,187097088,886644736,17</memory>.<hdd>236223201280,103640707072,132582494208,44</hdd>.<trafficgraph>/graphs/9/214/214-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png</trafficgraph>.<loadgraph>/graphs/9/214/214-load-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png</loadgraph>.<memorygraph>/graphs/9/214/214-mem-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png</memorygraph>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>ISO mounted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server network disabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: ! '<status>success</status><statusmsg>Virtual server network enabled</statusmsg>                       '
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Enabled|Disabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server rebooted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server is being rebuilt</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server unsuspended</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server root password changed</statusmsg><rootpassword>rootpassword</rootpassword>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server shutdown</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>online</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server suspended</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server terminated</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Disabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Enabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>ISO unmounted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg></statusmsg> <type>thetype</type><vncip>thevncip</vncip><vncport>thevncport</vncport><vncpassword>thevncpassword</vncpassword>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server booted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Boot order changed</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: ! '<status>success</status><statusmsg>Virtual server console password changed</statusmsg>
+      <consolepassword></consolepassword> '
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Successfully changed owner</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server updated</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server vnc password changed</statusmsg>
+      <vncpassword></vncpassword>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg></statusmsg> <type>thetype</type><consoleip>theconsoleip</consoleip><consoleport>theconsoleport</consoleport><consolepassword>theconsolepassword</consolepassword><consoleusername>theconsoleusername</consoleusername>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server created</statusmsg><mainipaddress>123.123.123.123</mainipaddress><extraipaddress>122.122.122.122,111.111.111.111</extraipaddress><rootpassword>123456</rootpassword><vserverid>100</vserverid><consoleuser>console-123</consoleuser><consolepassword>123456</consolepassword><hostname>server.hostname.com</hostname><virtid>vm101|101</virtid>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server exists</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server hostname changed</statusmsg><hostname>hostname</hostname>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <vserverid>1</vserverid><ctid-xid>1</ctid-xid><clientid>1</clientid><ipaddress>123.123.123.123</ipaddress><hostname>host.example.com</hostname><template>vps1</template><hdd>123456</hdd><memory>123456</memory><swap-burst>swp</swap-burst><type>xenhvm</type>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg></statusmsg><node>tydeus</node><state>online</state><mainipaddress>123.123.123.123</mainipaddress><ipaddresses>123.123.123.123</ipaddresses><type>openvz</type><bandwidth>16106127360000,5370261749139,10735865610861,33</bandwidth>.<memory>1073741824,187097088,886644736,17</memory>.<hdd>236223201280,103640707072,132582494208,44</hdd>.<trafficgraph>/graphs/9/214/214-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png</trafficgraph>.<loadgraph>/graphs/9/214/214-load-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png</loadgraph>.<memorygraph>/graphs/9/214/214-mem-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png</memorygraph>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>ISO mounted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server network disabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: ! '<status>success</status><statusmsg>Virtual server network enabled</statusmsg>                       '
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Enabled|Disabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server rebooted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server is being rebuilt</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server unsuspended</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server root password changed</statusmsg><rootpassword>rootpassword</rootpassword>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server shutdown</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>online</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server suspended</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Virtual server terminated</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Disabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Enabled</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>ISO unmounted</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: ''
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg></statusmsg> <type>thetype</type><vncip>thevncip</vncip><vncport>thevncport</vncport><vncpassword>thevncpassword</vncpassword>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+recorded_with: VCR 2.0.0

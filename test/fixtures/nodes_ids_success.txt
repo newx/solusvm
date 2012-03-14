@@ -1,3 +1,0 @@
-<status>success</status>
-<statusmsg></statusmsg>
-<nodes>nodeid1,nodeid2,nodeid3,nodeid4</nodes>

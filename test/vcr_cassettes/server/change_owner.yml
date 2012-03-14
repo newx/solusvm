@@ -1,0 +1,15 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.example.com/api?action=vserver-changeowner&vserverid=1&clientid=2&id=api_id&key=api_key
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg>Successfully changed owner</statusmsg>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+recorded_with: VCR 2.0.0

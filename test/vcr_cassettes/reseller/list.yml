@@ -1,0 +1,27 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.example.com/api?action=reseller-list&id=api_id1&key=api_key
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <status>success</status><statusmsg></statusmsg><usernames>username1,username2,username3</usernames>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request: 
+    method: get
+    uri: http://www.example.com/api?action=reseller-list&id=api_id2&key=api_key
+    body: ''
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: <status>error</status><statusmsg>error message</statusmsg>
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+recorded_with: VCR 2.0.0

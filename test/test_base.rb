@@ -3,8 +3,6 @@ require 'helper'
 class TestBase < Test::Unit::TestCase
 
   def setup
-    FakeWeb.allow_net_connect = false
-    FakeWeb.clean_registry
     setup_solusvm
     @base = Solusvm::Base.new
   end
@@ -15,9 +13,10 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_parse_response
-    FakeWeb.register_uri(:get, "#{base_uri}&action=test&vserverid=1", :body => load_response('server_create_success'))
     assert_nil @base.returned_parameters
-    @base.perform_request(:action => 'test', :vserverid => 1)
+    VCR.use_cassette "base/parse_response" do
+      @base.perform_request(:action => 'test', :vserverid => 1)
+    end
     params = @base.returned_parameters
 
     assert_equal 10, params.size
@@ -34,14 +33,13 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_successful
-    FakeWeb.register_uri(:get, "#{base_uri}&action=testsuccess&vserverid=1", :body => load_response('server_create_success'))
-    FakeWeb.register_uri(:get, "#{base_uri}&action=testfail&vserverid=1", :body => load_response('error'))
+    VCR.use_cassette "base/successful" do
+      @base.perform_request(:action => 'testsuccess', :vserverid => 1)
+      assert @base.successful?
 
-    @base.perform_request(:action => 'testsuccess', :vserverid => 1)
-    assert @base.successful?
-
-    assert ! @base.perform_request(:action => 'testfail', :vserverid => 1)
-    assert_equal "error message", @base.statusmsg
+      @base.perform_request(:action => 'testfail', :vserverid => 1)
+      assert_equal "error message", @base.statusmsg
+    end
   end
 
   def test_api_login
@@ -49,8 +47,9 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_statusmsg
-    FakeWeb.register_uri(:get, "#{base_uri}&action=testsuccess&vserverid=1", :body => load_response('server_create_success'))
-    @base.perform_request(:action => 'testsuccess', :vserverid => 1)
+    VCR.use_cassette "base/statusmsg" do
+      @base.perform_request(:action => 'testsuccess', :vserverid => 1)
+    end
     assert_equal 'Virtual server created', @base.statusmsg
   end
 
@@ -70,46 +69,35 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_unautorized_ip
-    FakeWeb.register_uri(:get, "#{base_uri}&action=unauthorized", :body => load_response('base_unauthorized_ip'))
-    message = ""
-    begin
-      @base.perform_request(:action => 'unauthorized')
-    rescue Exception => e
-      message = e
+    VCR.use_cassette "base/unauthorized_ip" do
+      assert_raise RuntimeError do
+        @base.perform_request(:action => 'unauthorized')
+      end
     end
-    assert_equal "This IP is not authorized to use the API", message.to_s
   end
 
   def test_invalid_key_or_id
-    FakeWeb.register_uri(:get, "#{base_uri}&action=badkey", :body => load_response('base_bad_key'))
-    message = ""
-    begin
-      @base.perform_request(:action => 'badkey')
-    rescue Exception => e
-      message = e
+    VCR.use_cassette "base/invalid_key" do
+      assert_raise RuntimeError do
+        @base.perform_request(:action => 'badkey')
+      end
     end
-    assert_equal "Invalid ID or key", message.to_s
   end
 
   def test_node_does_not_exist
-    FakeWeb.register_uri(:get, "#{base_uri}&action=nodeexist", :body => load_response('base_node_does_not_exist'))
-    message = ""
-    begin
-      @base.perform_request(:action => 'nodeexist')
-    rescue Exception => e
-      message = e
+    VCR.use_cassette "base/nonexistent_node" do
+      assert_raise RuntimeError do
+        @base.perform_request(:action => 'nodeexist')
+      end
     end
-    assert_equal "Node does not exist", message.to_s
   end
 
   def test_invalid_http_status
-    FakeWeb.register_uri(:get, "#{base_uri}&action=httperror", :body => "", :status => ["404", "Not Found"])
-    message = ""
-    begin
-      @base.perform_request(:action => 'httperror')
-    rescue Solusvm::SolusvmError => e
-      message = e
+    VCR.use_cassette "base/invalid_status" do
+      assert_raise Solusvm::SolusvmError do
+        @base.perform_request(:action => 'httperror')
+      end
     end
-    assert_equal "Bad HTTP Status: 404", message.to_s
+    
   end
 end
