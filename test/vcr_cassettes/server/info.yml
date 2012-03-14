@@ -1,0 +1,27 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.example.com/api?action=vserver-info&vserverid=1&reboot=true&id=api_id&key=api_key
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <vserverid>1</vserverid><ctid-xid>1</ctid-xid><clientid>1</clientid><ipaddress>123.123.123.123</ipaddress><hostname>host.example.com</hostname><template>vps1</template><hdd>123456</hdd><memory>123456</memory><swap-burst>swp</swap-burst><type>xenhvm</type>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request:
+    method: get
+    uri: http://www.example.com/api?action=vserver-info&vserverid=1&reboot=false&id=api_id&key=api_key
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: <vserverid>1</vserverid><ctid-xid>1</ctid-xid><clientid>1</clientid><ipaddress>123.123.123.123</ipaddress><hostname>host.example.com</hostname><template>vps1</template><hdd>123456</hdd><memory>123456</memory><swap-burst>swp</swap-burst><type>xenhvm</type>
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+recorded_with: VCR 2.0.0

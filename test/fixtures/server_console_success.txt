@@ -1,7 +1,0 @@
-<status>success</status>
-<statusmsg></statusmsg> 
-<type>thetype</type>
-<consoleip>theconsoleip</consoleip>
-<consoleport>theconsoleport</consoleport>
-<consolepassword>theconsolepassword</consolepassword>
-<consoleusername>theconsoleusername</consoleusername>

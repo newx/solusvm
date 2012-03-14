@@ -1,6 +1,0 @@
-<status>success</status>
-<statusmsg></statusmsg> 
-<type>thetype</type>
-<vncip>thevncip</vncip>
-<vncport>thevncport</vncport>
-<vncpassword>thevncpassword</vncpassword>

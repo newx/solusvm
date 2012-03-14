@@ -1,3 +1,0 @@
-<status>success</status>
-<statusmsg></statusmsg>
-<usernames>username1,username2,username3</usernames>

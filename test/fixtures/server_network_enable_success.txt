@@ -1,2 +1,0 @@
-<status>success</status>
-<statusmsg>Virtual server network enabled</statusmsg>                       
