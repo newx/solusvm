@@ -8,7 +8,6 @@ require 'vcr'
 require 'set'
 
 VCR.configure do |c|
-  c.allow_http_connections_when_no_cassette = true
   c.cassette_library_dir = 'test/vcr_cassettes'
   c.hook_into :fakeweb
   c.register_request_matcher :uri_with_unordered_params do |request1, request2|
