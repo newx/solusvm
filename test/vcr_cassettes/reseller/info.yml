@@ -1,0 +1,27 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.example.com/api?action=reseller-info&username=vps123&id=api_id&key=api_key
+    body: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    body: ! '<status>success</status><statusmsg>Successfully added reseller</statusmsg><username>reseller123</username><password>123456</password><email>reseller3@email.com</email><firstname>Phill</firstname><lastname>Smith</lastname><company>FastServers</company><usernameprefix>vpsuser</usernameprefix><maxvps>10</maxvps><maxdisk>21474836480</maxdisk><maxmem>10737418240</maxmem><maxusers>20</maxusers><maxipv4>4</maxipv4><maxipv6>6</maxipv6><maxburst>10738466816</maxburst><maxbw>107374182400</maxbw><nodegroupids>14,11,9</nodegroupids><mediagroupids>14,11,9</mediagroupids><xenpv>1</xenpv><xenhvm>1</xenhvm><kvm>1</kvm><openvz>1</openvz>  '
+    http_version: '1.1'
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request: 
+    method: get
+    uri: http://www.example.com/api?action=reseller-info&username=vps13&id=api_id&key=api_key
+    body: ''
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: <status>error</status><statusmsg>error message</statusmsg>
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+recorded_with: VCR 2.0.0
