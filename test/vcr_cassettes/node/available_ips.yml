@@ -1,0 +1,41 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://www.example.com/api?action=node-iplist&nodeid=1&id=api_id1&key=api_key
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: 
+      encoding: UTF-8
+      string: <status>success</status>
+        <statusmsg>Available ip addresses</statusmsg>
+        <ipcount>3</ipcount>
+        <ips>123.123.123.123,124.124.124.124,125.125.125.125</ips>
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request: 
+    method: get
+    uri: http://www.example.com/api?action=node-iplist&nodeid=1&id=api_id2&key=api_key
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: 
+      encoding: UTF-8
+      string: <status>success</status>
+        <statusmsg>No available ip addresses</statusmsg>
+        <ipcount>3</ipcount>
+        <ips></ips>
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+recorded_with: VCR 2.0.0

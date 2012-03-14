@@ -1,0 +1,67 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://www.example.com/api?action=node-virtualservers&nodeid=1&id=api_id1&key=api_key
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: 
+      encoding: UTF-8
+      string: <virtualservers>
+        <virtualserver>                              
+        <vserverid>theid</vserverid>
+        <ctid-xid>thexid</ctid-xid>
+        <clientid>theclientid</clientid>
+        <ipaddress>theip</ipaddress>
+        <hostname>thehostname</hostname>
+        <template>thetemplate</template>
+        <hdd>thediskspace</hdd>
+        <memory>thememory</memory>
+        <swap-burst>theswap</swap-burst>
+        <type>thetype</type>
+        <mac>themac</mac>
+        </virtualserver>
+        </virtualservers> 
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request: 
+    method: get
+    uri: http://www.example.com/api?action=node-virtualservers&nodeid=1&id=api_id2&key=api_key
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: 
+      encoding: UTF-8
+      string: <virtualservers>
+        </virtualservers> 
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request: 
+    method: get
+    uri: http://www.example.com/api?action=node-virtualservers&nodeid=1&id=api_id3&key=api_key
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: 
+      encoding: UTF-8
+      string: <status>error</status>
+        <statusmsg>error message</statusmsg>
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+recorded_with: VCR 2.0.0
