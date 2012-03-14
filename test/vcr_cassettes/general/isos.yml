@@ -1,0 +1,38 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://www.example.com/api?action=listiso&type=xen&id=api_id&key=api_key
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: 
+      encoding: UTF-8
+      string: <status>success</status>
+        <statusmsg></statusmsg>
+        <iso>iso1,iso2,iso3</iso>
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+- request: 
+    method: get
+    uri: http://www.example.com/api?action=listiso&type=openvz&id=api_id&key=api_key
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: {}
+  response: 
+    status: 
+      code: 200
+      message: OK
+    body: 
+      encoding: UTF-8
+      string: <status>error</status>
+        <statusmsg>error message</statusmsg>
+    http_version: "1.1"
+  recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
+recorded_with: VCR 2.0.0
