@@ -1,3 +1,0 @@
-<status>success</status>
-<statusmsg></statusmsg>
-<iso>iso1,iso2,iso3</iso>

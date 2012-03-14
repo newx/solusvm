@@ -1,4 +1,0 @@
-<status>success</status>
-<statusmsg>No available ip addresses</statusmsg>
-<ipcount>3</ipcount>
-<ips></ips>

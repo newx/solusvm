@@ -1,4 +1,0 @@
-<status>success</status>
-<statusmsg></statusmsg>
-<freememory>thefreememory</freememory>
-<freehdd>thefreehdd</freehdd>

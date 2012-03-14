@@ -1,4 +1,0 @@
-<status>success</status>
-<statusmsg>Available ip addresses</statusmsg>
-<ipcount>3</ipcount>
-<ips>123.123.123.123,124.124.124.124,125.125.125.125</ips>

@@ -1,3 +1,0 @@
-<status>success</status>
-<statusmsg></statusmsg>
-<plans>plan1,plan2,plan3,plan4</plans>
