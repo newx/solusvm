@@ -20,7 +20,9 @@ module Solusvm
     #
     # <tt>force_array</tt> - see parse_response
     def perform_request(options = {}, force_array = false)
-      response = Faraday.new(:url => api_endpoint, :ssl => {:verify => false}) do |c|
+      ca_path  = File.join(File.dirname(__FILE__), '..', 'cacert.pem')
+      ssl      = {:verify => true, :ca_file => File.expand_path(ca_path)}
+      response = Faraday.new(:url => api_endpoint, :ssl => ssl) do |c|
         c.params = options.merge(api_login)
         c.response :solusvm_errors
         c.adapter :net_http
