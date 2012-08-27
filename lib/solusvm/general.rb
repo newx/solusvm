@@ -8,7 +8,7 @@ module Solusvm
     #
     # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     def templates(type)
-      if validate_server_type(type)
+      validate_server_type(type) do
         perform_request(:action => 'listtemplates', :type => type)
         parse_returned_params_as_list('templates')
       end
@@ -20,7 +20,7 @@ module Solusvm
     #
     # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     def plans(type)
-      if validate_server_type(type)
+      validate_server_type(type) do
         perform_request(:action => 'listplans', :type => type)
         parse_returned_params_as_list('plans')
       end
@@ -32,7 +32,7 @@ module Solusvm
     #
     # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     def isos(type)
-      if validate_server_type(type)
+      validate_server_type(type) do
         perform_request(:action => 'listiso', :type => type)
         parse_returned_params_as_list('iso')
       end

@@ -8,7 +8,7 @@ module Solusvm
     #
     # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     def list(type)
-      if validate_server_type(type)
+      validate_server_type(type) do
         perform_request(:action => 'listnodes', :type => type)
         parse_returned_params_as_list('nodes')
       end
@@ -20,7 +20,7 @@ module Solusvm
     #
     # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     def ids(type)
-      if validate_server_type(type)
+      validate_server_type(type) do
         perform_request(:action => 'node-idlist', :type => type)
         returned_parameters['nodes'].split(',')
       end

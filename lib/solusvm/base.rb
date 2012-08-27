@@ -104,17 +104,19 @@ module Solusvm
     end
 
     # Validates the server type.
-    def validate_server_type(type)
+    def validate_server_type(type, &block)
       type = type.strip
 
-      unless valid = VALID_SERVER_TYPES.include?(type)
+      if valid = VALID_SERVER_TYPES.include?(type)
+        yield
+      else
         @returned_parameters = {
           "status"    => "error",
           "statusmsg" => "Invalid Virtual Server type: #{type}"
         }
-      end
 
-      valid
+        false
+      end
     end
   end
 end

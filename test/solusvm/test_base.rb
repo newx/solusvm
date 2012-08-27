@@ -55,10 +55,10 @@ class TestBase < Test::Unit::TestCase
 
   def test_validate_server_type
     Solusvm::Base::VALID_SERVER_TYPES.each do |type|
-      assert @base.validate_server_type(type)
+      assert @base.validate_server_type(type) { true }
     end
 
-    assert !@base.validate_server_type('bob')
+    assert !@base.validate_server_type('bob') { true }
     assert !@base.successful?
     assert_equal "Invalid Virtual Server type: bob", @base.statusmsg
   end
