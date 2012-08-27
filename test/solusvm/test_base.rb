@@ -55,17 +55,12 @@ class TestBase < Test::Unit::TestCase
 
   def test_validate_server_type
     Solusvm::Base::VALID_SERVER_TYPES.each do |type|
-      assert_nothing_raised do
-        @base.validate_server_type!(type)
-      end
+      assert @base.validate_server_type(type)
     end
 
-    begin
-      @base.validate_server_type!('bob')
-      flunk "Shouldn't get here"
-    rescue Solusvm::SolusvmError => e
-      assert_equal 'Invalid Virtual Server type: bob', e.message
-    end
+    assert !@base.validate_server_type('bob')
+    assert !@base.successful?
+    assert_equal "Invalid Virtual Server type: bob", @base.statusmsg
   end
 
   def test_unautorized_ip
@@ -98,6 +93,6 @@ class TestBase < Test::Unit::TestCase
         @base.perform_request(:action => 'httperror')
       end
     end
-    
+
   end
 end

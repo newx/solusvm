@@ -4,13 +4,13 @@ module Solusvm
   # Solusvm::Base is the main class for mapping API resources as subclasses.
   class Base
     attr_reader :returned_parameters, :statusmsg
-    VALID_SERVER_TYPES = ['openvz', 'xen', 'xen hvm']
+    VALID_SERVER_TYPES = ["openvz", "xen", "xen hvm"]
 
     # Prepares and sends the API request to the URL specificed in Solusvm.config
     #
     #  class MyClass < Base
     #    def create_server(name)
-    #      perform_request(:action => 'name', :id => 1)
+    #      perform_request(:action => "name", :id => 1)
     #    end
     #  end
     #
@@ -20,7 +20,7 @@ module Solusvm
     #
     # <tt>force_array</tt> - see parse_response
     def perform_request(options = {}, force_array = false)
-      ca_path  = File.join(File.dirname(__FILE__), '..', 'cacert.pem')
+      ca_path  = File.join(File.dirname(__FILE__), "..", "cacert.pem")
       ssl      = {:verify => true, :ca_file => File.expand_path(ca_path)}
       response = Faraday.new(:url => api_endpoint, :ssl => ssl) do |c|
         c.params = options.merge(api_login)
@@ -39,23 +39,23 @@ module Solusvm
     def parse_response(body, force_array = false)
       force_array = Array(force_array) if force_array
       body = "<solusrequest>#{body}</solusrequest>"
-      XmlSimple.xml_in(body, 'ForceArray' => force_array)
+      XmlSimple.xml_in(body, "ForceArray" => force_array)
     end
 
     # Parses a returned_parameters value as a list, if present.
     def parse_returned_params_as_list(attribute)
       if returned_parameters[attribute] && !returned_parameters[attribute].empty?
-        returned_parameters[attribute].to_s.split(',')
+        returned_parameters[attribute].to_s.split(",")
       end
     end
 
     # Returns true when a request has been successful
     #
     #   my_class = MyClass.new
-    #   my_class.create_server('example.com')
+    #   my_class.create_server("example.com")
     #   my_class.successful? # => true
     def successful?
-      returned_parameters['status'] == 'success'
+      returned_parameters["status"] == "success"
     end
 
     # URI parsed API URL
@@ -81,15 +81,21 @@ module Solusvm
 
     # API response message
     def statusmsg
-      returned_parameters['statusmsg']
+      returned_parameters["statusmsg"]
     end
 
-    # Raises an exception unless a valid type is specified
-    def validate_server_type!(type)
+    # Validates the server type.
+    def validate_server_type(type)
       type = type.strip
-      unless VALID_SERVER_TYPES.include?(type)
-        raise SolusvmError, "Invalid Virtual Server type: #{type}"
+
+      unless valid = VALID_SERVER_TYPES.include?(type)
+        @returned_parameters = {
+          "status"    => "error",
+          "statusmsg" => "Invalid Virtual Server type: #{type}"
+        }
       end
+
+      valid
     end
   end
 end

@@ -13,24 +13,22 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_list_empty
-    VCR.use_cassette "node/list" do    
+    VCR.use_cassette "node/list" do
       assert !@nodes.list('openvz')
     end
   end
 
   def test_nodes_with_invalid_type
-    assert_raise Solusvm::SolusvmError do
-      @nodes.list('whatever')
-    end
+    assert !@nodes.list('whatever')
   end
 
   def test_statistics
     VCR.use_cassette "node/statistics" do
       @nodes.statistics(1)
     end
-    
+
     node_statistics = @nodes.returned_parameters
-    
+
     assert_equal '1000', node_statistics['freedisk']
     assert_equal '22', node_statistics['sshport']
     assert_equal 'city', node_statistics['city']
@@ -49,7 +47,7 @@ class TestNode < Test::Unit::TestCase
   def test_list_all_ips_available
     Solusvm.config("api_id1", api_login[:key], :url => 'http://www.example.com/api')
     VCR.use_cassette "node/available_ips" do
-      assert_equal %w(123.123.123.123 124.124.124.124 125.125.125.125).sort, @nodes.available_ips(1).sort 
+      assert_equal %w(123.123.123.123 124.124.124.124 125.125.125.125).sort, @nodes.available_ips(1).sort
     end
   end
 
@@ -67,9 +65,7 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_nodes_ids_error
-    assert_raise Solusvm::SolusvmError do
-      @nodes.ids('whatever')
-    end
+    assert !@nodes.ids('whatever')
   end
 
   def test_virtualservers
@@ -77,9 +73,9 @@ class TestNode < Test::Unit::TestCase
     VCR.use_cassette "node/virtualservers" do
       @nodes.virtualservers(1)
     end
-    
+
     server = @nodes.returned_parameters["virtualservers"]["virtualserver"].first
-    
+
     assert_equal "theid", server["vserverid"]
     assert_equal "thexid", server["ctid-xid"]
     assert_equal "theclientid", server["clientid"]
@@ -111,9 +107,9 @@ class TestNode < Test::Unit::TestCase
     VCR.use_cassette "node/xenresources" do
       @nodes.xenresources(1)
     end
-    
+
     node_resources = @nodes.returned_parameters
-    
+
     assert_equal 'thefreememory', node_resources['freememory']
     assert_equal 'thefreehdd', node_resources['freehdd']
   end
