@@ -20,11 +20,7 @@ class TestGeneral < Test::Unit::TestCase
   end
 
   def test_templates_with_invalid_type
-    VCR.use_cassette "general/templates" do
-      assert_raise Solusvm::SolusvmError do
-        @general.templates('badserver')
-      end
-    end
+    assert !@general.templates('badserver')
   end
 
   def test_plans
@@ -40,11 +36,7 @@ class TestGeneral < Test::Unit::TestCase
   end
 
   def test_plans_with_invalid_type
-    VCR.use_cassette "general/plans" do
-      assert_raise Solusvm::SolusvmError do
-        @general.plans('whatever')
-      end
-    end
+    assert !@general.plans('whatever')
   end
 
   def test_isos
@@ -60,10 +52,6 @@ class TestGeneral < Test::Unit::TestCase
   end
 
   def test_isos_with_invalid_type
-    VCR.use_cassette "general/isos" do
-      assert_raise Solusvm::SolusvmError do
-        @general.isos('whatever')
-      end
-    end
+    assert !@general.isos('whatever')
   end
 end
