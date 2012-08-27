@@ -65,34 +65,37 @@ class TestBase < Test::Unit::TestCase
 
   def test_unautorized_ip
     VCR.use_cassette "base/unauthorized_ip" do
-      assert_raise RuntimeError do
-        @base.perform_request(:action => 'unauthorized')
-      end
+      @base.perform_request(:action => 'unauthorized')
+
+      assert !@base.successful?
+      assert_equal "This IP is not authorized to use the API", @base.statusmsg
     end
   end
 
   def test_invalid_key_or_id
     VCR.use_cassette "base/invalid_key" do
-      assert_raise RuntimeError do
-        @base.perform_request(:action => 'badkey')
-      end
+      @base.perform_request(:action => 'badkey')
+
+      assert !@base.successful?
+      assert_equal "Invalid ID or key", @base.statusmsg
     end
   end
 
   def test_node_does_not_exist
     VCR.use_cassette "base/nonexistent_node" do
-      assert_raise RuntimeError do
-        @base.perform_request(:action => 'nodeexist')
-      end
+      @base.perform_request(:action => 'nodeexist')
+
+      assert !@base.successful?
+      assert_equal "Node does not exist", @base.statusmsg
     end
   end
 
   def test_invalid_http_status
     VCR.use_cassette "base/invalid_status" do
-      assert_raise Solusvm::SolusvmError do
-        @base.perform_request(:action => 'httperror')
-      end
-    end
+      @base.perform_request(:action => 'httperror')
 
+      assert !@base.successful?
+      assert_equal "Bad HTTP Status: 404", @base.statusmsg
+    end
   end
 end

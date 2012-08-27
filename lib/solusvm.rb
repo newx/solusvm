@@ -25,9 +25,7 @@ module Solusvm
   end
 end
 
-require 'solusvm/exceptions'
 require 'solusvm/hash'
-require 'solusvm/solusvm_errors'
 require 'solusvm/base'
 require 'solusvm/general'
 require 'solusvm/client'
