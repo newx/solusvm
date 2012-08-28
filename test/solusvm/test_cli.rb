@@ -11,7 +11,7 @@ class TestCli < Test::Unit::TestCase
 
   def test_should_print_version
     $stdout.expects(:puts).with(Solusvm::VERSION)
-    Solusvm::Cli.start(cli_expand_base_arguments(["version"]))
+    Solusvm::Cli.start %W(version)
   end
 
 end
