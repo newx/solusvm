@@ -74,7 +74,7 @@ module Solusvm
     #   my_class.create_server("example.com")
     #   my_class.successful? # => true
     def successful?
-      returned_parameters["status"] == "success"
+      returned_parameters["status"].nil? || returned_parameters["status"] == "success"
     end
 
     # URI parsed API URL

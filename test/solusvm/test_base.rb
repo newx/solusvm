@@ -39,6 +39,9 @@ class TestBase < Test::Unit::TestCase
 
       @base.perform_request(:action => 'testfail', :vserverid => 1)
       assert_equal "error message", @base.statusmsg
+
+      @base.perform_request(:action => 'testnostatus', :vserverid => 1)
+      assert @base.successful?
     end
   end
 
