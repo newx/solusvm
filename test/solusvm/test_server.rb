@@ -136,6 +136,12 @@ class TestServer < Test::Unit::TestCase
     #flunk "This is broken on the SolusVM API Level"
   end
 
+  def test_del_ip
+    VCR.use_cassette "server/del_ip" do
+      assert @server.del_ip(1, '123.123.123.123')
+    end
+  end
+
   def test_change_plan
     VCR.use_cassette "server/change_plan" do
       assert @server.change_plan(1, 'newplan')
