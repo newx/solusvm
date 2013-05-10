@@ -22,7 +22,7 @@ module Solusvm
     def ids(type)
       validate_server_type(type) do
         perform_request(:action => 'node-idlist', :type => type)
-        returned_parameters['nodes'].split(',')
+        parse_returned_params_as_list('nodes')
       end
     end
 
@@ -44,7 +44,7 @@ module Solusvm
       if statusmsg.match /no available ip/i
         []
       else
-        returned_parameters['ips'].split(',')
+        parse_returned_params_as_list('ips')
       end
     end
 
