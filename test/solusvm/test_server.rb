@@ -133,7 +133,10 @@ class TestServer < Test::Unit::TestCase
   end
 
   def test_add_ip
-    #flunk "This is broken on the SolusVM API Level"
+    VCR.use_cassette "server/add_ip" do
+      assert_equal '123.123.123.123', @server.add_ip(1)
+    end
+    assert_equal 'Ip address added', @server.statusmsg
   end
 
   def test_del_ip

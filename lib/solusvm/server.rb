@@ -109,6 +109,7 @@ module Solusvm
     # Adds an IP address for a specific server.
     def add_ip(vid)
       perform_request(:action => 'vserver-addip', :vserverid => vid)
+      returned_parameters['ipaddress']
     end
 
     # Deletes an IP address for a specific server.
