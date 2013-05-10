@@ -14,6 +14,14 @@ module Solusvm
       end
     end
 
+    # Lists existing node groups
+    def list_groups
+      perform_request(:action => 'listnodegroups')
+
+      # return list of node groups with numeric values excluded
+      returned_parameters['nodegroups'].to_s.split(',').map {|group| group.split('|')[1]}
+    end
+
     # Lists existing nodes ids of a given type.
     #
     # Parameters:
