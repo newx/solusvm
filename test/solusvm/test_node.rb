@@ -22,6 +22,12 @@ class TestNode < Test::Unit::TestCase
     assert !@nodes.list('whatever')
   end
 
+  def test_list_groups
+    VCR.use_cassette "node/list_groups" do
+      assert_equal ['--none--', 'nodegroup1', 'nodegroup2', 'nodegroup3'], @nodes.list_groups
+    end
+  end
+
   def test_statistics
     VCR.use_cassette "node/statistics" do
       @nodes.statistics(1)
