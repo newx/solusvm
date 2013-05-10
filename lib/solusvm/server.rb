@@ -111,6 +111,11 @@ module Solusvm
       perform_request(:action => 'vserver-addip', :vserverid => vid)
     end
 
+    # Deletes an IP address for a specific server.
+    def del_ip(vid, ip_address)
+      perform_request(:action => 'vserver-delip', :vserverid => vid, :ipaddr => ip_address)
+    end
+
     # Changes server plan.
     def change_plan(vid, plan)
       perform_request(:action => 'vserver-change', :vserverid => vid, :plan => plan)
