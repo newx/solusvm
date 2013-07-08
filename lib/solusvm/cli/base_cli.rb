@@ -40,9 +40,9 @@ module Solusvm
     end
 
     # Default required options
-    class_option :api_login, :type => :string, :desc => "API ID; Required.",  :aliases => ["-I", "--api-login"]
-    class_option :api_key,   :type => :string, :desc => "API KEY; Required.", :aliases => ["-K", "--api-key"]
-    class_option :api_url,   :type => :string, :desc => "API URL; Required.", :aliases => ["-U", "--api-url"]
+    class_option :api_login, type: :string, desc: "API ID; Required.",  aliases: ["-I", "--api-login"]
+    class_option :api_key,   type: :string, desc: "API KEY; Required.", aliases: ["-K", "--api-key"]
+    class_option :api_url,   type: :string, desc: "API URL; Required.", aliases: ["-U", "--api-url"]
 
     no_tasks do
       def api
@@ -67,7 +67,7 @@ module Solusvm
       Solusvm.config(
         present_or_exit(:api_login, :id, "api_login required"),
         present_or_exit(:api_key, :key, "api_key required"),
-        :url => present_or_exit(:api_url, :url, "api_url required")
+        url: present_or_exit(:api_url, :url, "api_url required")
       )
     end
 

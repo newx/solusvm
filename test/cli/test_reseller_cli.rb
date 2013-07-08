@@ -10,32 +10,32 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_create_to_reseller
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Reseller.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Reseller.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:create).with() do |options|
         expected = {
-          :username => "theusername",
-          :password => "thepassword",
-          :email => "theemail",
-          :firstname => "thefirstname",
-          :lastname => "thelastname",
-          :company => "thecompany",
-          :usernameprefix => "theusernameprefix",
-          :maxvps => "themaxvps",
-          :maxusers => "themaxusers",
-          :maxmem => "themaxmem",
-          :maxburst => "themaxburst",
-          :maxdisk => "themaxdisk",
-          :maxbw => "themaxbw",
-          :maxipv4 => "themaxipv4",
-          :maxipv6 => "themaxipv6",
-          :nodegroups => "thenodegroups",
-          :mediagroups => "themediagroups",
-          :openvz => "theopenvz",
-          :xenpv => "thexenpv",
-          :xenhvm => "thexenhvm",
-          :kvm => "thekvm"
+          username: "theusername",
+          password: "thepassword",
+          email: "theemail",
+          firstname: "thefirstname",
+          lastname: "thelastname",
+          company: "thecompany",
+          usernameprefix: "theusernameprefix",
+          maxvps: "themaxvps",
+          maxusers: "themaxusers",
+          maxmem: "themaxmem",
+          maxburst: "themaxburst",
+          maxdisk: "themaxdisk",
+          maxbw: "themaxbw",
+          maxipv4: "themaxipv4",
+          maxipv6: "themaxipv6",
+          nodegroups: "thenodegroups",
+          mediagroups: "themediagroups",
+          openvz: "theopenvz",
+          xenpv: "thexenpv",
+          xenhvm: "thexenhvm",
+          kvm: "thekvm"
         }
 
         expected.all? { |k,v| options[k] == v }
@@ -70,25 +70,25 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_change_resources_to_reseller
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Reseller.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Reseller.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:change_resources).with() do |options|
         expected = {
-          :maxvps => "themaxvps",
-          :maxusers => "themaxusers",
-          :maxmem => "themaxmem",
-          :maxburst => "themaxburst",
-          :maxdisk => "themaxdisk",
-          :maxbw => "themaxbw",
-          :maxipv4 => "themaxipv4",
-          :maxipv6 => "themaxipv6",
-          :nodegroups => "thenodegroups",
-          :mediagroups => "themediagroups",
-          :openvz => "theopenvz",
-          :xenpv => "thexenpv",
-          :xenhvm => "thexenhvm",
-          :kvm => "thekvm"
+          maxvps: "themaxvps",
+          maxusers: "themaxusers",
+          maxmem: "themaxmem",
+          maxburst: "themaxburst",
+          maxdisk: "themaxdisk",
+          maxbw: "themaxbw",
+          maxipv4: "themaxipv4",
+          maxipv6: "themaxipv6",
+          nodegroups: "thenodegroups",
+          mediagroups: "themediagroups",
+          openvz: "theopenvz",
+          xenpv: "thexenpv",
+          xenhvm: "thexenhvm",
+          kvm: "thekvm"
         }
 
         expected.all? { |k,v| options[k] == v }
@@ -116,8 +116,8 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_info_to_reseller
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Reseller.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Reseller.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:info).with("theusername").returns("theresult")
     end)
@@ -127,8 +127,8 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_delete_to_reseller
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Reseller.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Reseller.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:delete).with("theusername").returns("theresult")
     end)
@@ -138,8 +138,8 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_list_to_reseller
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Reseller.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Reseller.stubs(new: mock do
       expects(:successful?).returns(true)
      expects(:list).returns("theresult")
    end)

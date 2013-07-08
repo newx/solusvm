@@ -15,7 +15,7 @@ VCR.configure do |c|
     path2, params2 = request2.uri.split('?')
     path1 == path2 && Set.new(params1.to_s.split('&')) == Set.new(params2.to_s.split('&'))
   end
-  c.default_cassette_options = { :record => :none, :match_requests_on => [:method, :uri_with_unordered_params] }
+  c.default_cassette_options = { record: :none, match_requests_on: [:method, :uri_with_unordered_params] }
 end
 
 # Use TURN if available
@@ -35,11 +35,11 @@ class Test::Unit::TestCase
   end
 
   def api_login
-    {:id => 'api_id', :key => 'api_key'}
+    {id: 'api_id', key: 'api_key'}
   end
 
   def setup_solusvm
-    Solusvm.config(api_login[:id], api_login[:key], :url => 'http://www.example.com/api')
+    Solusvm.config(api_login[:id], api_login[:key], url: 'http://www.example.com/api')
   end
 
   def cli_expand_base_arguments(options)

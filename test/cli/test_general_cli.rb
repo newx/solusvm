@@ -10,8 +10,8 @@ class TestGeneralCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_templates_to_general
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::General.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::General.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:templates).with("type").returns("thetemplates")
     end)
@@ -21,8 +21,8 @@ class TestGeneralCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_plans_to_general
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::General.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::General.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:plans).with("type").returns("theplans")
     end)
@@ -32,8 +32,8 @@ class TestGeneralCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_isos_to_general
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::General.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::General.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:isos).with("type").returns("theisos")
     end)

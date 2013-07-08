@@ -8,7 +8,7 @@ class TestClient < Test::Unit::TestCase
   end
 
   def test_create
-    options = {:username => 'vps123', :password=> '123456', :email=> 'email@address.com', :firstname => 'phill', :lastname => 'smith'}
+    options = {username: 'vps123', password: '123456', email: 'email@address.com', firstname: 'phill', lastname: 'smith'}
     VCR.use_cassette "client/create" do
       @client.create(options)
     end
@@ -74,7 +74,7 @@ class TestClient < Test::Unit::TestCase
   end
 
   def test_list
-    Solusvm.config("api_id1", api_login[:key], :url => 'http://www.example.com/api')
+    Solusvm.config("api_id1", api_login[:key], url: 'http://www.example.com/api')
     VCR.use_cassette "client/list" do
       @client.list
     end
@@ -94,14 +94,14 @@ class TestClient < Test::Unit::TestCase
   end
 
   def test_list_empty
-    Solusvm.config("api_id2", api_login[:key], :url => 'http://www.example.com/api')
+    Solusvm.config("api_id2", api_login[:key], url: 'http://www.example.com/api')
     VCR.use_cassette "client/list" do
       assert @client.list.empty?
     end
   end
 
   def test_list_fail
-    Solusvm.config("api_id3", api_login[:key], :url => 'http://www.example.com/api')
+    Solusvm.config("api_id3", api_login[:key], url: 'http://www.example.com/api')
     VCR.use_cassette "client/list" do    
       assert_nil @client.list
     end

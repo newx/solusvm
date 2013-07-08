@@ -8,7 +8,7 @@ class TestReseller < Test::Unit::TestCase
   end
 
   def test_create
-    options = {:username => 'reseller123', :password=> '123456', :email=> 'reseller3@email.com', :firstname => 'Phill', :lastname => 'Smith'}
+    options = {username: 'reseller123', password: '123456', email: 'reseller3@email.com', firstname: 'Phill', lastname: 'Smith'}
     
     VCR.use_cassette "reseller/create" do
       @reseller.create(options) 
@@ -32,7 +32,7 @@ class TestReseller < Test::Unit::TestCase
   end
 
   def test_change_resources
-    options = {:maxvps => 10}
+    options = {maxvps: 10}
     VCR.use_cassette "reseller/change_resources" do
       @reseller.change_resources("vps123", options)
     end
@@ -71,14 +71,14 @@ class TestReseller < Test::Unit::TestCase
   end
 
   def test_list
-    Solusvm.config("api_id1", api_login[:key], :url => 'http://www.example.com/api')
+    Solusvm.config("api_id1", api_login[:key], url: 'http://www.example.com/api')
     VCR.use_cassette "reseller/list" do
       assert_equal %w(username1 username2 username3), @reseller.list
     end
   end
 
   def test_list_empty
-    Solusvm.config("api_id2", api_login[:key], :url => 'http://www.example.com/api')
+    Solusvm.config("api_id2", api_login[:key], url: 'http://www.example.com/api')
     VCR.use_cassette "reseller/list" do
       assert !@reseller.list
     end
