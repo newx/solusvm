@@ -107,7 +107,7 @@ module Solusvm
     def validate_server_type(type, &block)
       type = type.strip
 
-      if valid = VALID_SERVER_TYPES.include?(type)
+      if VALID_SERVER_TYPES.include?(type)
         yield
       else
         @returned_parameters = {
