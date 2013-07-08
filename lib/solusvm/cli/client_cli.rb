@@ -41,8 +41,7 @@ module Solusvm
 
     def api
       @client ||= begin
-        configure
-        Solusvm::Client.new
+        Solusvm::Client.new(api_params())
       end
     end
   end

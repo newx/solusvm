@@ -15,8 +15,7 @@ Rubinius 2.0, and JRuby 1.6.2.
 Basic Examples
 --------------
 
-    Solusvm.config('api_id', 'api_password', :url => 'http://www.example.com/api')
-    server = Solusvm::Server.new
+    server = Solusvm::Server.new(api_key: 'key', api_id: 'id', url: 'url')
 
     # 200 is the id of the virtual server
     server.shutdown(200) # => true
@@ -152,6 +151,7 @@ Contributors
 * [Maran H.](http://github.com/maran)
 * [Joshua Priddle](http://github.com/itspriddle)
 * [Vince Stratful](http://github.com/Vincepbell)
+* [Rubem Nakamura](http://github.com/rubemz)
 
 Note on Patches/Pull Requests
 -----------------------------
@@ -168,4 +168,4 @@ Note on Patches/Pull Requests
 Copyright
 ---------
 
-Copyright (c) 2010-2012 Site5.com. See LICENSE for details.
+Copyright (c) 2010-2013 Site5.com. See LICENSE for details.

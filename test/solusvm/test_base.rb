@@ -3,8 +3,7 @@ require 'test_helper'
 class TestBase < Test::Unit::TestCase
 
   def setup
-    setup_solusvm
-    @base = Solusvm::Base.new
+    @base = Solusvm::Base.new(solusvm_params)
   end
 
   def test_valid_server_types
@@ -41,6 +40,12 @@ class TestBase < Test::Unit::TestCase
       assert_equal "error message", @base.statusmsg
 
       @base.perform_request(action: 'testnostatus', vserverid: 1)
+      assert @base.successful?
+    end
+
+    VCR.use_cassette "base/successful_instance_config" do
+      @base = Solusvm::Base.new(api_key: "instance_key", api_id: "instance_id", url: "http://www.test.com/api" )
+      @base.perform_request(action: 'testconfig', vserverid: 1)
       assert @base.successful?
     end
   end

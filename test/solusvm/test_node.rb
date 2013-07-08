@@ -2,8 +2,7 @@ require 'test_helper'
 
 class TestNode < Test::Unit::TestCase
   def setup
-    setup_solusvm
-    @nodes = Solusvm::Node.new
+    @nodes = Solusvm::Node.new(solusvm_params)
   end
 
   def test_list
@@ -51,14 +50,14 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_list_all_ips_available
-    Solusvm.config("api_id1", api_login[:key], url: 'http://www.example.com/api')
+    @nodes = Solusvm::Node.new(solusvm_params.merge(api_id: "api_id1", url: 'http://www.example.com/api'))
     VCR.use_cassette "node/available_ips" do
       assert_equal %w(123.123.123.123 124.124.124.124 125.125.125.125).sort, @nodes.available_ips(1).sort
     end
   end
 
   def test_list_all_ips_not_available
-    Solusvm.config("api_id2", api_login[:key], url: 'http://www.example.com/api')
+    @nodes = Solusvm::Node.new(solusvm_params.merge(api_id: "api_id2", url: 'http://www.example.com/api'))
     VCR.use_cassette "node/available_ips" do
       assert @nodes.available_ips(1).empty?
     end
@@ -75,7 +74,7 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_virtualservers
-    Solusvm.config("api_id1", api_login[:key], url: 'http://www.example.com/api')
+    @nodes = Solusvm::Node.new(solusvm_params.merge(api_id: "api_id1", url: 'http://www.example.com/api'))
     VCR.use_cassette "node/virtualservers" do
       @nodes.virtualservers(1)
     end
@@ -96,14 +95,14 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_virtualservers_empty
-    Solusvm.config("api_id2", api_login[:key], url: 'http://www.example.com/api')
+    @nodes = Solusvm::Node.new(solusvm_params.merge(api_id: "api_id2", url: 'http://www.example.com/api'))
     VCR.use_cassette "node/virtualservers" do
       assert @nodes.virtualservers(1).empty?
     end
   end
 
   def test_virtualservers_fail
-    Solusvm.config("api_id3", api_login[:key], url: 'http://www.example.com/api')
+    @nodes = Solusvm::Node.new(solusvm_params.merge(api_id: "api_id3", url: 'http://www.example.com/api'))
     VCR.use_cassette "node/virtualservers" do
       assert_nil @nodes.virtualservers(1)
     end

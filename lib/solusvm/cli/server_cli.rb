@@ -150,8 +150,7 @@ module Solusvm
 
     def api
       @server ||= begin
-        configure
-        Solusvm::Server.new
+        Solusvm::Server.new(api_params)
       end
     end
 

@@ -10,8 +10,7 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_create_to_reseller
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
-    Solusvm::Reseller.stubs(new: mock do
+    Solusvm::Reseller.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:create).with() do |options|
         expected = {
@@ -70,8 +69,7 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_change_resources_to_reseller
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
-    Solusvm::Reseller.stubs(new: mock do
+    Solusvm::Reseller.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:change_resources).with() do |options|
         expected = {
@@ -116,8 +114,7 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_info_to_reseller
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
-    Solusvm::Reseller.stubs(new: mock do
+    Solusvm::Reseller.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:info).with("theusername").returns("theresult")
     end)
@@ -127,8 +124,7 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_delete_to_reseller
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
-    Solusvm::Reseller.stubs(new: mock do
+    Solusvm::Reseller.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:delete).with("theusername").returns("theresult")
     end)
@@ -138,8 +134,7 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_list_to_reseller
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
-    Solusvm::Reseller.stubs(new: mock do
+    Solusvm::Reseller.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
      expects(:list).returns("theresult")
    end)

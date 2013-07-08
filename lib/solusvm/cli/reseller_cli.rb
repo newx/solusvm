@@ -65,8 +65,7 @@ module Solusvm
 
     def api
       @reseller ||= begin
-        configure
-        Solusvm::Reseller.new
+        Solusvm::Reseller.new(api_params)
       end
     end
   end

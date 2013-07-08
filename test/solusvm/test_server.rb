@@ -2,8 +2,7 @@ require 'test_helper'
 
 class TestServer < Test::Unit::TestCase
   def setup
-    setup_solusvm
-    @server = Solusvm::Server.new
+    @server = Solusvm::Server.new(solusvm_params)
   end
 
   def test_create
@@ -37,7 +36,7 @@ class TestServer < Test::Unit::TestCase
     end
     assert_equal 'Virtual server is being rebuilt', @server.statusmsg
   end
-  
+
   def test_boot
     VCR.use_cassette "server/boot" do
       assert @server.boot(1)
@@ -230,7 +229,7 @@ class TestServer < Test::Unit::TestCase
     assert_equal 'theconsolepassword', info['consolepassword']
     assert_equal 'theconsoleusername', info['consoleusername']
   end
-  
+
   def test_info_all
     VCR.use_cassette "server/info_all" do
       @server.info_all(1)
@@ -245,7 +244,7 @@ class TestServer < Test::Unit::TestCase
     assert_equal "236223201280,103640707072,132582494208,44", info["hdd"]
     assert_equal "/graphs/9/214/214-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["trafficgraph"]
     assert_equal "/graphs/9/214/214-load-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["loadgraph"]
-    assert_equal "/graphs/9/214/214-mem-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["memorygraph"]    
+    assert_equal "/graphs/9/214/214-mem-8f7daef90bc75037489af4217af674a67df545ba05c8a6bcd5341d5894f2f905bf23976f52c0104415c1694135d51f204ddfd7b11bbe87c195a5de4a-86400.png", info["memorygraph"]
   end
 
   def test_mountiso
