@@ -2,12 +2,12 @@ module Solusvm
   class ClientCli < BaseCli
 
     desc "create", "Creates a new h"
-    method_option :username, :type => :string, :desc => "Username",  :aliases => ["-u", "--username"]
-    method_option :password, :type => :string, :desc => "Password",  :aliases => ["-p", "--password"]
-    method_option :email, :type => :string, :desc => "Email",  :aliases => ["-e", "--email"]
-    method_option :firstname, :type => :string, :desc => "Firstname",  :aliases => ["-f", "--firstname"]
-    method_option :lastname, :type => :string, :desc => "Lastname",  :aliases => ["-l", "--lastname"]
-    method_option :company, :type => :string, :desc => "Company",  :aliases => ["-c", "--company"]
+    method_option :username, type: :string, desc: "Username",  aliases: ["-u", "--username"]
+    method_option :password, type: :string, desc: "Password",  aliases: ["-p", "--password"]
+    method_option :email, type: :string, desc: "Email",  aliases: ["-e", "--email"]
+    method_option :firstname, type: :string, desc: "Firstname",  aliases: ["-f", "--firstname"]
+    method_option :lastname, type: :string, desc: "Lastname",  aliases: ["-l", "--lastname"]
+    method_option :company, type: :string, desc: "Company",  aliases: ["-c", "--company"]
     def create
       output api.create(options)
     end

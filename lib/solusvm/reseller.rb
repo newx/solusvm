@@ -27,7 +27,7 @@ module Solusvm
     # * <tt>:xenhvm</tt> - y|n Allow building of xen hvm virtual servers (optional)
     # * <tt>:kvm</tt> - y|n Allow building of kvmvirtual servers (optional)
     def create(options ={})
-      perform_request(options.merge(:action => 'reseller-create')) && returned_parameters
+      perform_request(options.merge(action: 'reseller-create')) && returned_parameters
     end
 
     # Changes the available resources for a specific reseller.
@@ -49,22 +49,22 @@ module Solusvm
     # * <tt>:xenhvm</tt> - y|n Allow building of xen hvm virtual servers (optional)
     # * <tt>:kvm</tt> - y|n Allow building of kvmvirtual servers (optional)
     def change_resources(username, options={})
-      perform_request(options.merge(:action => 'reseller-modifyresources', :username => username)) && returned_parameters
+      perform_request(options.merge(action: 'reseller-modifyresources', username: username)) && returned_parameters
     end
 
     # Retrieves information from an existing reseller.
     def info(username)
-      perform_request({:action => 'reseller-info', :username => username}) && returned_parameters
+      perform_request({action: 'reseller-info', username: username}) && returned_parameters
     end
 
     # Deletes an existing reseller.
     def delete(username)
-      perform_request({:action => 'reseller-delete', :username => username})
+      perform_request({action: 'reseller-delete', username: username})
     end
 
     # Lists existing resellers.
     def list
-      perform_request(:action => 'reseller-list')
+      perform_request(action: 'reseller-list')
       parse_returned_params_as_list('usernames')
     end
 

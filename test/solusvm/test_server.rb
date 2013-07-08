@@ -7,8 +7,8 @@ class TestServer < Test::Unit::TestCase
   end
 
   def test_create
-    options = {:hostname => 'server.hostname.com', :type => 'xen', :username => 'bob', :password => '123456',
-               :node => 'node1', :plan => 'plan1', :template => 'mytpl', :ips => 1}
+    options = {hostname: 'server.hostname.com', type: 'xen', username: 'bob', password: '123456',
+               node: 'node1', plan: 'plan1', template: 'mytpl', ips: 1}
     hostname = options.delete(:hostname)
     password = options.delete(:password)
     VCR.use_cassette "server/create" do

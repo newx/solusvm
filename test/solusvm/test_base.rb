@@ -15,7 +15,7 @@ class TestBase < Test::Unit::TestCase
   def test_parse_response
     assert_nil @base.returned_parameters
     VCR.use_cassette "base/parse_response" do
-      @base.perform_request(:action => 'test', :vserverid => 1)
+      @base.perform_request(action: 'test', vserverid: 1)
     end
     params = @base.returned_parameters
 
@@ -34,13 +34,13 @@ class TestBase < Test::Unit::TestCase
 
   def test_successful
     VCR.use_cassette "base/successful" do
-      @base.perform_request(:action => 'testsuccess', :vserverid => 1)
+      @base.perform_request(action: 'testsuccess', vserverid: 1)
       assert @base.successful?
 
-      @base.perform_request(:action => 'testfail', :vserverid => 1)
+      @base.perform_request(action: 'testfail', vserverid: 1)
       assert_equal "error message", @base.statusmsg
 
-      @base.perform_request(:action => 'testnostatus', :vserverid => 1)
+      @base.perform_request(action: 'testnostatus', vserverid: 1)
       assert @base.successful?
     end
   end
@@ -51,7 +51,7 @@ class TestBase < Test::Unit::TestCase
 
   def test_statusmsg
     VCR.use_cassette "base/statusmsg" do
-      @base.perform_request(:action => 'testsuccess', :vserverid => 1)
+      @base.perform_request(action: 'testsuccess', vserverid: 1)
     end
     assert_equal 'Virtual server created', @base.statusmsg
   end
@@ -68,7 +68,7 @@ class TestBase < Test::Unit::TestCase
 
   def test_unautorized_ip
     VCR.use_cassette "base/unauthorized_ip" do
-      @base.perform_request(:action => 'unauthorized')
+      @base.perform_request(action: 'unauthorized')
 
       assert !@base.successful?
       assert_equal "This IP is not authorized to use the API", @base.statusmsg
@@ -77,7 +77,7 @@ class TestBase < Test::Unit::TestCase
 
   def test_invalid_key_or_id
     VCR.use_cassette "base/invalid_key" do
-      @base.perform_request(:action => 'badkey')
+      @base.perform_request(action: 'badkey')
 
       assert !@base.successful?
       assert_equal "Invalid ID or key", @base.statusmsg
@@ -86,7 +86,7 @@ class TestBase < Test::Unit::TestCase
 
   def test_node_does_not_exist
     VCR.use_cassette "base/nonexistent_node" do
-      @base.perform_request(:action => 'nodeexist')
+      @base.perform_request(action: 'nodeexist')
 
       assert !@base.successful?
       assert_equal "Node does not exist", @base.statusmsg
@@ -95,7 +95,7 @@ class TestBase < Test::Unit::TestCase
 
   def test_invalid_http_status
     VCR.use_cassette "base/invalid_status" do
-      @base.perform_request(:action => 'httperror')
+      @base.perform_request(action: 'httperror')
 
       assert !@base.successful?
       assert_equal "Bad HTTP Status: 404", @base.statusmsg

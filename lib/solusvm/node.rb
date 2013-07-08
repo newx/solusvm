@@ -9,14 +9,14 @@ module Solusvm
     # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     def list(type)
       validate_server_type(type) do
-        perform_request(:action => 'listnodes', :type => type)
+        perform_request(action: 'listnodes', type: type)
         parse_returned_params_as_list('nodes')
       end
     end
 
     # Lists existing node groups
     def list_groups
-      perform_request(:action => 'listnodegroups')
+      perform_request(action: 'listnodegroups')
 
       # return list of node groups with numeric values excluded
       returned_parameters['nodegroups'].to_s.split(',').map {|group| group.split('|')[1]}
@@ -29,26 +29,26 @@ module Solusvm
     # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     def ids(type)
       validate_server_type(type) do
-        perform_request(:action => 'node-idlist', :type => type)
+        perform_request(action: 'node-idlist', type: type)
         parse_returned_params_as_list('nodes')
       end
     end
 
     # Retrieves statistics from a specific node.
     def statistics(nodeid)
-      perform_request(:action => 'node-statistics', :nodeid => nodeid)
+      perform_request(action: 'node-statistics', nodeid: nodeid)
       returned_parameters
     end
 
     # Retrieves available xen resources from a specific node.
     def xenresources(nodeid)
-      perform_request(:action => 'node-xenresources', :nodeid => nodeid)
+      perform_request(action: 'node-xenresources', nodeid: nodeid)
       returned_parameters
     end
 
     # Retrieves a list of available IPs for a specific node.
     def available_ips(nodeid)
-      perform_request(:action => 'node-iplist', :nodeid => nodeid)
+      perform_request(action: 'node-iplist', nodeid: nodeid)
       if statusmsg.match /no available ip/i
         []
       else
@@ -58,7 +58,7 @@ module Solusvm
 
     # Lists virtual servers from a specific node.
     def virtualservers(nodeid)
-      perform_request({:action => "node-virtualservers", :nodeid => nodeid}, "virtualserver")
+      perform_request({action: "node-virtualservers", nodeid: nodeid}, "virtualserver")
 
       if returned_parameters["virtualservers"] && returned_parameters["virtualservers"]["virtualserver"]
         returned_parameters["virtualservers"]["virtualserver"]

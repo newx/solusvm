@@ -10,8 +10,8 @@ class TestNodeCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_node_available_ips_to_node
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Node.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Node.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:available_ips).with("thevserverid").returns("theips")
     end)
@@ -21,8 +21,8 @@ class TestNodeCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_node_stats_to_node
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Node.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Node.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:statistics).with("thevserverid").returns("thestats")
     end)
@@ -32,8 +32,8 @@ class TestNodeCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_node_xenresources_to_node
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Node.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Node.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:xenresources).with("thevserverid").returns("theresources")
     end)
@@ -43,8 +43,8 @@ class TestNodeCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_node_virtualservers_to_node
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Node.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Node.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:virtualservers).with("thevserverid").returns("thedata")
     end)
@@ -54,8 +54,8 @@ class TestNodeCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_nodes_list_to_node
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Node.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Node.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:list).with("type").returns("thenodes")
     end)
@@ -65,8 +65,8 @@ class TestNodeCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_nodes_ids_to_node
-    Solusvm.expects(:config).with("thelogin", "thekey", { :url => "theurl" })
-    Solusvm::Node.stubs(:new => mock do
+    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
+    Solusvm::Node.stubs(new: mock do
       expects(:successful?).returns(true)
       expects(:ids).with("type").returns("thenodes")
     end)
