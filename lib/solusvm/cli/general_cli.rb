@@ -20,8 +20,7 @@ module Solusvm
 
     def api
       @general ||= begin
-        configure
-        Solusvm::General.new
+        Solusvm::General.new(api_params)
       end
     end
   end

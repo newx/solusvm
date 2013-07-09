@@ -63,12 +63,12 @@ module Solusvm
 
     protected
 
-    def configure
-      Solusvm.config(
-        present_or_exit(:api_login, :id, "api_login required"),
-        present_or_exit(:api_key, :key, "api_key required"),
+    def api_params()
+      {
+        api_id: present_or_exit(:api_login, :id, "api_login required"),
+        api_key: present_or_exit(:api_key, :key, "api_key required"),
         url: present_or_exit(:api_url, :url, "api_url required")
-      )
+      }
     end
 
     def present_or_exit(options_key, default_option_key, message)

@@ -35,8 +35,7 @@ module Solusvm
 
     def api
       @node ||= begin
-        configure
-        Solusvm::Node.new
+        Solusvm::Node.new(api_params)
       end
     end
   end

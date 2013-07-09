@@ -38,12 +38,16 @@ class Test::Unit::TestCase
     {id: 'api_id', key: 'api_key'}
   end
 
-  def setup_solusvm
-    Solusvm.config(api_login[:id], api_login[:key], url: 'http://www.example.com/api')
+  def solusvm_params
+    {
+      api_id:  api_login[:id],
+      api_key: api_login[:key],
+      url:     'http://www.example.com/api'
+    }
   end
 
   def cli_expand_base_arguments(options)
-    arguments = ["--api-login", "thelogin", "--api-key", "thekey", "--api-url", "theurl"]
+    arguments = ["--api-login", "api_id", "--api-key", "api_key", "--api-url", "http://www.example.com/api"]
     options + arguments
   end
 

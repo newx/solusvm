@@ -3,8 +3,7 @@ require 'test_helper'
 class TestClient < Test::Unit::TestCase
 
   def setup
-    setup_solusvm
-    @client = Solusvm::Client.new
+    @client = Solusvm::Client.new(solusvm_params)
   end
 
   def test_create
@@ -28,14 +27,14 @@ class TestClient < Test::Unit::TestCase
     end
     assert_equal 'Empty username field', @client.statusmsg
   end
-  
+
   def test_exists
     VCR.use_cassette "client/exists" do
       assert @client.exists?("vps123")
     end
-    assert_equal 'Client exists', @client.statusmsg    
+    assert_equal 'Client exists', @client.statusmsg
   end
-  
+
   def test_change_password
     VCR.use_cassette "client/change_password" do
       assert @client.change_password("vps123","123456")
@@ -74,13 +73,13 @@ class TestClient < Test::Unit::TestCase
   end
 
   def test_list
-    Solusvm.config("api_id1", api_login[:key], url: 'http://www.example.com/api')
+    @client = Solusvm::Client.new(api_id: "api_id1", api_key: api_login[:key], url: 'http://www.example.com/api')
     VCR.use_cassette "client/list" do
       @client.list
     end
 
     client = @client.returned_parameters["clients"]["client"].first
-    
+
     assert_equal "1", client["id"]
     assert_equal "vps123", client["username"]
     assert_equal "vps123@email.com", client["email"]
@@ -94,15 +93,15 @@ class TestClient < Test::Unit::TestCase
   end
 
   def test_list_empty
-    Solusvm.config("api_id2", api_login[:key], url: 'http://www.example.com/api')
+    @client = Solusvm::Client.new(api_id: "api_id2", api_key: api_login[:key], url: 'http://www.example.com/api')
     VCR.use_cassette "client/list" do
       assert @client.list.empty?
     end
   end
 
   def test_list_fail
-    Solusvm.config("api_id3", api_login[:key], url: 'http://www.example.com/api')
-    VCR.use_cassette "client/list" do    
+    @client = Solusvm::Client.new(api_id: "api_id3", api_key: api_login[:key], url: 'http://www.example.com/api')
+    VCR.use_cassette "client/list" do
       assert_nil @client.list
     end
   end

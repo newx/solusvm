@@ -5,6 +5,10 @@ module Solusvm
 
     attr_reader :returned_parameters
 
+    def initialize(config = {})
+      @config = config
+    end
+
     # Prepares and sends the API request to the URL specificed in Solusvm.config
     #
     #  class MyClass < Base
@@ -77,17 +81,42 @@ module Solusvm
       returned_parameters["status"].nil? || returned_parameters["status"] == "success"
     end
 
-    # URI parsed API URL
+    # Returns the API endpoint set in the instance configuration. Otherwise,
+    # it returns the default configuration.
+    #
+    # Returns a String
     def api_endpoint
-      Solusvm.api_endpoint.dup
+      @config.fetch(:url)
+    end
+
+    # Returns the API id set in the instance configuration. Otherwise,
+    # it returns the default configuration.
+    #
+    # Returns a String
+    def api_id
+      @config.fetch(:api_id)
+    end
+
+    # Returns the API key set in the instance configuration. Otherwise,
+    # it returns the default configuration.
+    #
+    # Returns a String
+    def api_key
+      @config.fetch(:api_key)
+    end
+
+    def api_options(option)
+      if options = @config[:options]
+        options[option.to_sym]
+      end
     end
 
     def api_login
-      {id: Solusvm.api_id, key: Solusvm.api_key}
+      {id: api_id, key: api_key}
     end
 
     def log_messages(options)
-      logger, logger_method = Solusvm.api_options[:logger], Solusvm.api_options[:logger_method]
+      logger, logger_method = api_options(:logger), api_options(:logger_method)
 
       if logger && logger.respond_to?(logger_method)
         logger.send(logger_method, "[Start] => #{options[:action]}")
@@ -107,7 +136,7 @@ module Solusvm
     def validate_server_type(type, &block)
       type = type.strip
 
-      if valid = VALID_SERVER_TYPES.include?(type)
+      if VALID_SERVER_TYPES.include?(type)
         yield
       else
         @returned_parameters = {

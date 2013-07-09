@@ -10,7 +10,6 @@ class TestClientCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_client_create_to_client
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
     api = mock do
       expects(:successful?).returns(true)
       expects(:create).with() do |options|
@@ -26,7 +25,7 @@ class TestClientCli < Test::Unit::TestCase
         expected.all? { |k,v| options[k] == v }
       end.returns("theresult")
     end
-    Solusvm::Client.stubs(new: api)
+    Solusvm::Client.expects(:new).with(solusvm_params).returns(api)
 
     $stdout.expects(:puts).with("theresult")
     Solusvm::Cli.start(cli_expand_base_arguments([
@@ -41,8 +40,7 @@ class TestClientCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_client_change_password_to_client
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
-    Solusvm::Client.stubs(new: mock do
+    Solusvm::Client.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:change_password).with("theusername", "thepassword").returns("theresult")
     end)
@@ -52,8 +50,7 @@ class TestClientCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_client_authenticate_to_client
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
-    Solusvm::Client.stubs(new: mock do
+    Solusvm::Client.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:authenticate).with("theusername", "thepassword").returns("theresult")
     end)
@@ -63,8 +60,7 @@ class TestClientCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_client_check_exists_to_client
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
-    Solusvm::Client.stubs(new: mock do
+    Solusvm::Client.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:exists?).with("theusername").returns("theresult")
     end)
@@ -74,8 +70,7 @@ class TestClientCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_client_delete_to_client
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
-    Solusvm::Client.stubs(new: mock do
+    Solusvm::Client.stubs(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:delete).with("theusername").returns("theresult")
     end)
@@ -85,8 +80,7 @@ class TestClientCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_client_list_to_client
-    Solusvm.expects(:config).with("thelogin", "thekey", { url: "theurl" })
-    Solusvm::Client.stubs(new: mock do
+    Solusvm::Client.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:list).returns("theresult")
     end)
