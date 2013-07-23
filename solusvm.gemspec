@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://www.site5.com"
   s.summary     = "Wrapper for the SolusVM Admin::API"
   s.description = "Solusvm allows for easy interaction with the SolusVM Admin::API."
+  s.license     = 'MIT'
 
   s.rubyforge_project = "solusvm"
   s.files             = `git ls-files`.split("\n")
