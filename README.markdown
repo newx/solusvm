@@ -4,8 +4,7 @@ SolusVM [![SolusVM Build Status][Build Icon]][Build Status]
 SolusVM allows for easy interaction with the [SolusVM Admin::API][].
 This library was first created for internal use at [Site5 LLC][].
 
-SolusVM has been tested on MRI 1.8.7, MRI 1.9.2, MRI 1.9.3 Preview 1,
-Rubinius 2.0, and JRuby 1.6.2.
+SolusVM has been tested on MRI 1.9.2, MRI 1.9.3 and 1.9-compatible JRuby.
 
 [Site5 LLC]: http://www.site5.com
 [SolusVM Admin::API]: http://wiki.solusvm.com/index.php/API:Admin
