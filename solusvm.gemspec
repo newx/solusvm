@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths     = ["lib"]
 
   s.add_runtime_dependency 'xml-simple', '~> 1.1.1'
-  s.add_runtime_dependency 'thor', '~> 0.16.0'
+  s.add_runtime_dependency 'thor', '>= 0.16.0'
   s.add_runtime_dependency 'faraday', '~> 0.8.0rc2'
   s.add_runtime_dependency 'jruby-openssl' if RUBY_PLATFORM == 'java'
 
