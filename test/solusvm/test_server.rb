@@ -228,6 +228,13 @@ class TestServer < Test::Unit::TestCase
     assert_equal 'theconsoleport', info['consoleport']
     assert_equal 'theconsolepassword', info['consolepassword']
     assert_equal 'theconsoleusername', info['consoleusername']
+
+    # with the optional parameters
+    VCR.use_cassette "server/console" do
+      @server.console(1, access: "admin", time: 1)
+    end
+    # a check to see if it returned a expected parameter even with the optional parameter
+    assert_equal 'thetype', @server.returned_parameters['type']
   end
 
   def test_info_all

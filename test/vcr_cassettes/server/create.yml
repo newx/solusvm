@@ -14,7 +14,7 @@ http_interactions:
   recorded_at: Tue, 01 Nov 2011 04:58:44 GMT
 - request: 
     method: get
-    uri: http://www.example.com/api?type=xen&username&ips=1&node&plan&template&password=&hostname=&action=vserver-create&id=api_id&key=api_key
+    uri: http://www.example.com/api?type=xen&ips=1&password=&hostname=&action=vserver-create&id=api_id&key=api_key
     body: ''
     headers: {}
   response: 

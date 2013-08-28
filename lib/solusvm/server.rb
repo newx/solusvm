@@ -165,11 +165,17 @@ module Solusvm
     end
 
     # Retrieves server console information.
-    def console(vid)
-      perform_request(action: 'vserver-console', vserverid: vid)
+    #
+    # params - A Hash to pass optional parameters to vserver-console call:
+    #          :access - A String that can be 'enable' or 'disable'
+    #          :time   - A Integer that can be 1|2|3|4|5|6|7|8
+    #
+    # returns a Hash
+    def console(vid, params = {})
+      perform_request(action: 'vserver-console', vserverid: vid, access: params[:access], time: params[:time])
       returned_parameters
     end
-    
+
     # Retrieves all available server information.
     def info_all(vid)
       perform_request(action: 'vserver-infoall', vserverid: vid)
