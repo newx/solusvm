@@ -22,6 +22,16 @@ class TestBaseCli < Test::Unit::TestCase
     @base_cli.output(["val1", "val2"])
   end
 
+  def test_should_use_retry_middleware_if_retry_request
+    retry_middleware =  Faraday::Request.lookup_middleware :retry
+
+    @api = Solusvm::Base.new(solusvm_params.merge(retry_request: true))
+    assert_equal @api.conn.builder[0], retry_middleware
+
+    @api = Solusvm::Base.new(solusvm_params)
+    assert_not_equal @api.conn.builder[0], retry_middleware
+  end
+
   def test_should_print_error_if_not_successful
     @api.stubs(:successful?).returns(false)
     @api.stubs(:statusmsg).returns("the message")
