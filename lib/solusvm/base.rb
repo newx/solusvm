@@ -23,19 +23,26 @@ module Solusvm
     #
     # <tt>force_array</tt> - see parse_response
     def perform_request(options = {}, force_array = false)
-      ca_path  = File.join(File.dirname(__FILE__), "..", "cacert.pem")
-      ssl      = {verify: true, ca_file: File.expand_path(ca_path)}
-
       options.reject! {|_,v| v.nil? }
 
-      response = Faraday.new(url: api_endpoint, ssl: ssl) do |c|
-        c.params = options.merge(api_login)
-        c.adapter :net_http
-      end.get
+      response = conn.get api_endpoint, options.merge(api_login)
 
       @returned_parameters = parse_response(response.status, response.body, force_array)
       log_messages(options)
       successful?
+    end
+
+    # Creates a Faraday connection and returns it.
+    def conn
+      @conn ||= Faraday.new(ssl: ssl_option) do |c|
+        c.request :retry if @config.fetch(:retry_request, false)
+        c.adapter :net_http
+      end
+    end
+
+    def ssl_option
+      ca_path  = File.join(File.dirname(__FILE__), "..", "cacert.pem")
+      {verify: true, ca_file: File.expand_path(ca_path)}
     end
 
     # Converts the XML response to a Hash
