@@ -29,5 +29,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'vcr', '~> 2.2.4'
   s.add_development_dependency 'mocha', '~> 0.12.3'
   s.add_development_dependency 'rake', '~> 0.9.2.2'
-  s.add_development_dependency 'rake-tomdoc'
+  s.add_development_dependency 'rake-tomdoc', '~> 0.0.1'
 end
