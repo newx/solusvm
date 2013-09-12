@@ -68,6 +68,8 @@ This library was first created for internal use at <a href="http://www.site5.com
 
 <p>SolusVM has been tested on MRI 1.9.2, MRI 1.9.3 and 1.9-compatible JRuby.</p>
 
+<p>Documentation is available in <a href="http://site5.github.io/solusvm/">TomDoc</a> format.</p>
+
 <h2>Basic Examples</h2>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_server'>server</span> <span class='op'>=</span> <span class='const'>Solusvm</span><span class='op'>::</span><span class='const'>Server</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>api_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>key</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>api_id:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>url:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -188,13 +190,9 @@ username: bob
 <h2>Requirements</h2>
 
 <ul>
-<li>xml-simple</li>
-</ul>
-
-<h2>Documentation</h2>
-
-<ul>
-<li><a href="http://solusvm.rubyforge.org/solusvm/">http://solusvm.rubyforge.org/solusvm/</a></li>
+<li><a href="https://github.com/maik/xml-simple">xml-simple</a></li>
+<li><a href="https://github.com/erikhuda/thor">thor</a></li>
+<li><a href="https://github.com/lostisland/faraday">faraday</a></li>
 </ul>
 
 <h2>Installation</h2>
@@ -204,13 +202,9 @@ username: bob
 
 <h2>Contributors</h2>
 
-<ul>
-<li><a href="http://github.com/jmazzi">Justin Mazzi</a></li>
-<li><a href="http://github.com/maran">Maran H.</a></li>
-<li><a href="http://github.com/itspriddle">Joshua Priddle</a></li>
-<li><a href="http://github.com/Vincepbell">Vince Stratful</a></li>
-<li><a href="http://github.com/rubemz">Rubem Nakamura</a></li>
-</ul>
+<p>SolusVM was originall written by <a href="https://github.com/site5/jmazzi">jmazzi</a> for
+internal use at Site5 LLC. Additional contributors are <a href="https://github.com/site5/solusvm/graphs/contributors">listed on
+GitHub</a>.</p>
 
 <h2>Note on Patches/Pull Requests</h2>
 
@@ -231,7 +225,7 @@ future version unintentionally.</li>
 </div></div>
 
     <div id="footer">
-  Generated on Thu Sep 12 09:52:09 2013 by
+  Generated on Thu Sep 12 14:25:11 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.1 (ruby-2.0.0).
 </div>
