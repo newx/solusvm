@@ -9,19 +9,24 @@ module Solusvm
       @config = config
     end
 
-    # Prepares and sends the API request to the URL specificed in Solusvm.config
+    # Public: Prepares and sends the API request to the URL specified in
+    # `Solusvm.config`.
     #
-    #  class MyClass < Base
-    #    def create_server(name)
-    #      perform_request(:action => "name", :id => 1)
-    #    end
-    #  end
+    # options     - A Hash of options. Any options not listed below are
+    #               converted to HTTP query arguments and are passed along to
+    #               the API.
+    #               :action - Specifies which API method to execute
+    # force_array - see parse_response
     #
-    # Options:
-    # * <tt>:action</tt> - Specifies which API method to execute
-    # All other options passed in are converted to http query arguments and are passed along to the API
+    # Example
     #
-    # <tt>force_array</tt> - see parse_response
+    #     class MyClass < Base
+    #       def create_server(name)
+    #         perform_request(:action => "name", :id => 1)
+    #       end
+    #     end
+    #
+    # Returns true if the request was successful.
     def perform_request(options = {}, force_array = false)
       options.reject! {|_,v| v.nil? }
 
@@ -32,7 +37,9 @@ module Solusvm
       successful?
     end
 
-    # Creates a Faraday connection and returns it.
+    # Public: Creates a Faraday connection.
+    #
+    # Returns a Faraday::Connection.
     def conn
       @conn ||= Faraday.new(ssl: ssl_option) do |c|
         c.request :retry if @config.fetch(:retry_request, false)
@@ -40,15 +47,24 @@ module Solusvm
       end
     end
 
+    # Public: SSL options used when creating a Faraday connection.
+    #
+    # Returns a Hash.
     def ssl_option
-      ca_path  = File.join(File.dirname(__FILE__), "..", "cacert.pem")
-      {verify: true, ca_file: File.expand_path(ca_path)}
+      {
+        verify: true,
+        ca_file: File.expand_path("../../cacert.pem", __FILE__)
+      }
     end
 
-    # Converts the XML response to a Hash
+    # Public: Converts the XML response to a Hash.
     #
-    # <tt>force_array</tt> - Parses the xml element as an array; can be a string with the element name
-    #     or an array with element names
+    # status      - Faraday::Response#status
+    # body        - Faraday::Response#body
+    # force_array - Parses the xml element as an array; can be a string with
+    #               the element name or an array with element names
+    #
+    # Returns a Hash.
     def parse_response(status, body, force_array = false)
       parse_error(status, body) || begin
         force_array = Array(force_array) if force_array
@@ -57,14 +73,23 @@ module Solusvm
       end
     end
 
-    # Parses a returned_parameters value as a list, if present.
+    # Public: Parses a returned_parameters value as a list, if present.
+    #
+    # attribute - The attribute to check
+    #
+    # Returns an Array or nil.
     def parse_returned_params_as_list(attribute)
       if returned_parameters[attribute] && !returned_parameters[attribute].empty?
         returned_parameters[attribute].to_s.split(",")
       end
     end
 
-    # Parses error responses.
+    # Public: Parses error responses.
+    #
+    # status - HTTP status code
+    # body   - Raw body
+    #
+    # Returns a Hash or nil.
     def parse_error(status, body)
       if (200..299).include?(status)
         # Checks for application errors
@@ -81,24 +106,26 @@ module Solusvm
       end
     end
 
-    # Returns true when a request has been successful
+    # Public: Check if the request was successful.
     #
-    #   my_class = MyClass.new
-    #   my_class.create_server("example.com")
-    #   my_class.successful? # => true
+    #     my_class = MyClass.new
+    #     my_class.create_server("example.com")
+    #     my_class.successful? # => true
+    #
+    # Returns true if the request was successful.
     def successful?
       returned_parameters["status"].nil? || returned_parameters["status"] == "success"
     end
 
-    # Returns the API endpoint set in the instance configuration. Otherwise,
-    # it returns the default configuration.
+    # Public: Returns the API endpoint set in the instance configuration.
+    # Otherwise, it returns the default configuration.
     #
     # Returns a String
     def api_endpoint
       @config.fetch(:url)
     end
 
-    # Returns the API id set in the instance configuration. Otherwise,
+    # Public: Returns the API id set in the instance configuration. Otherwise,
     # it returns the default configuration.
     #
     # Returns a String
@@ -106,24 +133,38 @@ module Solusvm
       @config.fetch(:api_id)
     end
 
-    # Returns the API key set in the instance configuration. Otherwise,
-    # it returns the default configuration.
+    # Public: Returns the API key set in the instance configuration.
+    # Otherwise, it returns the default configuration.
     #
-    # Returns a String
+    # Returns a String.
     def api_key
       @config.fetch(:api_key)
     end
 
+    # Public: API options
+    #
+    # option - Key to fetch
+    #
+    # Returns the given option.
     def api_options(option)
       if options = @config[:options]
         options[option.to_sym]
       end
     end
 
+    # Public: API login information.
+    #
+    # Returns a Hash.
     def api_login
-      {id: api_id, key: api_key}
+      { id: api_id, key: api_key }
     end
 
+    # Public: Logs API actions to the configured logger.
+    #
+    # options - A Hash of options
+    #           :action - the API action
+    #
+    # Returns nothing.
     def log_messages(options)
       logger, logger_method = api_options(:logger), api_options(:logger_method)
 
@@ -136,12 +177,20 @@ module Solusvm
       end
     end
 
-    # API response message
+    # Public: API response message
+    #
+    # Returns a String.
     def statusmsg
       returned_parameters["statusmsg"]
     end
 
-    # Validates the server type.
+    # Public: Validates the server type.
+    #
+    # type - The server type to check
+    #
+    # Yields a required block if given server type is valid.
+    #
+    # Returns the result of the block, or false if the server type is invalid.
     def validate_server_type(type, &block)
       type = type.strip
 

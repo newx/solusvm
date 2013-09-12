@@ -6,10 +6,13 @@ This library was first created for internal use at [Site5 LLC][].
 
 SolusVM has been tested on MRI 1.9.2, MRI 1.9.3 and 1.9-compatible JRuby.
 
+Documentation is available in [TomDoc][] format.
+
 [Site5 LLC]: http://www.site5.com
 [SolusVM Admin::API]: http://wiki.solusvm.com/index.php/API:Admin
 [Build Status]: http://travis-ci.org/site5/solusvm
 [Build Icon]: https://secure.travis-ci.org/site5/solusvm.png?branch=master
+[TomDoc]: http://site5.github.io/solusvm/
 
 Basic Examples
 --------------
@@ -131,12 +134,9 @@ The command line utility, solusvm, will look for a .solusvm.yml file in ~/. You 
 Requirements
 ------------
 
-* xml-simple
-
-Documentation
--------------
-
-* http://solusvm.rubyforge.org/solusvm/
+* [xml-simple](https://github.com/maik/xml-simple)
+* [thor](https://github.com/erikhuda/thor)
+* [faraday](https://github.com/lostisland/faraday)
 
 Installation
 ------------
@@ -146,11 +146,9 @@ Installation
 Contributors
 ------------
 
-* [Justin Mazzi](http://github.com/jmazzi)
-* [Maran H.](http://github.com/maran)
-* [Joshua Priddle](http://github.com/itspriddle)
-* [Vince Stratful](http://github.com/Vincepbell)
-* [Rubem Nakamura](http://github.com/rubemz)
+SolusVM was originall written by [jmazzi](https://github.com/site5/jmazzi) for
+internal use at Site5 LLC. Additional contributors are [listed on
+GitHub](https://github.com/site5/solusvm/graphs/contributors).
 
 Note on Patches/Pull Requests
 -----------------------------
