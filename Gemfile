@@ -1,4 +1,5 @@
 source "http://rubygems.org"
 
-# Specify your gem's dependencies in lol.gemspec
+gem 'rake-tomdoc', github: 'site5/rake-tomdoc'
+
 gemspec

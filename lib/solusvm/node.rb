@@ -1,12 +1,11 @@
 module Solusvm
   # Solusvm::Node is the class for working with nodes.
   class Node < Base
-
-    # Lists existing nodes of a given type.
+    # Public: Lists existing nodes of a given type.
     #
-    # Parameters:
+    # type - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     #
-    # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
+    # Returns an Array.
     def list(type)
       validate_server_type(type) do
         perform_request(action: 'listnodes', type: type)
@@ -14,7 +13,9 @@ module Solusvm
       end
     end
 
-    # Lists existing node groups
+    # Public: Lists existing node groups
+    #
+    # Returns an Array.
     def list_groups
       perform_request(action: 'listnodegroups')
 
@@ -22,11 +23,11 @@ module Solusvm
       returned_parameters['nodegroups'].to_s.split(',').map {|group| group.split('|')[1]}
     end
 
-    # Lists existing nodes ids of a given type.
+    # Public: Lists existing nodes ids of a given type.
     #
-    # Parameters:
+    # type - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     #
-    # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
+    # Returns an Array.
     def ids(type)
       validate_server_type(type) do
         perform_request(action: 'node-idlist', type: type)
@@ -34,19 +35,31 @@ module Solusvm
       end
     end
 
-    # Retrieves statistics from a specific node.
+    # Public: Retrieves statistics from a specific node.
+    #
+    # nodeid - The node ID
+    #
+    # Returns a Hash.
     def statistics(nodeid)
       perform_request(action: 'node-statistics', nodeid: nodeid)
       returned_parameters
     end
 
     # Retrieves available xen resources from a specific node.
+    #
+    # nodeid - The node ID
+    #
+    # Returns a Hash.
     def xenresources(nodeid)
       perform_request(action: 'node-xenresources', nodeid: nodeid)
       returned_parameters
     end
 
-    # Retrieves a list of available IPs for a specific node.
+    # Public: Retrieves a list of available IPs for a specific node.
+    #
+    # nodeid - The node ID
+    #
+    # Returns an Array.
     def available_ips(nodeid)
       perform_request(action: 'node-iplist', nodeid: nodeid)
       if statusmsg.match /no available ip/i
@@ -56,9 +69,13 @@ module Solusvm
       end
     end
 
-    # Lists virtual servers from a specific node.
+    # Public: Lists virtual servers from a specific node.
+    #
+    # nodeid - The node ID
+    #
+    # Returns an Array.
     def virtualservers(nodeid)
-      perform_request({action: "node-virtualservers", nodeid: nodeid}, "virtualserver")
+      perform_request({ action: "node-virtualservers", nodeid: nodeid }, "virtualserver")
 
       if returned_parameters["virtualservers"] && returned_parameters["virtualservers"]["virtualserver"]
         returned_parameters["virtualservers"]["virtualserver"]

@@ -1,43 +1,65 @@
 module Solusvm
   # Solusvm::Client is the class for working with clients.
   class Client < Base
-    # Creates a client.
+    # Public: Creates a client.
     #
-    # Options:
+    # options - A Hash of options:
+    #           :username
+    #           :password
+    #           :email
+    #           :firstname
+    #           :lastname
+    #           :company
     #
-    # * <tt>:username</tt>
-    # * <tt>:password</tt>
-    # * <tt>:email</tt>
-    # * <tt>:firstname</tt>
-    # * <tt>:lastname</tt>
-    # * <tt>:company</tt>
-    def create(options ={})
+    # Returns a Hash with the new client info, or false if the client was not
+    # created successfully.
+    def create(options = {})
       perform_request(options.merge(action: 'client-create')) && returned_parameters
     end
 
-    # Change client password for the solus admin.
+    # Public: Change client password for the Solus admin.
+    #
+    # username     - The client's username
+    # new_password - The new password
+    #
+    # Returns true if the client's password was successfully changed.
     def change_password(username, new_password)
-      perform_request({action: "client-updatepassword", username: username, password: new_password})
+      perform_request(action: "client-updatepassword", username: username, password: new_password)
     end
 
-    # Checks wether a specific client exists.
+    # Public: Checks if a specific client exists.
+    #
+    # username - The client's username
+    #
+    # Returns true if the client exists.
     def exists?(username)
-      perform_request({action: 'client-checkexists', username: username})
+      perform_request(action: 'client-checkexists', username: username)
     end
 
-    # Verify a clients login. Returns true when the specified login is correct.
+    # Public: Verify a client's login.
+    #
+    # username - The client's username
+    # password - The client's password
+    #
+    # Returns true if the given credentials are correct.
     def authenticate(username, password)
-      perform_request({action: 'client-authenticate', username: username, password: password})
+      perform_request(action: 'client-authenticate', username: username, password: password)
     end
 
-    # Deletes an existing client.
+    # Public: Deletes an existing client.
+    #
+    # username - The client's username
+    #
+    # Returns true if the client was successfully deleted.
     def delete(username)
-      perform_request({action: "client-delete", username: username})
+      perform_request(action: "client-delete", username: username)
     end
 
-    # Lists existing clients.
+    # Public: Lists existing clients.
+    #
+    # Returns an Array.
     def list
-      perform_request({action: "client-list"}, "client")
+      perform_request({ action: "client-list" }, "client")
 
       if returned_parameters["clients"] && returned_parameters["clients"]["client"]
         returned_parameters["clients"]["client"]

@@ -1,8 +1,8 @@
 require 'rubygems'
 require 'rake'
 require 'bundler/gem_tasks'
-
 require 'rake/testtask'
+require 'rake-tomdoc'
 
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
@@ -20,22 +20,6 @@ begin
 rescue LoadError
   task :rcov do
     abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
-  end
-end
-
-begin
-  require 'rdoc/task'
-  Rake::RDocTask.new do |rdoc|
-    version = Solusvm::VERSION
-
-    rdoc.rdoc_dir = 'rdoc'
-    rdoc.title = "solusvm #{version}"
-    rdoc.rdoc_files.include('README*')
-    rdoc.rdoc_files.include('lib/**/*.rb')
-  end
-rescue LoadError
-  task :rdoc do
-    abort "rdoc is not available. In order to run rdoc, you must: sudo gem install rdoc"
   end
 end
 

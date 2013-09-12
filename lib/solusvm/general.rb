@@ -1,12 +1,11 @@
 module Solusvm
   # Solusvm::General is the class for retrieving general information.
   class General < Base
-
-    # Lists available templates.
+    # Public: Lists available templates.
     #
-    # Parameters:
+    # type - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     #
-    # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
+    # Returns an Array.
     def templates(type)
       validate_server_type(type) do
         perform_request(action: 'listtemplates', type: type)
@@ -14,11 +13,11 @@ module Solusvm
       end
     end
 
-    # Lists available plans.
+    # Public: Lists available plans.
     #
-    # Parameters:
+    # type - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     #
-    # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
+    # Returns an Array.
     def plans(type)
       validate_server_type(type) do
         perform_request(action: 'listplans', type: type)
@@ -26,11 +25,11 @@ module Solusvm
       end
     end
 
-    # Lists available isos.
+    # Public: Lists available ISOS.
     #
-    # Parameters:
+    # type - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
     #
-    # * +type+ - a valid virtualization type; e.g: [openvz|xen|xen hvm|kvm]
+    # Returns an Array.
     def isos(type)
       validate_server_type(type) do
         perform_request(action: 'listiso', type: type)
