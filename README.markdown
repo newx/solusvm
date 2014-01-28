@@ -165,4 +165,4 @@ Note on Patches/Pull Requests
 Copyright
 ---------
 
-Copyright (c) 2010-2013 Site5.com. See LICENSE for details.
+Copyright (c) 2010-2014 Site5.com. See LICENSE for details.
