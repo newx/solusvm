@@ -16,7 +16,6 @@ module Solusvm
     #               converted to HTTP query arguments and are passed along to
     #               the API.
     #               :action - Specifies which API method to execute
-    # force_array - see parse_response
     #
     # Example
     #
@@ -27,12 +26,15 @@ module Solusvm
     #     end
     #
     # Returns true if the request was successful.
-    def perform_request(options = {}, force_array = false)
-      options.reject! {|_,v| v.nil? }
+    def perform_request(options = {})
+      options.reject! { |_, v| v.nil? }
+
+      # Force JSON responses
+      options[:rdtype] = "json"
 
       response = conn.get api_endpoint, options.merge(api_login)
 
-      @returned_parameters = parse_response(response.status, response.body, force_array)
+      @returned_parameters = parse_response(response.status, response.body)
       log_messages(options)
       successful?
     end
@@ -59,18 +61,12 @@ module Solusvm
 
     # Public: Converts the XML response to a Hash.
     #
-    # status      - Faraday::Response#status
-    # body        - Faraday::Response#body
-    # force_array - Parses the xml element as an array; can be a string with
-    #               the element name or an array with element names
+    # status - Faraday::Response#status
+    # body   - Faraday::Response#body
     #
     # Returns a Hash.
-    def parse_response(status, body, force_array = false)
-      parse_error(status, body) || begin
-        force_array = Array(force_array) if force_array
-        body        = "<solusrequest>#{body}</solusrequest>"
-        XmlSimple.xml_in(body, "ForceArray" => force_array)
-      end
+    def parse_response(status, body)
+      parse_error(status, body) || JSON.parse(body)
     end
 
     # Public: Parses a returned_parameters value as a list, if present.
