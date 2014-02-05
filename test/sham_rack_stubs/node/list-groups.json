@@ -1,0 +1,5 @@
+{
+  "status": "success",
+  "statusmsg": "",
+  "nodegroups": "0|--none--,1|nodegroup1,2|nodegroup2,3|nodegroup3"
+}

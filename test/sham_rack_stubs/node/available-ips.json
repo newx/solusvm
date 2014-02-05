@@ -1,0 +1,6 @@
+{
+  "status": "success",
+  "statusmsg": "Available ip addresses",
+  "ipcount": "3",
+  "ips": "123.123.123.123,124.124.124.124,125.125.125.125"
+}

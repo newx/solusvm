@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "statusmsg": "",
+  "virtualservers": [
+    {
+    "vserverid": "171",
+    "ctid-xid": "vm108",
+    "clientid": "1",
+    "ipaddress": "95.45.23.7",
+    "hostname": "test574.soluslabs.net",
+    "template": "centos-5-x86_64",
+    "hdd": "10737418240",
+    "memory": "2147483648",
+    "swap-burst": "1073741824",
+    "type": "xen",
+    "mac": "00:16:3e:73:15:b8"
+    }
+  ]
+}
