@@ -1,4 +1,3 @@
-require 'xmlsimple'
 require 'faraday'
 
 require 'solusvm/hash'
