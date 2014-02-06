@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "statusmsg": "",
+  "created": "success",
+  "type": "openvz|xen",
+  "consoleip": "ip of host",
+  "consoleport": "port of host",
+  "consolepassword": "console password",
+  "consoleusername": "console username",
+  "cancelled": "success",
+  "sessionactive": "1",
+  "sessionexpire": 3600
+}

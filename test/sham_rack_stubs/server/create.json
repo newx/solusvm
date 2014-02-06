@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "statusmsg": "Virtual server created",
+  "mainipaddress": "123.123.123.123",
+  "extraipaddress": "123.123.123.124,123.123.123.125",
+  "rootpassword": "UuasQS53",
+  "vserverid": "412",
+  "consoleuser": "console-P1RpHy",
+  "consolepassword": "UuasQS53",
+  "hostname": "test.com",
+  "virtid": "133",
+  "nodeid": "1"
+}

@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "statusmsg": "",
+  "state": "online|offline|disabled",
+  "ipaddresses": "comma seperated list of ip's",
+  "mainipaddress": "main ipaddress",
+  "type": "openvz|xen|xenhvm|kvm",
+  "trafficgraph": "path to graph",
+  "loadgraph": "path to graph",
+  "memorygraph": "path to graph",
+  "node": "name of node",
+  "hdd": "total space, used space, free space, percent used space",
+  "bandwidth": "total bandwidth, used bandwidth, free bandwidth, percent used bandwidth",
+  "memory": "total memory used memory, free memory, percent used memory",
+  "internalips": "internal ip address"
+}
