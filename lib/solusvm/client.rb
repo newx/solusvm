@@ -34,6 +34,7 @@ module Solusvm
     # Returns true if the client exists.
     def exists?(username)
       perform_request(action: 'client-checkexists', username: username)
+      !!statusmsg.match(/Client exists/i)
     end
 
     # Public: Verify a client's login.
@@ -57,15 +58,10 @@ module Solusvm
 
     # Public: Lists existing clients.
     #
-    # Returns an Array.
+    # Returns an Array if clients were found, otherwise nil.
     def list
-      perform_request({ action: "client-list" }, "client")
-
-      if returned_parameters["clients"] && returned_parameters["clients"]["client"]
-        returned_parameters["clients"]["client"]
-      elsif returned_parameters["clients"]
-        []
-      end
+      perform_request(action: "client-list")
+      returned_parameters["clients"]
     end
   end
 end

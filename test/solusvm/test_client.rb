@@ -1,108 +1,98 @@
 require 'test_helper'
 
 class TestClient < Test::Unit::TestCase
-
   def setup
     @client = Solusvm::Client.new(solusvm_params)
   end
 
   def test_create
-    options = {username: 'vps123', password: '123456', email: 'email@address.com', firstname: 'phill', lastname: 'smith'}
-    VCR.use_cassette "client/create" do
-      @client.create(options)
-    end
-    params = @client.returned_parameters
-    assert_equal options[:username], params['username']
-    assert_equal options[:firstname], params['firstname']
-    assert_equal options[:lastname], params['lastname']
-    assert_equal options[:password], params['password']
-    assert_equal options[:email], params['email']
-    assert_equal 'Successfully added client', params['statusmsg']
-    assert_equal 'success', params['status']
+    stub_response 'client/create'
+
+    options = {
+      username:  'vps123',
+      password:  '123456',
+      email:     'email@address.com',
+      firstname: 'phill',
+      lastname:  'smith'
+    }
+
+    assert @client.create(options).is_a? Hash
+    assert @client.successful?
   end
 
   def test_create_fail
-    VCR.use_cassette "client/create" do
-      assert ! @client.create
-    end
-    assert_equal 'Empty username field', @client.statusmsg
+    stub_response 'generic/error'
+
+    assert !@client.create
   end
 
   def test_exists
-    VCR.use_cassette "client/exists" do
-      assert @client.exists?("vps123")
-    end
-    assert_equal 'Client exists', @client.statusmsg
+    stub_response 'client/exists'
+
+    assert @client.exists?("vps123")
+    assert @client.successful?
   end
 
   def test_change_password
-    VCR.use_cassette "client/change_password" do
-      assert @client.change_password("vps123","123456")
-    end
+    stub_response 'client/change-password'
+
+    assert @client.change_password("vps123","123456")
+    assert @client.successful?
   end
 
   def test_change_password_fail
-    VCR.use_cassette "client/change_password" do
-      assert ! @client.change_password("vps13","thecake")
-    end
+    stub_response 'generic/error'
+
+    assert !@client.change_password("vps13","thecake")
   end
 
   def test_authenticate
-    VCR.use_cassette "client/authenticate" do
-      assert @client.authenticate('u', 'p')
-    end
+    stub_response 'client/authenticate'
+
+    assert @client.authenticate('u', 'p')
+    assert @client.successful?
   end
 
   def test_authenticate_fail
-    VCR.use_cassette "client/authenticate" do
-      assert ! @client.authenticate('u', 'notp')
-    end
-    assert_equal 'invalid username or password', @client.statusmsg
+    stub_response 'generic/error'
+
+    assert !@client.authenticate('u', 'notp')
   end
 
   def test_delete
-    VCR.use_cassette "client/delete" do
-      assert @client.delete("vps123")
-    end
+    stub_response 'client/delete'
+
+    assert @client.delete("vps123")
+    assert @client.successful?
   end
 
   def test_delete_fail
-    VCR.use_cassette "client/delete" do
-      assert !@client.delete("novps")
-    end
+    stub_response 'generic/error'
+
+    assert !@client.delete("novps")
   end
 
   def test_list
-    @client = Solusvm::Client.new(api_id: "api_id1", api_key: api_login[:key], url: 'http://www.example.com/api')
-    VCR.use_cassette "client/list" do
-      @client.list
-    end
+    stub_response 'client/list'
 
-    client = @client.returned_parameters["clients"]["client"].first
+    list = @client.list
 
-    assert_equal "1", client["id"]
-    assert_equal "vps123", client["username"]
-    assert_equal "vps123@email.com", client["email"]
-    assert_equal "phill", client["firstname"]
-    assert_equal "smith", client["lastname"]
-    assert_equal "VPS Co", client["company"]
-    assert_equal "Client", client["level"]
-    assert_equal "Active", client["status"]
-    assert_equal "2009-01-01", client["created"]
-    assert_equal "2010-04-23", client["lastlogin"]
+    assert list.is_a? Array
+    assert_not_empty list
   end
 
   def test_list_empty
-    @client = Solusvm::Client.new(api_id: "api_id2", api_key: api_login[:key], url: 'http://www.example.com/api')
-    VCR.use_cassette "client/list" do
-      assert @client.list.empty?
-    end
+    stub_response 'client/list-empty'
+
+    list = @client.list
+
+    assert list.is_a? Array
+    assert_empty @client.list
   end
 
   def test_list_fail
-    @client = Solusvm::Client.new(api_id: "api_id3", api_key: api_login[:key], url: 'http://www.example.com/api')
-    VCR.use_cassette "client/list" do
-      assert_nil @client.list
-    end
+    stub_response 'generic/error'
+
+    assert_nil @client.list
   end
 end
