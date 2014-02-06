@@ -15,13 +15,4 @@ class TestHash < Test::Unit::TestCase
     assert_equal expected, merged.reverse_merge!(defaults)
     assert_equal expected, merged
   end
-
-  def test_to_query
-    defaults = { a: "x", b: "y", c: 10 }
-    expected = "a=x&b=y&c=10".split('&').sort
-    actual = defaults.to_query.split('&').sort
-
-    assert defaults.to_query.is_a?(String)
-    assert_equal expected, actual
-  end
 end
