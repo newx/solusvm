@@ -1,5 +1,4 @@
 require 'cgi'
-require 'rubygems'
 require 'xmlsimple'
 require 'faraday'
 
