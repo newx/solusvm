@@ -149,9 +149,7 @@ module Solusvm
     private
 
     def api
-      @server ||= begin
-        Solusvm::Server.new(api_params)
-      end
+      @server ||= Solusvm::Server.new(api_params)
     end
 
     def switch(vserverid, switch_value, on_method, off_method)

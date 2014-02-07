@@ -19,9 +19,7 @@ module Solusvm
     private
 
     def api
-      @general ||= begin
-        Solusvm::General.new(api_params)
-      end
+      @general ||= Solusvm::General.new(api_params)
     end
   end
 end

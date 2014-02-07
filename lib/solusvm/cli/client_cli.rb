@@ -40,9 +40,7 @@ module Solusvm
     private
 
     def api
-      @client ||= begin
-        Solusvm::Client.new(api_params())
-      end
+      @client ||= Solusvm::Client.new(api_params())
     end
   end
 end
