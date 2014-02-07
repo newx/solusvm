@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "statusmsg": "",
+  "vserverid": "[vserverid]",
+  "ctid-xid": "[ctid or xen id]",
+  "clientid": "[clientid]",
+  "ipaddress": "[main ipaddress]",
+  "hostname": "[hostname]",
+  "template": "[template]",
+  "hdd": "[diskspace]",
+  "memory": "[memory]",
+  "swap-burst": "[swp or burst memory]",
+  "type": "[openvz/xen/xenhvm]",
+  "mac": "[mac address]"
+}

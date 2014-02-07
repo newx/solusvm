@@ -1,92 +1,81 @@
 require 'test_helper'
 
 class TestReseller < Test::Unit::TestCase
-
   def setup
     @reseller = Solusvm::Reseller.new(solusvm_params)
   end
 
   def test_create
-    options = {username: 'reseller123', password: '123456', email: 'reseller3@email.com', firstname: 'Phill', lastname: 'Smith'}
+    options = {
+      username:  'apitest3',
+      password:  '123456',
+      email:     'email@address.com',
+      firstname: 'Phill',
+      lastname:  'Smith'
+    }
 
-    VCR.use_cassette "reseller/create" do
-      @reseller.create(options)
-    end
+    stub_response 'reseller/create'
 
-    params = @reseller.returned_parameters
-
-    assert params
-    assert_equal options[:username], params['username']
-    assert_equal options[:firstname], params['firstname']
-    assert_equal options[:lastname], params['lastname']
-    assert_equal options[:password], params['password']
-    assert_equal options[:email], params['email']
+    assert @reseller.create(options).is_a? Hash
+    assert @reseller.successful?
   end
 
   def test_create_fail
-    VCR.use_cassette "reseller/create" do
-      assert ! @reseller.create
-    end
-    assert_equal 'error message', @reseller.statusmsg
+    stub_response 'generic/error'
+
+    assert !@reseller.create
+    assert !@reseller.successful?
   end
 
   def test_change_resources
-    options = {maxvps: 10}
-    VCR.use_cassette "reseller/change_resources" do
-      @reseller.change_resources("vps123", options)
-    end
+    stub_response 'reseller/change-resources'
 
-    params = @reseller.returned_parameters
-
-    assert params
-    assert "10", params['maxvps']
+    assert @reseller.change_resources("vps123", maxvps: 10).is_a? Hash
+    assert @reseller.successful?
   end
 
   def test_change_resources_fail
-    VCR.use_cassette "reseller/change_resources" do
-      assert !@reseller.change_resources("vps13")
-    end
+    stub_response 'generic/error'
+
+    assert !@reseller.change_resources("vps13")
+    assert !@reseller.successful?
   end
 
   def test_info
-    VCR.use_cassette "reseller/info" do
-      @reseller.info("vps123")
-    end
+    stub_response 'reseller/info'
 
-    params = @reseller.returned_parameters
-
-    assert params
-    assert_equal "reseller123", params['username']
-    assert_equal "Phill", params['firstname']
-    assert_equal "Smith", params['lastname']
-    assert_equal "123456", params['password']
-    assert_equal "reseller3@email.com", params['email']
+    assert @reseller.info("vps123").is_a? Hash
+    assert @reseller.successful?
   end
 
   def test_info_fail
-    VCR.use_cassette "reseller/info" do
-      assert !@reseller.info("vps13")
-    end
+    stub_response 'generic/error'
+
+    assert !@reseller.info("vps13")
+    assert !@reseller.successful?
   end
 
   def test_list
-    @reseller = Solusvm::Reseller.new(solusvm_params.merge(api_id: 'api_id1', url: 'http://www.example.com/api'))
-    VCR.use_cassette "reseller/list" do
-      assert_equal %w(username1 username2 username3), @reseller.list
-    end
+    stub_response 'reseller/list'
+
+    list = @reseller.list
+
+    assert list.is_a? Array
+    assert_not_empty list
+    assert @reseller.successful?
   end
 
   def test_list_empty
-    @reseller = Solusvm::Reseller.new(solusvm_params.merge(api_id: 'api_id2', url: 'http://www.example.com/api'))
-    VCR.use_cassette "reseller/list" do
-      assert !@reseller.list
-    end
+    stub_response 'reseller/list-empty'
+
+    assert !@reseller.list
+    assert @reseller.successful?
   end
 
   def test_delete
-    VCR.use_cassette "reseller/delete" do
-      assert @reseller.delete("vps123")
-    end
-  end
+    stub_response 'reseller/delete'
 
+    assert @reseller.delete("vps123")
+    assert @reseller.successful?
+  end
 end

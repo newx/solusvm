@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "statusmsg": "",
+  "id": "9",
+  "virt": "openvz",
+  "name": "Node2",
+  "ip": "123.123.123.123",
+  "memorylimit": 415834112,
+  "disklimit": 89070272512,
+  "hostname": "node2.domain.com",
+  "country": "UK",
+  "city": "London",
+  "sshport": "22",
+  "arch": "x86_64",
+  "freememory": "3572736",
+  "allocatedmemory": 7213056,
+  "allocatedbandwidth": 503316480,
+  "freedisk": "800522240",
+  "virtualservers": 11,
+  "freeips": 33
+}

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TestBase < Test::Unit::TestCase
-
   def setup
     @base = Solusvm::Base.new(solusvm_params)
   end
@@ -13,41 +12,26 @@ class TestBase < Test::Unit::TestCase
 
   def test_parse_response
     assert_nil @base.returned_parameters
-    VCR.use_cassette "base/parse_response" do
-      @base.perform_request(action: 'test', vserverid: 1)
-    end
-    params = @base.returned_parameters
 
-    assert_equal 10, params.size
-    assert_equal '123.123.123.123', params['mainipaddress']
-    assert_equal 'console-123', params['consoleuser']
-    assert_equal '100', params['vserverid']
-    assert_equal 'Virtual server created', params['statusmsg']
-    assert_equal 'vm101|101', params['virtid']
-    assert_equal '123456', params['consolepassword']
-    assert_equal '122.122.122.122,111.111.111.111', params['extraipaddress']
-    assert_equal 'server.hostname.com', params['hostname']
-    assert_equal '123456', params['rootpassword']
-    assert_equal 'success', params['status']
+    stub_response 'base/parse-response'
+
+    assert @base.perform_request(action: 'test', vserverid: 1)
+
+    res = @base.returned_parameters
+    assert res.is_a? Hash
+    assert_not_empty res
   end
 
   def test_successful
-    VCR.use_cassette "base/successful" do
-      @base.perform_request(action: 'testsuccess', vserverid: 1)
-      assert @base.successful?
+    stub_response 'base/parse-response'
 
-      @base.perform_request(action: 'testfail', vserverid: 1)
-      assert_equal "error message", @base.statusmsg
+    @base.perform_request(action: 'testsuccess', vserverid: 1)
+    assert @base.successful?
 
-      @base.perform_request(action: 'testnostatus', vserverid: 1)
-      assert @base.successful?
-    end
+    stub_response 'generic/error'
 
-    VCR.use_cassette "base/successful_instance_config" do
-      @base = Solusvm::Base.new(api_key: "instance_key", api_id: "instance_id", url: "http://www.test.com/api" )
-      @base.perform_request(action: 'testconfig', vserverid: 1)
-      assert @base.successful?
-    end
+    @base.perform_request(action: 'testsuccess', vserverid: 1)
+    assert !@base.successful?
   end
 
   def test_api_login
@@ -55,10 +39,10 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_statusmsg
-    VCR.use_cassette "base/statusmsg" do
-      @base.perform_request(action: 'testsuccess', vserverid: 1)
-    end
-    assert_equal 'Virtual server created', @base.statusmsg
+    stub_response 'base/parse-response'
+
+    assert @base.perform_request(action: 'testsuccess')
+    assert_equal 'The status message', @base.statusmsg
   end
 
   def test_validate_server_type
@@ -72,38 +56,30 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_unautorized_ip
-    VCR.use_cassette "base/unauthorized_ip" do
-      @base.perform_request(action: 'unauthorized')
+    setup_sham_rack { "Invalid ipaddress" }
 
-      assert !@base.successful?
-      assert_equal "This IP is not authorized to use the API", @base.statusmsg
-    end
+    assert !@base.perform_request(action: 'unauthorized')
+    assert_equal "This IP is not authorized to use the API", @base.statusmsg
   end
 
   def test_invalid_key_or_id
-    VCR.use_cassette "base/invalid_key" do
-      @base.perform_request(action: 'badkey')
+    setup_sham_rack { "Invalid id or key" }
 
-      assert !@base.successful?
-      assert_equal "Invalid ID or key", @base.statusmsg
-    end
+    assert !@base.perform_request(action: 'badkey')
+    assert_equal "Invalid ID or key", @base.statusmsg
   end
 
   def test_node_does_not_exist
-    VCR.use_cassette "base/nonexistent_node" do
-      @base.perform_request(action: 'nodeexist')
+    setup_sham_rack { "Node not found" }
 
-      assert !@base.successful?
-      assert_equal "Node does not exist", @base.statusmsg
-    end
+    assert !@base.perform_request(action: 'nodeexist')
+    assert_equal "Node does not exist", @base.statusmsg
   end
 
   def test_invalid_http_status
-    VCR.use_cassette "base/invalid_status" do
-      @base.perform_request(action: 'httperror')
+    setup_sham_rack { status 404 }
 
-      assert !@base.successful?
-      assert_equal "Bad HTTP Status: 404", @base.statusmsg
-    end
+    assert !@base.perform_request(action: 'httperror')
+    assert_equal "Bad HTTP Status: 404", @base.statusmsg
   end
 end

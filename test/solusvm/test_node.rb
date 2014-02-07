@@ -6,116 +6,110 @@ class TestNode < Test::Unit::TestCase
   end
 
   def test_list
-    VCR.use_cassette "node/list" do
-      assert_equal %w(node1 node2 node3 node4), @nodes.list('xen')
-    end
+    stub_response 'node/list'
+
+    list = @nodes.list('xen')
+
+    assert @nodes.successful?
+    assert list.is_a? Array
+    assert_not_empty list
   end
 
   def test_list_empty
-    VCR.use_cassette "node/list" do
-      assert !@nodes.list('openvz')
-    end
+    stub_response 'node/list-empty'
+
+    assert !@nodes.list('openvz')
+    assert @nodes.successful?
   end
 
   def test_nodes_with_invalid_type
     assert !@nodes.list('whatever')
+    assert !@nodes.successful?
   end
 
   def test_list_groups
-    VCR.use_cassette "node/list_groups" do
-      assert_equal ['--none--', 'nodegroup1', 'nodegroup2', 'nodegroup3'], @nodes.list_groups
-    end
+    stub_response 'node/list-groups'
+
+    list = @nodes.list_groups
+
+    assert @nodes.successful?
+    assert list.is_a? Array
+    assert_not_empty list
   end
 
   def test_statistics
-    VCR.use_cassette "node/statistics" do
-      @nodes.statistics(1)
-    end
+    stub_response 'node/statistics'
 
-    node_statistics = @nodes.returned_parameters
+    stats = @nodes.statistics(1)
 
-    assert_equal '1000', node_statistics['freedisk']
-    assert_equal '22', node_statistics['sshport']
-    assert_equal 'city', node_statistics['city']
-    assert_equal 'name', node_statistics['name']
-    assert_equal '0', node_statistics['freeips']
-    assert_equal 'country', node_statistics['country']
-    assert_equal 'x86_64', node_statistics['arch']
-    assert_equal '1', node_statistics['id']
-    assert_equal '10', node_statistics['freememory']
-    assert_equal '2', node_statistics['virtualservers']
-    assert_equal '127.0.0.1', node_statistics['ip']
-    assert_equal 'hostname.com', node_statistics['hostname']
-    assert_equal 'success', node_statistics['status']
+    assert @nodes.successful?
+    assert stats.is_a? Hash
+    assert_not_empty stats
   end
 
   def test_list_all_ips_available
-    @nodes = Solusvm::Node.new(solusvm_params.merge(api_id: "api_id1", url: 'http://www.example.com/api'))
-    VCR.use_cassette "node/available_ips" do
-      assert_equal %w(123.123.123.123 124.124.124.124 125.125.125.125).sort, @nodes.available_ips(1).sort
-    end
+    stub_response 'node/available-ips'
+
+    list = @nodes.available_ips(1)
+
+    assert @nodes.successful?
+    assert list.is_a? Array
+    assert_not_empty list
   end
 
   def test_list_all_ips_not_available
-    @nodes = Solusvm::Node.new(solusvm_params.merge(api_id: "api_id2", url: 'http://www.example.com/api'))
-    VCR.use_cassette "node/available_ips" do
-      assert @nodes.available_ips(1).empty?
-    end
+    stub_response 'node/available-ips-empty'
+
+    assert_empty @nodes.available_ips(1)
+    assert @nodes.successful?
   end
 
   def test_ids
-    VCR.use_cassette "node/ids" do
-      assert_equal %w(nodeid1 nodeid2 nodeid3 nodeid4), @nodes.ids('xen')
-    end
+    stub_response 'node/ids'
+
+    list = @nodes.ids('xen')
+
+    assert @nodes.successful?
+    assert list.is_a? Array
+    assert_not_empty list
   end
 
   def test_nodes_ids_error
     assert !@nodes.ids('whatever')
+    assert !@nodes.successful?
   end
 
   def test_virtualservers
-    @nodes = Solusvm::Node.new(solusvm_params.merge(api_id: "api_id1", url: 'http://www.example.com/api'))
-    VCR.use_cassette "node/virtualservers" do
-      @nodes.virtualservers(1)
-    end
+    stub_response 'node/virtualservers'
 
-    server = @nodes.returned_parameters["virtualservers"]["virtualserver"].first
+    servers = @nodes.virtualservers(1)
 
-    assert_equal "theid", server["vserverid"]
-    assert_equal "thexid", server["ctid-xid"]
-    assert_equal "theclientid", server["clientid"]
-    assert_equal "theip", server["ipaddress"]
-    assert_equal "thehostname", server["hostname"]
-    assert_equal "thetemplate", server["template"]
-    assert_equal "thediskspace", server["hdd"]
-    assert_equal "thememory", server["memory"]
-    assert_equal "theswap", server["swap-burst"]
-    assert_equal "thetype", server["type"]
-    assert_equal "themac", server["mac"]
+    assert @nodes.successful?
+    assert servers.is_a? Array
+    assert servers.all? { |s| s.is_a? Hash }
   end
 
   def test_virtualservers_empty
-    @nodes = Solusvm::Node.new(solusvm_params.merge(api_id: "api_id2", url: 'http://www.example.com/api'))
-    VCR.use_cassette "node/virtualservers" do
-      assert @nodes.virtualservers(1).empty?
-    end
+    stub_response 'node/virtualservers-empty'
+
+    assert_empty @nodes.virtualservers(1)
+    assert @nodes.successful?
   end
 
   def test_virtualservers_fail
-    @nodes = Solusvm::Node.new(solusvm_params.merge(api_id: "api_id3", url: 'http://www.example.com/api'))
-    VCR.use_cassette "node/virtualservers" do
-      assert_nil @nodes.virtualservers(1)
-    end
+    stub_response 'generic/error'
+
+    assert_nil @nodes.virtualservers(1)
+    assert !@nodes.successful?
   end
 
   def test_xenresources
-    VCR.use_cassette "node/xenresources" do
-      @nodes.xenresources(1)
-    end
+    stub_response 'node/xenresources'
 
-    node_resources = @nodes.returned_parameters
+    node_resources = @nodes.xenresources(1)
 
-    assert_equal 'thefreememory', node_resources['freememory']
-    assert_equal 'thefreehdd', node_resources['freehdd']
+    assert @nodes.successful?
+    assert node_resources.is_a? Hash
+    assert_not_empty node_resources
   end
 end

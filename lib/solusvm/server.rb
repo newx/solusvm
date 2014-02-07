@@ -154,7 +154,7 @@ module Solusvm
     # Returns true if the server exists.
     def exists?(vid)
       perform_request(action: 'vserver-checkexists', vserverid: vid)
-      !statusmsg.match(/Virtual server exists/i).nil?
+      !!statusmsg.match(/Virtual server exists/i)
     end
 
     # Public: Checks the status of specific server (disabled|online|offline).

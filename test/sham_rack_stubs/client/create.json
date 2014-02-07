@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "statusmsg": "Successfully added client",
+  "username": "vps123",
+  "password": "123456",
+  "email": "email@address.com",
+  "firstname": "phill",
+  "lastname": "smith"
+}

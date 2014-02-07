@@ -1,0 +1,8 @@
+{
+  "status": "success",
+  "statusmsg": "",
+  "type": "kvm|hvm",
+  "vncip": "ip of hos",
+  "vncport": "vncport",
+  "vncpassword": "vnc password"
+}

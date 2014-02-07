@@ -1,0 +1,30 @@
+{
+  "status": "success",
+  "statusmsg": "",
+  "clients": [
+    {
+      "id": "1",
+      "username": "vps123",
+      "email": "my@email.com",
+      "firstname": "Phillip",
+      "lastname": "Sith",
+      "company": "slbs.com",
+      "level": "Client",
+      "status": "Active",
+      "created": "2010-08-18",
+      "lastlogin": "2013-04-08"
+    },
+    {
+      "id": "2",
+      "username": "vps453",
+      "email": "phill@domain.com",
+      "firstname": "Test",
+      "lastname": "Client",
+      "company": "SLB",
+      "level": "Client",
+      "status": "Locked",
+      "created": "2010-08-19",
+      "lastlogin": "2011-05-13"
+    }
+  ]
+}

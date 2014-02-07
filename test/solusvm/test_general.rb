@@ -6,16 +6,21 @@ class TestGeneral < Test::Unit::TestCase
   end
 
   def test_templates
-    VCR.use_cassette "general/templates" do
-      assert_equal %w(template1 template2 template3), @general.templates('xen')
-    end
+    stub_response 'general/templates'
+
+    list = @general.templates('xen')
+
+    assert list.is_a? Array
+    assert_not_empty list
+    assert @general.successful?
   end
 
   # TODO: Refactor so that the lib is not validating server types
   def test_templates_empty
-    VCR.use_cassette "general/templates" do
-      assert !@general.templates('openvz')
-    end
+    stub_response 'general/templates-empty'
+
+    assert !@general.templates('xen')
+    assert @general.successful?
   end
 
   def test_templates_with_invalid_type
@@ -23,15 +28,20 @@ class TestGeneral < Test::Unit::TestCase
   end
 
   def test_plans
-    VCR.use_cassette "general/plans" do
-      assert_equal %w(plan1 plan2 plan3 plan4), @general.plans('xen')
-    end
+    stub_response 'general/plans'
+
+    list = @general.plans('xen')
+
+    assert list.is_a? Array
+    assert_not_empty list
+    assert @general.successful?
   end
 
   def test_plans_empty
-    VCR.use_cassette "general/plans" do
-      assert !@general.plans('openvz')
-    end
+    stub_response 'general/plans-empty'
+
+    assert !@general.plans('xen')
+    assert @general.successful?
   end
 
   def test_plans_with_invalid_type
@@ -39,15 +49,20 @@ class TestGeneral < Test::Unit::TestCase
   end
 
   def test_isos
-    VCR.use_cassette "general/isos" do
-      assert_equal %w(iso1 iso2 iso3), @general.isos('xen')
-    end
+    stub_response 'general/isos'
+
+    list = @general.isos('xen')
+
+    assert list.is_a? Array
+    assert_not_empty list
+    assert @general.successful?
   end
 
   def test_isos_empty
-    VCR.use_cassette "general/isos" do
-      assert !@general.isos('openvz')
-    end
+    stub_response 'general/isos-empty'
+
+    assert !@general.isos('xen')
+    assert @general.successful?
   end
 
   def test_isos_with_invalid_type

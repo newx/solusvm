@@ -1,0 +1,5 @@
+{
+  "status": "success",
+  "statusmsg": "Virtual server hostname changed",
+  "hostname": "hostname"
+}

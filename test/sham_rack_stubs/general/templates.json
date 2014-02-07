@@ -1,0 +1,7 @@
+{
+  "status": "success",
+  "statusmsg": "",
+  "templates": "template1,template2,template3",
+  "templateshvm": "template1,template2,template3",
+  "templateskvm": "template1,template2,template3"
+}
