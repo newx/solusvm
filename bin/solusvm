@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 
-$:.unshift(File.join(File.dirname(__FILE__), "/../lib"))
-
-require "thor"
+# Setup bundler if this script is called directly
+require "bundler/setup" if $0 == __FILE__
 require "solusvm/cli"
 
 Solusvm::Cli.start
