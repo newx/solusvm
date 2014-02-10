@@ -10,7 +10,7 @@ JRuby.
 Documentation is available in [TomDoc][] format.
 
 [Site5 LLC]: http://www.site5.com
-[SolusVM Admin::API]: http://wiki.solusvm.com/index.php/API:Admin
+[SolusVM Admin::API]: http://docs.solusvm.com/v2/Default.htm#Developer/Admin-Api/Admin-Api.htm
 [Build Status]: http://travis-ci.org/site5/solusvm
 [Build Icon]: https://secure.travis-ci.org/site5/solusvm.png?branch=master
 [TomDoc]: http://site5.github.io/solusvm/
