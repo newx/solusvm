@@ -1,4 +1,4 @@
-module Solusvm
+module SolusVM
   class ResellerCli < BaseCli
 
     desc "create", "Creates a new reseller"
@@ -64,7 +64,7 @@ module Solusvm
     private
 
     def api
-      @reseller ||= Solusvm::Reseller.new(api_params)
+      @reseller ||= SolusVM::Reseller.new(api_params)
     end
   end
 end

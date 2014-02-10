@@ -3,7 +3,7 @@ require 'thor'
 require 'thor/group'
 require 'solusvm/version'
 
-module Solusvm
+module SolusVM
   class BaseCli < Thor
     include Thor::Actions
 

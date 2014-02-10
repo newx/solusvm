@@ -10,8 +10,8 @@ class TestCli < Test::Unit::TestCase
   end
 
   def test_should_print_version
-    $stdout.expects(:puts).with(Solusvm::VERSION)
-    Solusvm::Cli.start %W(version)
+    $stdout.expects(:puts).with(SolusVM::VERSION)
+    SolusVM::Cli.start %W(version)
   end
 
 end

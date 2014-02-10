@@ -1,4 +1,4 @@
-module Solusvm
+module SolusVM
   class ServerCli < BaseCli
 
     desc "status VSERVERID", "Checks the status of a server"
@@ -135,7 +135,7 @@ module Solusvm
     desc "create HOSTNAME PASSWORD", "Creates a new server"
     method_option :plan, type: :string, desc: "Plan to use",  aliases: ["-p", "--plan"]
     method_option :ips,  type: :string, desc: "Number of ips to add to the vps",  aliases: ["-i", "--ips"]
-    method_option :kind, type: :string, desc: "Type of VPS (#{Solusvm::Server::VALID_SERVER_TYPES.join(',')})",  aliases: ["-k", "--kind"]
+    method_option :kind, type: :string, desc: "Type of VPS (#{SolusVM::Server::VALID_SERVER_TYPES.join(',')})",  aliases: ["-k", "--kind"]
     method_option :username, type: :string, desc: "The client to put the VPS under",  aliases: ["-u", "--username"]
     method_option :template, type: :string, desc: "VPS template to boot from",  aliases: ["-t", "--template"]
     method_option :node, type: :string, desc: "Node to provision on",  aliases: ["-n", "--node"]
@@ -149,7 +149,7 @@ module Solusvm
     private
 
     def api
-      @server ||= Solusvm::Server.new(api_params)
+      @server ||= SolusVM::Server.new(api_params)
     end
 
     def switch(vserverid, switch_value, on_method, off_method)

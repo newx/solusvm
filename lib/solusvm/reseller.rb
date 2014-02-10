@@ -1,5 +1,5 @@
-module Solusvm
-  # Solusvm::Server is the class for working with reseller accounts.
+module SolusVM
+  # SolusVM::Server is the class for working with reseller accounts.
   class Reseller < Base
     # Public: Creates a reseller.
     #

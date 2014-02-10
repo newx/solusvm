@@ -6,7 +6,7 @@ require 'solusvm/cli/general_cli'
 require 'solusvm/cli/reseller_cli'
 require 'solusvm/cli/client_cli'
 
-module Solusvm
+module SolusVM
   class Cli < Thor
     register(ServerCli,  'server', 'server <command>', 'Server commands')
     register(NodeCli,    'node', 'node <command>', 'Node commands')
@@ -16,7 +16,7 @@ module Solusvm
 
     desc "version", "Outputs the current program version"
     def version
-      say Solusvm::VERSION
+      say SolusVM::VERSION
     end
   end
 end

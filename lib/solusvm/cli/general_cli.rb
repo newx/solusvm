@@ -1,4 +1,4 @@
-module Solusvm
+module SolusVM
   class GeneralCli < BaseCli
 
     desc "templates TYPE", "Lists existing templates for a given type [openvz|xen|xen hvm|kvm]"
@@ -19,7 +19,7 @@ module Solusvm
     private
 
     def api
-      @general ||= Solusvm::General.new(api_params)
+      @general ||= SolusVM::General.new(api_params)
     end
   end
 end

@@ -1,5 +1,5 @@
-module Solusvm
-  # Solusvm::Base is the main class for mapping API resources as subclasses.
+module SolusVM
+  # SolusVM::Base is the main class for mapping API resources as subclasses.
   class Base
     VALID_SERVER_TYPES = ["openvz", "xen", "xen hvm"]
 
@@ -10,7 +10,7 @@ module Solusvm
     end
 
     # Public: Prepares and sends the API request to the URL specified in
-    # `Solusvm.config`.
+    # `SolusVM.config`.
     #
     # options     - A Hash of options. Any options not listed below are
     #               converted to HTTP query arguments and are passed along to
@@ -85,7 +85,7 @@ module Solusvm
     # status - HTTP status code
     # body   - Raw body
     #
-    # Raises Solusvm::AuthenticationError if there is an error authenticating
+    # Raises SolusVM::AuthenticationError if there is an error authenticating
     # with the API. This can happen if the request IP is not authorized, or if
     # an invalid API key/id was provided.
     #

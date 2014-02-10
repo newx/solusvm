@@ -1,4 +1,4 @@
-module Solusvm
+module SolusVM
   class ClientCli < BaseCli
 
     desc "create", "Creates a new h"
@@ -40,7 +40,7 @@ module Solusvm
     private
 
     def api
-      @client ||= Solusvm::Client.new(api_params())
+      @client ||= SolusVM::Client.new(api_params())
     end
   end
 end

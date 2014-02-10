@@ -10,63 +10,63 @@ class TestNodeCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_node_available_ips_to_node
-    Solusvm::Node.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Node.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:available_ips).with("thevserverid").returns("theips")
     end)
 
     $stdout.expects(:puts).with("theips")
-    Solusvm::Cli.start(cli_expand_base_arguments(["node", "available-ips", "thevserverid"]))
+    SolusVM::Cli.start(cli_expand_base_arguments(["node", "available-ips", "thevserverid"]))
   end
 
   def test_should_delegate_node_stats_to_node
-    Solusvm::Node.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Node.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:statistics).with("thevserverid").returns("thestats")
     end)
 
     $stdout.expects(:puts).with("thestats")
-    Solusvm::Cli.start(cli_expand_base_arguments(["node", "stats", "thevserverid"]))
+    SolusVM::Cli.start(cli_expand_base_arguments(["node", "stats", "thevserverid"]))
   end
 
   def test_should_delegate_node_xenresources_to_node
-    Solusvm::Node.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Node.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:xenresources).with("thevserverid").returns("theresources")
     end)
 
     $stdout.expects(:puts).with("theresources")
-    Solusvm::Cli.start(cli_expand_base_arguments(["node", "xenresources", "thevserverid"]))
+    SolusVM::Cli.start(cli_expand_base_arguments(["node", "xenresources", "thevserverid"]))
   end
 
   def test_should_delegate_node_virtualservers_to_node
-    Solusvm::Node.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Node.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:virtualservers).with("thevserverid").returns("thedata")
     end)
 
     $stdout.expects(:puts).with("thedata")
-    Solusvm::Cli.start(cli_expand_base_arguments(["node", "virtualservers", "thevserverid"]))
+    SolusVM::Cli.start(cli_expand_base_arguments(["node", "virtualservers", "thevserverid"]))
   end
 
   def test_should_delegate_nodes_list_to_node
-    Solusvm::Node.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Node.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:list).with("type").returns("thenodes")
     end)
 
     $stdout.expects(:puts).with("thenodes")
-    Solusvm::Cli.start(cli_expand_base_arguments(["node", "list", "type"]))
+    SolusVM::Cli.start(cli_expand_base_arguments(["node", "list", "type"]))
   end
 
   def test_should_delegate_nodes_ids_to_node
-    Solusvm::Node.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Node.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:ids).with("type").returns("thenodes")
     end)
 
     $stdout.expects(:puts).with("thenodes")
-    Solusvm::Cli.start(cli_expand_base_arguments(["node", "list-ids", "type"]))
+    SolusVM::Cli.start(cli_expand_base_arguments(["node", "list-ids", "type"]))
   end
 
 end

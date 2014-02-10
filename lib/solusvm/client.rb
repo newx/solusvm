@@ -1,5 +1,5 @@
-module Solusvm
-  # Solusvm::Client is the class for working with clients.
+module SolusVM
+  # SolusVM::Client is the class for working with clients.
   class Client < Base
     # Public: Creates a client.
     #

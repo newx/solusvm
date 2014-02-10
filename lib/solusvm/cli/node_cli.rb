@@ -1,4 +1,4 @@
-module Solusvm
+module SolusVM
   class NodeCli < BaseCli
 
     desc "list TYPE", "Lists existing nodes for a given type [openvz|xen|xen hvm|kvm]"
@@ -34,7 +34,7 @@ module Solusvm
     private
 
     def api
-      @node ||= Solusvm::Node.new(api_params)
+      @node ||= SolusVM::Node.new(api_params)
     end
   end
 end
