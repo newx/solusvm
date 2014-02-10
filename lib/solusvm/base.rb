@@ -85,15 +85,19 @@ module Solusvm
     # status - HTTP status code
     # body   - Raw body
     #
+    # Raises Solusvm::AuthenticationError if there is an error authenticating
+    # with the API. This can happen if the request IP is not authorized, or if
+    # an invalid API key/id was provided.
+    #
     # Returns a Hash or nil.
     def parse_error(status, body)
       if (200..299).include?(status)
         # Checks for application errors
         case body.downcase
         when /invalid ipaddress/i
-          { "status" => "error", "statusmsg" => "This IP is not authorized to use the API" }
+          raise AuthenticationError, "This IP is not authorized to use the API"
         when /Invalid id or key/i
-          { "status" => "error", "statusmsg" => "Invalid ID or key" }
+          raise AuthenticationError, "Invalid ID or key"
         when /Node not found/i
           { "status" => "error", "statusmsg" => "Node does not exist" }
         end
