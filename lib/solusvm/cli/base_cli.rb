@@ -4,7 +4,7 @@ require 'thor/group'
 require 'solusvm/version'
 
 module SolusVM
-  class BaseCli < Thor
+  class BaseCLI < Thor
     include Thor::Actions
 
     class << self
@@ -72,7 +72,7 @@ module SolusVM
     end
 
     def present_or_exit(options_key, default_option_key, message)
-      options[options_key] || BaseCli.default_option(default_option_key) || (say(message) && raise(SystemExit))
+      options[options_key] || BaseCLI.default_option(default_option_key) || (say(message) && raise(SystemExit))
     end
   end
 end

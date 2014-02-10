@@ -1,5 +1,5 @@
 module SolusVM
-  class ServerCli < BaseCli
+  class ServerCLI < BaseCLI
 
     desc "status VSERVERID", "Checks the status of a server"
     def status(vserverid)

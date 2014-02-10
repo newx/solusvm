@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'solusvm/cli'
 
-class TestNodeCli < Test::Unit::TestCase
+class TestNodeCLI < Test::Unit::TestCase
 
   def setup
     # Prevents mocha from stubbing non existent methods so that we now if the CLI is failing because
@@ -16,7 +16,7 @@ class TestNodeCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("theips")
-    SolusVM::Cli.start(cli_expand_base_arguments(["node", "available-ips", "thevserverid"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["node", "available-ips", "thevserverid"]))
   end
 
   def test_should_delegate_node_stats_to_node
@@ -26,7 +26,7 @@ class TestNodeCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("thestats")
-    SolusVM::Cli.start(cli_expand_base_arguments(["node", "stats", "thevserverid"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["node", "stats", "thevserverid"]))
   end
 
   def test_should_delegate_node_xenresources_to_node
@@ -36,7 +36,7 @@ class TestNodeCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("theresources")
-    SolusVM::Cli.start(cli_expand_base_arguments(["node", "xenresources", "thevserverid"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["node", "xenresources", "thevserverid"]))
   end
 
   def test_should_delegate_node_virtualservers_to_node
@@ -46,7 +46,7 @@ class TestNodeCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("thedata")
-    SolusVM::Cli.start(cli_expand_base_arguments(["node", "virtualservers", "thevserverid"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["node", "virtualservers", "thevserverid"]))
   end
 
   def test_should_delegate_nodes_list_to_node
@@ -56,7 +56,7 @@ class TestNodeCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("thenodes")
-    SolusVM::Cli.start(cli_expand_base_arguments(["node", "list", "type"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["node", "list", "type"]))
   end
 
   def test_should_delegate_nodes_ids_to_node
@@ -66,7 +66,7 @@ class TestNodeCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("thenodes")
-    SolusVM::Cli.start(cli_expand_base_arguments(["node", "list-ids", "type"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["node", "list-ids", "type"]))
   end
 
 end

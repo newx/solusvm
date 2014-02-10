@@ -1,5 +1,5 @@
 module SolusVM
-  class ClientCli < BaseCli
+  class ClientCLI < BaseCLI
 
     desc "create", "Creates a new h"
     method_option :username, type: :string, desc: "Username",  aliases: ["-u", "--username"]

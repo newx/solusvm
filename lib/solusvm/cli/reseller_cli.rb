@@ -1,5 +1,5 @@
 module SolusVM
-  class ResellerCli < BaseCli
+  class ResellerCLI < BaseCLI
 
     desc "create", "Creates a new reseller"
     method_option :username, type: :string, desc: "Username",  aliases: ["-u", "--username"]

@@ -4,4 +4,4 @@
 require "bundler/setup" if $0 == __FILE__
 require "solusvm/cli"
 
-SolusVM::Cli.start
+SolusVM::CLI.start

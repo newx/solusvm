@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'solusvm/cli'
 
-class TestGeneralCli < Test::Unit::TestCase
+class TestGeneralCLI < Test::Unit::TestCase
 
   def setup
     # Prevents mocha from stubbing non existent methods so that we now if the CLI is failing because
@@ -16,7 +16,7 @@ class TestGeneralCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("thetemplates")
-    SolusVM::Cli.start(cli_expand_base_arguments(["general", "templates", "type"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["general", "templates", "type"]))
   end
 
   def test_should_delegate_plans_to_general
@@ -26,7 +26,7 @@ class TestGeneralCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("theplans")
-    SolusVM::Cli.start(cli_expand_base_arguments(["general", "plans", "type"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["general", "plans", "type"]))
   end
 
   def test_should_delegate_isos_to_general
@@ -36,6 +36,6 @@ class TestGeneralCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("theisos")
-    SolusVM::Cli.start(cli_expand_base_arguments(["general", "isos", "type"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["general", "isos", "type"]))
   end
 end

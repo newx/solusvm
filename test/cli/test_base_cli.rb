@@ -1,14 +1,14 @@
 require 'test_helper'
 require 'solusvm/cli'
 
-class TestBaseCli < Test::Unit::TestCase
+class TestBaseCLI < Test::Unit::TestCase
 
   def setup
     # Prevents mocha from stubbing non existent methods so that we now if the CLI is failing because
     # something was moved around.
     Mocha::Configuration.prevent(:stubbing_non_existent_method)
 
-    @base_cli = SolusVM::BaseCli.new
+    @base_cli = SolusVM::BaseCLI.new
     @api      = SolusVM::Base.new
 
     @base_cli.stubs(:api).returns(@api)

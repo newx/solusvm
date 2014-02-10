@@ -1,5 +1,5 @@
 module SolusVM
-  class NodeCli < BaseCli
+  class NodeCLI < BaseCLI
 
     desc "list TYPE", "Lists existing nodes for a given type [openvz|xen|xen hvm|kvm]"
     def list(type)

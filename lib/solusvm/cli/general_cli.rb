@@ -1,5 +1,5 @@
 module SolusVM
-  class GeneralCli < BaseCli
+  class GeneralCLI < BaseCLI
 
     desc "templates TYPE", "Lists existing templates for a given type [openvz|xen|xen hvm|kvm]"
     def templates(type)
