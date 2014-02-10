@@ -58,15 +58,17 @@ class TestBase < Test::Unit::TestCase
   def test_unautorized_ip
     setup_sham_rack { "Invalid ipaddress" }
 
-    assert !@base.perform_request(action: 'unauthorized')
-    assert_equal "This IP is not authorized to use the API", @base.statusmsg
+    assert_raise Solusvm::AuthenticationError do
+      assert !@base.perform_request(action: 'unauthorized')
+    end
   end
 
   def test_invalid_key_or_id
     setup_sham_rack { "Invalid id or key" }
 
-    assert !@base.perform_request(action: 'badkey')
-    assert_equal "Invalid ID or key", @base.statusmsg
+    assert_raise Solusvm::AuthenticationError do
+      assert !@base.perform_request(action: 'badkey')
+    end
   end
 
   def test_node_does_not_exist

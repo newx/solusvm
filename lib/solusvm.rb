@@ -1,6 +1,7 @@
 require 'faraday'
 
 require 'solusvm/hash'
+require 'solusvm/errors'
 require 'solusvm/base'
 require 'solusvm/general'
 require 'solusvm/client'
