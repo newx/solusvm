@@ -19,13 +19,12 @@ Gem::Specification.new do |s|
   s.executables       = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths     = ["lib"]
 
-  s.add_runtime_dependency 'thor', '>= 0.16.0'
-  s.add_runtime_dependency 'faraday', '~> 0.8.0rc2'
+  s.add_runtime_dependency 'thor', '>= 0.18.1'
+  s.add_runtime_dependency 'faraday', '~> 0.9.0'
   s.add_runtime_dependency 'jruby-openssl' if RUBY_PLATFORM == 'java'
 
-  s.add_development_dependency 'redgreen', '~> 1.2.2'
   s.add_development_dependency 'mocha', '~> 1.0.0'
-  s.add_development_dependency 'rake', '~> 0.9.2.2'
+  s.add_development_dependency 'rake', '~> 10.1.1'
   s.add_development_dependency 'rake-tomdoc', '~> 0.0.1'
   s.add_development_dependency 'sham_rack', '~> 1.3.6'
   s.add_development_dependency 'sinatra', '~> 1.4.4'

@@ -1,5 +1,3 @@
-$:.unshift("#{File.dirname(__FILE__)}/../lib")
-
 require 'test/unit'
 require 'solusvm'
 require 'mocha/setup'
@@ -32,10 +30,19 @@ class Test::Unit::TestCase
     end
   end
 
+  # Public: API login credentials.
+  #
+  # Returns a Hash.
   def api_login
-    {id: 'api_id', key: 'api_key'}
+    {
+      id:  'api_id',
+      key: 'api_key'
+    }
   end
 
+  # Public: Parameters used when sending a request to the SolusVM API.
+  #
+  # Returns a Hash.
   def solusvm_params
     {
       api_id:  api_login[:id],
@@ -44,8 +51,16 @@ class Test::Unit::TestCase
     }
   end
 
+  # Public: Arguments used for testing CLI.
+  #
+  # options - Extra arguments to use
+  #
+  # Returns an Array.
   def cli_expand_base_arguments(options)
-    arguments = ["--api-login", "api_id", "--api-key", "api_key", "--api-url", "http://www.example.com/api"]
-    options + arguments
+    options + [
+      "--api-login", "#{solusvm_params[:api_id]}",
+      "--api-key", "#{solusvm_params[:api_key]}",
+      "--api-url", "#{solusvm_params[:url]}"
+    ]
   end
 end
