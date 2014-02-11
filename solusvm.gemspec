@@ -14,9 +14,11 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.rubyforge_project = "solusvm"
-  s.files             = `git ls-files`.split("\n")
-  s.test_files        = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables       = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+
+  s.files       += %w[Gemfile LICENSE Rakefile README.markdown]
+  s.files       += Dir['{bin,lib,test}/**/*']
+  s.test_files   = Dir['test/**/*']
+  s.executables  = "solusvm"
 
   s.add_runtime_dependency 'thor', '>= 0.18.1'
   s.add_runtime_dependency 'faraday', '~> 0.8.9'
