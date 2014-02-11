@@ -10,12 +10,11 @@ module SolusVM
     end
 
     # Public: Prepares and sends the API request to the URL specified in
-    # `SolusVM.config`.
+    # `@config`.
     #
-    # options     - A Hash of options. Any options not listed below are
-    #               converted to HTTP query arguments and are passed along to
-    #               the API.
-    #               :action - Specifies which API method to execute
+    # options - A Hash of options. Any options not listed below are converted
+    #           to HTTP query arguments and are passed along to the API.
+    #           :action - Specifies which API method to execute
     #
     # Example
     #
