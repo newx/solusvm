@@ -177,7 +177,7 @@ Contributors
 ------------
 
 SolusVM was originally written by [jmazzi](https://github.com/site5/jmazzi)
-for internal use at Site5 LLC. Additional contributors are [listed on
+for internal use at Site5.com. Additional contributors are [listed on
 GitHub](https://github.com/site5/solusvm/graphs/contributors).
 
 Tests
