@@ -4,9 +4,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: Solusvm::Base
+  Class: SolusVM::Base
   
-    &mdash; Documentation by YARD 0.8.7.1
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -32,7 +32,7 @@
       <div id="menu">
   
     <a href="../_index.html">Index (B)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../Solusvm.html" title="Solusvm (module)">Solusvm</a></span></span>
+    <span class='title'><span class='object_link'><a href="../SolusVM.html" title="SolusVM (module)">SolusVM</a></span></span>
      &raquo; 
     <span class="title">Base</span>
   
@@ -63,7 +63,7 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><h1>Class: Solusvm::Base
+    <div id="content"><h1>Class: SolusVM::Base
   
   
   
@@ -78,7 +78,7 @@
         <ul class="fullTree">
           <li>Object</li>
           
-            <li class="next">Solusvm::Base</li>
+            <li class="next">SolusVM::Base</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -102,7 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Solusvm::Base is the main class for mapping API resources as subclasses.</p>
+<p>SolusVM::Base is the main class for mapping API resources as subclasses.</p>
 
 
   </div>
@@ -112,7 +112,7 @@
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="Client.html" title="Solusvm::Client (class)">Client</a></span>, <span class='object_link'><a href="General.html" title="Solusvm::General (class)">General</a></span>, <span class='object_link'><a href="Node.html" title="Solusvm::Node (class)">Node</a></span>, <span class='object_link'><a href="Reseller.html" title="Solusvm::Reseller (class)">Reseller</a></span>, <span class='object_link'><a href="Server.html" title="Solusvm::Server (class)">Server</a></span></p>
+  <p class="children"><span class='object_link'><a href="Client.html" title="SolusVM::Client (class)">Client</a></span>, <span class='object_link'><a href="General.html" title="SolusVM::General (class)">General</a></span>, <span class='object_link'><a href="Node.html" title="SolusVM::Node (class)">Node</a></span>, <span class='object_link'><a href="Reseller.html" title="SolusVM::Reseller (class)">Reseller</a></span>, <span class='object_link'><a href="Server.html" title="SolusVM::Server (class)">Server</a></span></p>
 </div>
 
   <h2>Constant Summary</h2>
@@ -396,7 +396,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parse_response-instance_method" title="#parse_response (instance method)">- (Object) <strong>parse_response</strong>(status, body, force_array = false) </a>
+      <a href="#parse_response-instance_method" title="#parse_response (instance method)">- (Object) <strong>parse_response</strong>(status, body) </a>
     
 
     
@@ -444,7 +444,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#perform_request-instance_method" title="#perform_request (instance method)">- (Object) <strong>perform_request</strong>(options = {}, force_array = false) </a>
+      <a href="#perform_request-instance_method" title="#perform_request (instance method)">- (Object) <strong>perform_request</strong>(options = {}) </a>
     
 
     
@@ -459,8 +459,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Prepares and sends the API request to the URL specified in
-`Solusvm.config`.</p>
+<p>Prepares and sends the API request to the URL specified in `@config`.</p>
 </div></span>
   
 </li>
@@ -571,7 +570,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="Solusvm::Base (class)">Base</a></span></tt>) <strong>initialize</strong>(config = {}) 
+    - (<tt><span class='object_link'><a href="" title="SolusVM::Base (class)">Base</a></span></tt>) <strong>initialize</strong>(config = {}) 
   
 
   
@@ -709,12 +708,12 @@ returns the default configuration.</p>
       <pre class="lines">
 
 
+123
 124
-125
-126</pre>
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 123</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_api_endpoint'>api_endpoint</span>
   <span class='ivar'>@config</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:url</span><span class='rparen'>)</span>
@@ -769,12 +768,12 @@ the default configuration.</p>
       <pre class="lines">
 
 
+131
 132
-133
-134</pre>
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 131</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_api_id'>api_id</span>
   <span class='ivar'>@config</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:api_id</span><span class='rparen'>)</span>
@@ -829,12 +828,12 @@ returns the default configuration.</p>
       <pre class="lines">
 
 
+139
 140
-141
-142</pre>
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 139</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_api_key'>api_key</span>
   <span class='ivar'>@config</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:api_key</span><span class='rparen'>)</span>
@@ -888,12 +887,12 @@ returns the default configuration.</p>
       <pre class="lines">
 
 
+157
 158
-159
-160</pre>
+159</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_api_login'>api_login</span>
   <span class='lbrace'>{</span> <span class='label'>id:</span> <span class='id identifier rubyid_api_id'>api_id</span><span class='comma'>,</span> <span class='label'>key:</span> <span class='id identifier rubyid_api_key'>api_key</span> <span class='rbrace'>}</span>
@@ -967,14 +966,14 @@ returns the default configuration.</p>
       <pre class="lines">
 
 
+148
 149
 150
 151
-152
-153</pre>
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_api_options'>api_options</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='ivar'>@config</span><span class='lbracket'>[</span><span class='symbol'>:options</span><span class='rbracket'>]</span>
@@ -1030,15 +1029,15 @@ returns the default configuration.</p>
       <pre class="lines">
 
 
-43
 44
 45
 46
 47
-48</pre>
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_conn'>conn</span>
   <span class='ivar'>@conn</span> <span class='op'>||=</span> <span class='const'>Faraday</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>ssl:</span> <span class='id identifier rubyid_ssl_option'>ssl_option</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span>
@@ -1119,6 +1118,7 @@ returns the default configuration.</p>
       <pre class="lines">
 
 
+167
 168
 169
 170
@@ -1128,11 +1128,10 @@ returns the default configuration.</p>
 174
 175
 176
-177
-178</pre>
+177</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log_messages'>log_messages</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_logger'>logger</span><span class='comma'>,</span> <span class='id identifier rubyid_logger_method'>logger_method</span> <span class='op'>=</span> <span class='id identifier rubyid_api_options'>api_options</span><span class='lparen'>(</span><span class='symbol'>:logger</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_api_options'>api_options</span><span class='lparen'>(</span><span class='symbol'>:logger_method</span><span class='rparen'>)</span>
@@ -1223,6 +1222,26 @@ returns the default configuration.</p>
     </li>
   
 </ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>SolusVM::AuthenticationError if there is an error authenticating with the
+API. This can happen if the request IP is not authorized, or if an invalid
+API key/id was provided.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1230,6 +1249,7 @@ returns the default configuration.</p>
       <pre class="lines">
 
 
+92
 93
 94
 95
@@ -1243,20 +1263,19 @@ returns the default configuration.</p>
 103
 104
 105
-106
-107</pre>
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_error'>parse_error</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='int'>200</span><span class='op'>..</span><span class='int'>299</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='rparen'>)</span>
     <span class='comment'># Checks for application errors
 </span>    <span class='kw'>case</span> <span class='id identifier rubyid_body'>body</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
     <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>invalid ipaddress</span><span class='regexp_end'>/i</span></span>
-      <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>statusmsg</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This IP is not authorized to use the API</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>AuthenticationError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This IP is not authorized to use the API</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Invalid id or key</span><span class='regexp_end'>/i</span></span>
-      <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>statusmsg</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid ID or key</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>AuthenticationError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid ID or key</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Node not found</span><span class='regexp_end'>/i</span></span>
       <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>statusmsg</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Node does not exist</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
     <span class='kw'>end</span>
@@ -1272,7 +1291,7 @@ returns the default configuration.</p>
       <div class="method_details ">
   <h3 class="signature " id="parse_response-instance_method">
   
-    - (<tt>Object</tt>) <strong>parse_response</strong>(status, body, force_array = false) 
+    - (<tt>Object</tt>) <strong>parse_response</strong>(status, body) 
   
 
   
@@ -1322,25 +1341,6 @@ returns the default configuration.</p>
       
     </li>
   
-    <li>
-      
-        <span class='name'>force_array</span>
-      
-      
-        <span class='type'></span>
-      
-      
-        <em class="default">(defaults to: <tt>false</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Parses the xml element as an array; can be a string with the element name
-or an array with element names</p>
-</div>
-      
-    </li>
-  
 </ul>
 
 <p class="tag_title">Returns:</p>
@@ -1368,23 +1368,15 @@ or an array with element names</p>
       <pre class="lines">
 
 
+67
 68
-69
-70
-71
-72
-73
-74</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 67</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_parse_response'>parse_response</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='id identifier rubyid_force_array'>force_array</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_parse_error'>parse_error</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>begin</span>
-    <span class='id identifier rubyid_force_array'>force_array</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_force_array'>force_array</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_force_array'>force_array</span>
-    <span class='id identifier rubyid_body'>body</span>        <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;solusrequest&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_body'>body</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/solusrequest&gt;</span><span class='tstring_end'>&quot;</span></span>
-    <span class='const'>XmlSimple</span><span class='period'>.</span><span class='id identifier rubyid_xml_in'>xml_in</span><span class='lparen'>(</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ForceArray</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_force_array'>force_array</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_response'>parse_response</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parse_error'>parse_error</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1455,14 +1447,14 @@ or an array with element names</p>
       <pre class="lines">
 
 
-81
-82
-83
-84
-85</pre>
+76
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_returned_params_as_list'>parse_returned_params_as_list</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_returned_parameters'>returned_parameters</span><span class='lbracket'>[</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_returned_parameters'>returned_parameters</span><span class='lbracket'>[</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1477,7 +1469,7 @@ or an array with element names</p>
       <div class="method_details ">
   <h3 class="signature " id="perform_request-instance_method">
   
-    - (<tt>Object</tt>) <strong>perform_request</strong>(options = {}, force_array = false) 
+    - (<tt>Object</tt>) <strong>perform_request</strong>(options = {}) 
   
 
   
@@ -1486,8 +1478,7 @@ or an array with element names</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Prepares and sends the API request to the URL specified in
-`Solusvm.config`.</p>
+<p>Prepares and sends the API request to the URL specified in `@config`.</p>
 
 
   </div>
@@ -1527,24 +1518,6 @@ arguments and are passed along to the API.</p>
       
     </li>
   
-    <li>
-      
-        <span class='name'>force_array</span>
-      
-      
-        <span class='type'></span>
-      
-      
-        <em class="default">(defaults to: <tt>false</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>see parse_response</p>
-</div>
-      
-    </li>
-  
 </ul>
 
   
@@ -1568,8 +1541,6 @@ arguments and are passed along to the API.</p>
       
     </ul>
   
-    
-    
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -1596,6 +1567,8 @@ arguments and are passed along to the API.</p>
       <pre class="lines">
 
 
+28
+29
 30
 31
 32
@@ -1604,17 +1577,21 @@ arguments and are passed along to the API.</p>
 35
 36
 37
-38</pre>
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 28</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_perform_request'>perform_request</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_force_array'>force_array</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_reject!'>reject!</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid__'>_</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_perform_request'>perform_request</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_reject!'>reject!</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__'>_</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='rbrace'>}</span>
+
+  <span class='comment'># Force JSON responses
+</span>  <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:rdtype</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>json</span><span class='tstring_end'>&quot;</span></span>
 
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_conn'>conn</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span> <span class='id identifier rubyid_api_endpoint'>api_endpoint</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_api_login'>api_login</span><span class='rparen'>)</span>
 
-  <span class='ivar'>@returned_parameters</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_response'>parse_response</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='id identifier rubyid_force_array'>force_array</span><span class='rparen'>)</span>
+  <span class='ivar'>@returned_parameters</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_response'>parse_response</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_log_messages'>log_messages</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_successful?'>successful?</span>
 <span class='kw'>end</span></pre>
@@ -1667,15 +1644,15 @@ arguments and are passed along to the API.</p>
       <pre class="lines">
 
 
-53
 54
 55
 56
 57
-58</pre>
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ssl_option'>ssl_option</span>
   <span class='lbrace'>{</span>
@@ -1732,12 +1709,12 @@ arguments and are passed along to the API.</p>
       <pre class="lines">
 
 
+182
 183
-184
-185</pre>
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 182</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_statusmsg'>statusmsg</span>
   <span class='id identifier rubyid_returned_parameters'>returned_parameters</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>statusmsg</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
@@ -1761,10 +1738,10 @@ arguments and are passed along to the API.</p>
     
 <p>Check if the request was successful.</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_my_class'>my_class</span> <span class='op'>=</span> <span class='const'>MyClass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-<span class='id identifier rubyid_my_class'>my_class</span><span class='period'>.</span><span class='id identifier rubyid_create_server'>create_server</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>example.com</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='id identifier rubyid_my_class'>my_class</span><span class='period'>.</span><span class='id identifier rubyid_successful?'>successful?</span> <span class='comment'># =&gt; true
-</span></code></pre>
+<pre class="ruby"><span class="ruby-identifier">my_class</span> = <span class="ruby-constant">MyClass</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">my_class</span>.<span class="ruby-identifier">create_server</span>(<span class="ruby-string">&quot;example.com&quot;</span>)
+<span class="ruby-identifier">my_class</span>.<span class="ruby-identifier">successful?</span> <span class="ruby-comment"># =&gt; true</span>
+</pre>
 
 
   </div>
@@ -1796,12 +1773,12 @@ arguments and are passed along to the API.</p>
       <pre class="lines">
 
 
+115
 116
-117
-118</pre>
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_successful?'>successful?</span>
   <span class='id identifier rubyid_returned_parameters'>returned_parameters</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_returned_parameters'>returned_parameters</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>success</span><span class='tstring_end'>&quot;</span></span>
@@ -1893,6 +1870,7 @@ arguments and are passed along to the API.</p>
       <pre class="lines">
 
 
+193
 194
 195
 196
@@ -1905,11 +1883,10 @@ arguments and are passed along to the API.</p>
 203
 204
 205
-206
-207</pre>
+206</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 194</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/base.rb', line 193</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate_server_type'>validate_server_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
@@ -1935,9 +1912,9 @@ arguments and are passed along to the API.</p>
 </div>
 
     <div id="footer">
-  Generated on Thu Sep 12 14:25:12 2013 by
+  Generated on Tue Feb 11 12:26:02 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.1 (ruby-2.0.0).
+  0.8.7.3 (ruby-2.0.0).
 </div>
 
   </body>

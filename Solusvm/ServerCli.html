@@ -4,9 +4,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: Solusvm::ServerCli
+  Class: SolusVM::ServerCLI
   
-    &mdash; Documentation by YARD 0.8.7.1
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -32,9 +32,9 @@
       <div id="menu">
   
     <a href="../_index.html">Index (S)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../Solusvm.html" title="Solusvm (module)">Solusvm</a></span></span>
+    <span class='title'><span class='object_link'><a href="../SolusVM.html" title="SolusVM (module)">SolusVM</a></span></span>
      &raquo; 
-    <span class="title">ServerCli</span>
+    <span class="title">ServerCLI</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -63,7 +63,7 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><h1>Class: Solusvm::ServerCli
+    <div id="content"><h1>Class: SolusVM::ServerCLI
   
   
   
@@ -73,16 +73,16 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><span class='object_link'><a href="BaseCli.html" title="Solusvm::BaseCli (class)">BaseCli</a></span></span>
+      <span class="inheritName"><span class='object_link'><a href="BaseCLI.html" title="SolusVM::BaseCLI (class)">BaseCLI</a></span></span>
       
         <ul class="fullTree">
           <li>Object</li>
           
             <li class="next">Thor</li>
           
-            <li class="next"><span class='object_link'><a href="BaseCli.html" title="Solusvm::BaseCli (class)">BaseCli</a></span></li>
+            <li class="next"><span class='object_link'><a href="BaseCLI.html" title="SolusVM::BaseCLI (class)">BaseCLI</a></span></li>
           
-            <li class="next">Solusvm::ServerCli</li>
+            <li class="next">SolusVM::ServerCLI</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -768,8 +768,8 @@
   
   
   
-  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="BaseCli.html" title="Solusvm::BaseCli (class)">BaseCli</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="BaseCli.html#banner-class_method" title="Solusvm::BaseCli.banner (method)">banner</a></span>, <span class='object_link'><a href="BaseCli.html#default_option-class_method" title="Solusvm::BaseCli.default_option (method)">default_option</a></span>, <span class='object_link'><a href="BaseCli.html#namespace-class_method" title="Solusvm::BaseCli.namespace (method)">namespace</a></span></p>
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="BaseCLI.html" title="SolusVM::BaseCLI (class)">BaseCLI</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="BaseCLI.html#banner-class_method" title="SolusVM::BaseCLI.banner (method)">banner</a></span>, <span class='object_link'><a href="BaseCLI.html#default_option-class_method" title="SolusVM::BaseCLI.default_option (method)">default_option</a></span>, <span class='object_link'><a href="BaseCLI.html#namespace-class_method" title="SolusVM::BaseCLI.namespace (method)">namespace</a></span></p>
 
   
   
@@ -825,17 +825,13 @@
 
 151
 152
-153
-154
-155</pre>
+153</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/solusvm/cli/server_cli.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_api'>api</span>
-  <span class='ivar'>@server</span> <span class='op'>||=</span> <span class='kw'>begin</span>
-    <span class='const'>Solusvm</span><span class='op'>::</span><span class='const'>Server</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_api_params'>api_params</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
+  <span class='ivar'>@server</span> <span class='op'>||=</span> <span class='const'>SolusVM</span><span class='op'>::</span><span class='const'>Server</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_api_params'>api_params</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1523,18 +1519,18 @@
       <pre class="lines">
 
 
+155
+156
 157
 158
 159
 160
 161
 162
-163
-164
-165</pre>
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/solusvm/cli/server_cli.rb', line 157</span>
+      <pre class="code"><span class="info file"># File 'lib/solusvm/cli/server_cli.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_switch'>switch</span><span class='lparen'>(</span><span class='id identifier rubyid_vserverid'>vserverid</span><span class='comma'>,</span> <span class='id identifier rubyid_switch_value'>switch_value</span><span class='comma'>,</span> <span class='id identifier rubyid_on_method'>on_method</span><span class='comma'>,</span> <span class='id identifier rubyid_off_method'>off_method</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_switch_value'>switch_value</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>on</span><span class='tstring_end'>&quot;</span></span>
@@ -1675,9 +1671,9 @@
 </div>
 
     <div id="footer">
-  Generated on Thu Sep 12 14:25:12 2013 by
+  Generated on Tue Feb 11 12:26:03 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.1 (ruby-2.0.0).
+  0.8.7.3 (ruby-2.0.0).
 </div>
 
   </body>

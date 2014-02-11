@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.8.7.1
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -63,16 +63,17 @@
 
     <div id="content"><div id='filecontents'><h1>SolusVM <a href="http://travis-ci.org/site5/solusvm"><img src="https://secure.travis-ci.org/site5/solusvm.png?branch=master" alt="SolusVM Build Status"></a></h1>
 
-<p>SolusVM allows for easy interaction with the <a href="http://wiki.solusvm.com/index.php/API:Admin">SolusVM Admin::API</a>.
+<p>SolusVM allows for easy interaction with the <a href="http://docs.solusvm.com/v2/Default.htm#Developer/Admin-Api/Admin-Api.htm">SolusVM Admin::API</a>.
 This library was first created for internal use at <a href="http://www.site5.com">Site5 LLC</a>.</p>
 
-<p>SolusVM has been tested on MRI 1.9.2, MRI 1.9.3 and 1.9-compatible JRuby.</p>
+<p>SolusVM has been tested on MRI versions 1.9.2, 1.9.3, 2.0.0 and 1.9-compatible
+JRuby.</p>
 
 <p>Documentation is available in <a href="http://site5.github.io/solusvm/">TomDoc</a> format.</p>
 
 <h2>Basic Examples</h2>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_server'>server</span> <span class='op'>=</span> <span class='const'>Solusvm</span><span class='op'>::</span><span class='const'>Server</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>api_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>key</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>api_id:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>url:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_server'>server</span> <span class='op'>=</span> <span class='const'>SolusVM</span><span class='op'>::</span><span class='const'>Server</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>api_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>key</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>api_id:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>url:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>url</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
 <span class='comment'># 200 is the id of the virtual server
 </span><span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_shutdown'>shutdown</span><span class='lparen'>(</span><span class='int'>200</span><span class='rparen'>)</span> <span class='comment'># =&gt; true
@@ -84,14 +85,22 @@ This library was first created for internal use at <a href="http://www.site5.com
 
 <h2>Server creation</h2>
 
-<pre class="code ruby"><code class="ruby">options = {:type =&gt; &#39;xen&#39;, :username =&gt; &#39;bob&#39;, :node =&gt; &#39;node1&#39;, :plan =&gt; &#39;plan1&#39;, :template =&gt; &#39;mytpl&#39;, :ips =&gt; 1}
+<pre class="code ruby"><code class="ruby">options = {
+  type:     &#39;xen&#39;,
+  username: &#39;bob&#39;,
+  node:     &#39;node1&#39;,
+  plan:     &#39;plan1&#39;,
+  template: &#39;mytpl&#39;,
+  ips:      1
+}
+
 result = sever.create(&#39;server.hostname.com&#39;, &#39;password&#39;, options}
-p server.successful?
-=&gt; true
+
+p server.successful? #=&gt; true
 
 p result
-=&gt; {&quot;mainipaddress&quot;=&gt;&quot;127.0.0.1&quot;, &quot;consoleuser&quot;=&gt;&quot;console-user&quot;, &quot;vserverid&quot;=&gt;&quot;10&quot;, 
-&quot;statusmsg&quot;=&gt;&quot;Virtual server created&quot;, &quot;virtid&quot;=&gt;&quot;vm10&quot;, &quot;consolepassword&quot;=&gt;&quot;myPassisL33t&quot;, 
+=&gt; {&quot;mainipaddress&quot;=&gt;&quot;127.0.0.1&quot;, &quot;consoleuser&quot;=&gt;&quot;console-user&quot;, &quot;vserverid&quot;=&gt;&quot;10&quot;,
+&quot;statusmsg&quot;=&gt;&quot;Virtual server created&quot;, &quot;virtid&quot;=&gt;&quot;vm10&quot;, &quot;consolepassword&quot;=&gt;&quot;myPassisL33t&quot;,
 &quot;extraipaddress&quot;=&gt;{}, &quot;hostname&quot;=&gt;&quot;server.hostname&quot;, &quot;rootpassword&quot;=&gt;&quot;password&quot;, &quot;status&quot;=&gt;&quot;success&quot;}
 </code></pre>
 
@@ -176,7 +185,8 @@ To check the available options for a given action, you can execute the following
 
 <h2>Default Config for Command Line</h2>
 
-<p>The command line utility, solusvm, will look for a .solusvm.yml file in ~/. You can specify some defaults. </p>
+<p>The command line utility, <code>solusvm</code>, will look for a config file in
+<code>~/.solusvm.yml</code>. You can specify some defaults.</p>
 
 <pre class="code ruby"><code class="ruby">~/.solusvm.yml
 id: api_id
@@ -187,24 +197,43 @@ url: https://portal.yoursite.com/api/admin/command.php
 username: bob
 </code></pre>
 
-<h2>Requirements</h2>
-
-<ul>
-<li><a href="https://github.com/maik/xml-simple">xml-simple</a></li>
-<li><a href="https://github.com/erikhuda/thor">thor</a></li>
-<li><a href="https://github.com/lostisland/faraday">faraday</a></li>
-</ul>
-
 <h2>Installation</h2>
+
+<p>To install SolusVM using <a href="http://gembundler.com">Bundler</a>:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_echo'>echo</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gem &#39;solusvm&#39;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&gt;&gt;</span> <span class='const'>Gemfile</span>
+<span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_install'>install</span>
+</code></pre>
+
+<p>To install SolusVM globally using RubyGems:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_solusvm'>solusvm</span>
 </code></pre>
 
+<h2>Upgrading to SolusVM 2</h2>
+
+<p>Version 2 of the SolusVM gem uses the JSON API that was introduced in the
+SolusVM Admin API in version v1.14. If you are using SolusVM software older
+than v1.14, you will need to stick to an older version of this gem (i.e.
+<a href="https://github.com/site5/solusvm/tree/v1.4.0">v1.4.0</a>).</p>
+
+<p>Version 2 also changes the name of the gem&#39;s top-level module -- it is now
+<code>SolusVM</code> instead of the old <code>Solusvm</code>. Upgrading will require changing this
+in your code.</p>
+
 <h2>Contributors</h2>
 
-<p>SolusVM was originall written by <a href="https://github.com/site5/jmazzi">jmazzi</a> for
-internal use at Site5 LLC. Additional contributors are <a href="https://github.com/site5/solusvm/graphs/contributors">listed on
+<p>SolusVM was originally written by <a href="https://github.com/site5/jmazzi">jmazzi</a>
+for internal use at Site5.com. Additional contributors are <a href="https://github.com/site5/solusvm/graphs/contributors">listed on
 GitHub</a>.</p>
+
+<h2>Tests</h2>
+
+<p>SolusVM uses test-unit for tests. To run:</p>
+
+<pre class="code ruby"><code class="ruby">bundle exec rake # Runs all tests
+bundle exec ruby -I&quot;lib:test&quot; test/path/test_file.rb
+</code></pre>
 
 <h2>Note on Patches/Pull Requests</h2>
 
@@ -215,19 +244,20 @@ GitHub</a>.</p>
 <li>Add tests for it. This is important so I don&#39;t break it in a
 future version unintentionally.</li>
 <li>Commit, do not mess with rakefile, version, or history.
-(if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)</li>
+(if you want to have your own version, that is fine but bump version in a
+commit by itself I can ignore when I pull)</li>
 <li>Send me a pull request. Bonus points for topic branches.</li>
 </ul>
 
 <h2>Copyright</h2>
 
-<p>Copyright (c) 2010-2013 Site5.com. See LICENSE for details.</p>
+<p>Copyright (c) 2010-2014 Site5.com. See LICENSE for details.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Thu Sep 12 14:25:11 2013 by
+  Generated on Tue Feb 11 12:26:02 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.1 (ruby-2.0.0).
+  0.8.7.3 (ruby-2.0.0).
 </div>
 
   </body>
