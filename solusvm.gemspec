@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
 
   s.authors     = ["Justin Mazzi"]
   s.email       = ["jmazzi@gmail.com"]
-  s.homepage    = "http://www.site5.com"
+  s.homepage    = "https://github.com/site5/solusvm"
   s.summary     = "Wrapper for the SolusVM Admin::API"
   s.description = "SolusVM allows for easy interaction with the SolusVM Admin::API."
   s.license     = 'MIT'
