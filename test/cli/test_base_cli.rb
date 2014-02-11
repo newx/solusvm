@@ -1,15 +1,15 @@
 require 'test_helper'
 require 'solusvm/cli'
 
-class TestBaseCli < Test::Unit::TestCase
+class TestBaseCLI < Test::Unit::TestCase
 
   def setup
     # Prevents mocha from stubbing non existent methods so that we now if the CLI is failing because
     # something was moved around.
     Mocha::Configuration.prevent(:stubbing_non_existent_method)
 
-    @base_cli = Solusvm::BaseCli.new
-    @api      = Solusvm::Base.new
+    @base_cli = SolusVM::BaseCLI.new
+    @api      = SolusVM::Base.new
 
     @base_cli.stubs(:api).returns(@api)
   end
@@ -25,10 +25,10 @@ class TestBaseCli < Test::Unit::TestCase
   def test_should_use_retry_middleware_if_retry_request
     retry_middleware =  Faraday::Request.lookup_middleware :retry
 
-    @api = Solusvm::Base.new(solusvm_params.merge(retry_request: true))
+    @api = SolusVM::Base.new(solusvm_params.merge(retry_request: true))
     assert_equal @api.conn.builder[0], retry_middleware
 
-    @api = Solusvm::Base.new(solusvm_params)
+    @api = SolusVM::Base.new(solusvm_params)
     assert_not_equal @api.conn.builder[0], retry_middleware
   end
 

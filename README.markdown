@@ -19,7 +19,7 @@ Basic Examples
 --------------
 
 ```ruby
-server = Solusvm::Server.new(api_key: 'key', api_id: 'id', url: 'url')
+server = SolusVM::Server.new(api_key: 'key', api_id: 'id', url: 'url')
 
 # 200 is the id of the virtual server
 server.shutdown(200) # => true
@@ -152,23 +152,23 @@ username: bob
 Installation
 ------------
 
-To install Solusvm using [Bundler](http://gembundler.com):
+To install SolusVM using [Bundler](http://gembundler.com):
 
 ```
 echo "gem 'solusvm'" >> Gemfile
 bundle install
 ```
 
-To install Solusvm globally using RubyGems:
+To install SolusVM globally using RubyGems:
 
 ```
 gem install solusvm
 ```
 
-Upgrading to Solusvm 2
+Upgrading to SolusVM 2
 ----------------------
 
-Version 2 of the Solusvm gem uses the JSON API that was introduced in the
+Version 2 of the SolusVM gem uses the JSON API that was introduced in the
 SolusVM Admin API in version v1.14. If you are using SolusVM software older
 than v1.14, you will need to stick to an older version of this gem (i.e.
 [v1.4.0](https://github.com/site5/solusvm/tree/v1.4.0)).
@@ -183,7 +183,7 @@ GitHub](https://github.com/site5/solusvm/graphs/contributors).
 Tests
 -----
 
-Solusvm uses test-unit for tests. To run:
+SolusVM uses test-unit for tests. To run:
 
 ```
 bundle exec rake # Runs all tests

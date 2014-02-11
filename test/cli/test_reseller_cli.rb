@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'solusvm/cli'
 
-class TestResellerCli < Test::Unit::TestCase
+class TestResellerCLI < Test::Unit::TestCase
 
   def setup
     # Prevents mocha from stubbing non existent methods so that we now if the CLI is failing because
@@ -10,7 +10,7 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_create_to_reseller
-    Solusvm::Reseller.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Reseller.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:create).with() do |options|
         expected = {
@@ -42,7 +42,7 @@ class TestResellerCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments([
+    SolusVM::CLI.start(cli_expand_base_arguments([
       "reseller", "create",
       "--username", "theusername",
       "--password", "thepassword",
@@ -69,7 +69,7 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_change_resources_to_reseller
-    Solusvm::Reseller.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Reseller.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:change_resources).with() do |options|
         expected = {
@@ -94,7 +94,7 @@ class TestResellerCli < Test::Unit::TestCase
     end)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments([
+    SolusVM::CLI.start(cli_expand_base_arguments([
       "reseller", "change-resources",
       "--maxvps", "themaxvps",
       "--maxusers", "themaxusers",
@@ -114,32 +114,32 @@ class TestResellerCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_reseller_info_to_reseller
-    Solusvm::Reseller.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Reseller.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:info).with("theusername").returns("theresult")
     end)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments(["reseller", "info", "theusername"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["reseller", "info", "theusername"]))
   end
 
   def test_should_delegate_reseller_delete_to_reseller
-    Solusvm::Reseller.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Reseller.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:delete).with("theusername").returns("theresult")
     end)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments(["reseller", "delete", "theusername"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["reseller", "delete", "theusername"]))
   end
 
   def test_should_delegate_reseller_list_to_reseller
-    Solusvm::Reseller.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Reseller.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
      expects(:list).returns("theresult")
    end)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments(["reseller", "list"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["reseller", "list"]))
   end
 end

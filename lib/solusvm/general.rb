@@ -1,5 +1,5 @@
-module Solusvm
-  # Solusvm::General is the class for retrieving general information.
+module SolusVM
+  # SolusVM::General is the class for retrieving general information.
   class General < Base
     # Public: Lists available templates.
     #

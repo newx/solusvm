@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'solusvm/cli'
 
-class TestCli < Test::Unit::TestCase
+class TestCLI < Test::Unit::TestCase
 
   def setup
     # Prevents mocha from stubbing non existent methods so that we now if the CLI is failing because
@@ -10,8 +10,8 @@ class TestCli < Test::Unit::TestCase
   end
 
   def test_should_print_version
-    $stdout.expects(:puts).with(Solusvm::VERSION)
-    Solusvm::Cli.start %W(version)
+    $stdout.expects(:puts).with(SolusVM::VERSION)
+    SolusVM::CLI.start %W(version)
   end
 
 end

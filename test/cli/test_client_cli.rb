@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'solusvm/cli'
 
-class TestClientCli < Test::Unit::TestCase
+class TestClientCLI < Test::Unit::TestCase
 
   def setup
     # Prevents mocha from stubbing non existent methods so that we now if the CLI is failing because
@@ -25,10 +25,10 @@ class TestClientCli < Test::Unit::TestCase
         expected.all? { |k,v| options[k] == v }
       end.returns("theresult")
     end
-    Solusvm::Client.expects(:new).with(solusvm_params).returns(api)
+    SolusVM::Client.expects(:new).with(solusvm_params).returns(api)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments([
+    SolusVM::CLI.start(cli_expand_base_arguments([
       "client", "create",
       "--username", "theusername",
       "--password", "thepassword",
@@ -40,52 +40,52 @@ class TestClientCli < Test::Unit::TestCase
   end
 
   def test_should_delegate_client_change_password_to_client
-    Solusvm::Client.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Client.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:change_password).with("theusername", "thepassword").returns("theresult")
     end)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments(["client", "change-password", "theusername", "thepassword"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["client", "change-password", "theusername", "thepassword"]))
   end
 
   def test_should_delegate_client_authenticate_to_client
-    Solusvm::Client.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Client.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:authenticate).with("theusername", "thepassword").returns("theresult")
     end)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments(["client", "authenticate", "theusername", "thepassword"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["client", "authenticate", "theusername", "thepassword"]))
   end
 
   def test_should_delegate_client_check_exists_to_client
-    Solusvm::Client.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Client.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:exists?).with("theusername").returns("theresult")
     end)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments(["client", "check-exists", "theusername"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["client", "check-exists", "theusername"]))
   end
 
   def test_should_delegate_client_delete_to_client
-    Solusvm::Client.stubs(:new).with(solusvm_params).returns(mock do
+    SolusVM::Client.stubs(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:delete).with("theusername").returns("theresult")
     end)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments(["client", "delete", "theusername"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["client", "delete", "theusername"]))
   end
 
   def test_should_delegate_client_list_to_client
-    Solusvm::Client.expects(:new).with(solusvm_params).returns(mock do
+    SolusVM::Client.expects(:new).with(solusvm_params).returns(mock do
       expects(:successful?).returns(true)
       expects(:list).returns("theresult")
     end)
 
     $stdout.expects(:puts).with("theresult")
-    Solusvm::Cli.start(cli_expand_base_arguments(["client", "list"]))
+    SolusVM::CLI.start(cli_expand_base_arguments(["client", "list"]))
   end
 end

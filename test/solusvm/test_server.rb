@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TestServer < Test::Unit::TestCase
   def setup
-    @server = Solusvm::Server.new(solusvm_params)
+    @server = SolusVM::Server.new(solusvm_params)
   end
 
   def test_create

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TestNode < Test::Unit::TestCase
   def setup
-    @nodes = Solusvm::Node.new(solusvm_params)
+    @nodes = SolusVM::Node.new(solusvm_params)
   end
 
   def test_list

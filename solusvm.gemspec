@@ -4,13 +4,13 @@ require "solusvm/version"
 
 Gem::Specification.new do |s|
   s.name    = %q{solusvm}
-  s.version = Solusvm::VERSION
+  s.version = SolusVM::VERSION
 
   s.authors     = ["Justin Mazzi"]
   s.email       = ["jmazzi@gmail.com"]
   s.homepage    = "http://www.site5.com"
   s.summary     = "Wrapper for the SolusVM Admin::API"
-  s.description = "Solusvm allows for easy interaction with the SolusVM Admin::API."
+  s.description = "SolusVM allows for easy interaction with the SolusVM Admin::API."
   s.license     = 'MIT'
 
   s.rubyforge_project = "solusvm"

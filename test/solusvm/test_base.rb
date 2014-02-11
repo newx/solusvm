@@ -2,12 +2,12 @@ require 'test_helper'
 
 class TestBase < Test::Unit::TestCase
   def setup
-    @base = Solusvm::Base.new(solusvm_params)
+    @base = SolusVM::Base.new(solusvm_params)
   end
 
   def test_valid_server_types
-    assert_equal 3, Solusvm::Base::VALID_SERVER_TYPES.size
-    assert_equal ['openvz', 'xen', 'xen hvm'].sort, Solusvm::Base::VALID_SERVER_TYPES.sort
+    assert_equal 3, SolusVM::Base::VALID_SERVER_TYPES.size
+    assert_equal ['openvz', 'xen', 'xen hvm'].sort, SolusVM::Base::VALID_SERVER_TYPES.sort
   end
 
   def test_parse_response
@@ -46,7 +46,7 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_validate_server_type
-    Solusvm::Base::VALID_SERVER_TYPES.each do |type|
+    SolusVM::Base::VALID_SERVER_TYPES.each do |type|
       assert @base.validate_server_type(type) { true }
     end
 
@@ -58,7 +58,7 @@ class TestBase < Test::Unit::TestCase
   def test_unautorized_ip
     setup_sham_rack { "Invalid ipaddress" }
 
-    assert_raise Solusvm::AuthenticationError do
+    assert_raise SolusVM::AuthenticationError do
       assert !@base.perform_request(action: 'unauthorized')
     end
   end
@@ -66,7 +66,7 @@ class TestBase < Test::Unit::TestCase
   def test_invalid_key_or_id
     setup_sham_rack { "Invalid id or key" }
 
-    assert_raise Solusvm::AuthenticationError do
+    assert_raise SolusVM::AuthenticationError do
       assert !@base.perform_request(action: 'badkey')
     end
   end

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TestReseller < Test::Unit::TestCase
   def setup
-    @reseller = Solusvm::Reseller.new(solusvm_params)
+    @reseller = SolusVM::Reseller.new(solusvm_params)
   end
 
   def test_create

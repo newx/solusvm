@@ -1,5 +1,5 @@
-module Solusvm
-  # Solusvm::Server is the class for working with virtual servers.
+module SolusVM
+  # SolusVM::Server is the class for working with virtual servers.
   class Server < Base
 
     # Public: Creates a new virtual server.

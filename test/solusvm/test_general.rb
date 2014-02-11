@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TestGeneral < Test::Unit::TestCase
   def setup
-    @general = Solusvm::General.new(solusvm_params)
+    @general = SolusVM::General.new(solusvm_params)
   end
 
   def test_templates

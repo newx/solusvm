@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TestClient < Test::Unit::TestCase
   def setup
-    @client = Solusvm::Client.new(solusvm_params)
+    @client = SolusVM::Client.new(solusvm_params)
   end
 
   def test_create

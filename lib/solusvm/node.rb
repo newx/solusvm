@@ -1,5 +1,5 @@
-module Solusvm
-  # Solusvm::Node is the class for working with nodes.
+module SolusVM
+  # SolusVM::Node is the class for working with nodes.
   class Node < Base
     # Public: Lists existing nodes of a given type.
     #

@@ -1,5 +1,5 @@
-module Solusvm
-  class ClientCli < BaseCli
+module SolusVM
+  class ClientCLI < BaseCLI
 
     desc "create", "Creates a new h"
     method_option :username, type: :string, desc: "Username",  aliases: ["-u", "--username"]
@@ -40,7 +40,7 @@ module Solusvm
     private
 
     def api
-      @client ||= Solusvm::Client.new(api_params())
+      @client ||= SolusVM::Client.new(api_params())
     end
   end
 end

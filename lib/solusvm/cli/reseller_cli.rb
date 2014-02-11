@@ -1,5 +1,5 @@
-module Solusvm
-  class ResellerCli < BaseCli
+module SolusVM
+  class ResellerCLI < BaseCLI
 
     desc "create", "Creates a new reseller"
     method_option :username, type: :string, desc: "Username",  aliases: ["-u", "--username"]
@@ -64,7 +64,7 @@ module Solusvm
     private
 
     def api
-      @reseller ||= Solusvm::Reseller.new(api_params)
+      @reseller ||= SolusVM::Reseller.new(api_params)
     end
   end
 end
