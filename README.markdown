@@ -173,6 +173,10 @@ SolusVM Admin API in version v1.14. If you are using SolusVM software older
 than v1.14, you will need to stick to an older version of this gem (i.e.
 [v1.4.0](https://github.com/site5/solusvm/tree/v1.4.0)).
 
+Version 2 also changes the name of the gem's top-level module -- it is now
+`SolusVM` instead of the old `Solusvm`. Upgrading will require changing this
+in your code.
+
 Contributors
 ------------
 
