@@ -167,14 +167,6 @@ class TestServer < Test::Unit::TestCase
     assert @server.successful?
   end
 
-  def test_change_consolepass
-    pend do
-      stub_response 'server/change-consolepass'
-
-      assert @server.change_consolepass(1, 'thepassword')
-    end
-  end
-
   def test_change_vncpass
     stub_response 'server/change-vncpass'
 

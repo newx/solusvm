@@ -40,16 +40,6 @@ class TestServerCLI < Test::Unit::TestCase
     SolusVM::CLI.start(cli_expand_base_arguments(["server", "change-owner", "thevserverid", "thenewowner"]))
   end
 
-  def test_should_delegate_server_change_consolepass_to_server
-    SolusVM::Server.stubs(:new).with(@solusvm_params).returns(mock do
-      expects(:successful?).returns(true)
-      expects(:change_consolepass).with("thevserverid", "thenewpass").returns("theresult")
-    end)
-
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments(["server", "change-consolepass", "thevserverid", "thenewpass"]))
-  end
-
   def test_should_delegate_server_change_vncpass_to_server
     SolusVM::Server.stubs(:new).with(@solusvm_params).returns(mock do
       expects(:successful?).returns(true)

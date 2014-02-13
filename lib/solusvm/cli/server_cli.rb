@@ -36,11 +36,6 @@ module SolusVM
       output api.change_owner(vserverid, clientid)
     end
 
-    desc "change-consolepass VSERVERID NEWPASSWORD", "Changes the console password of a server"
-    def change_consolepass(vserverid, newpassword)
-      output api.change_consolepass(vserverid, newpassword)
-    end
-
     desc "change-vncpass VSERVERID NEWPASSWORD", "Changes the vnc password of a server"
     def change_vncpass(vserverid, newpassword)
       output api.change_vncpass(vserverid, newpassword)

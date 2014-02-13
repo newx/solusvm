@@ -96,7 +96,6 @@ Tasks:
     solusvm server addip VSERVERID                            # Adds an ip to the server
     solusvm server boot VSERVERID                             # Boots up a server
     solusvm server change-bootorder VSERVERID BOOTORDER       # Changes the boot order of a server [cd(Hard Disk CDROM)|dc(CDROM Hard Disk)|c(Hard Di...
-    solusvm server change-consolepass VSERVERID NEWPASSWORD   # Changes the console password of a server
     solusvm server change-hostname VSERVERID HOSTNAME         # Changes the hostname of a server
     solusvm server change-owner VSERVERID CLIENTID            # Changes the owner of a server
     solusvm server change-plan VSERVERID NEWPLAN              # Changes the plan of a server

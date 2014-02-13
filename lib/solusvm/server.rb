@@ -207,16 +207,6 @@ module SolusVM
       perform_request(action: 'vserver-changeowner', vserverid: vid, clientid: client_id)
     end
 
-    # Public: Changes server console password.
-    #
-    # vid          - The virtual server ID in SolusVM
-    # new_password - The new console password
-    #
-    # Returns true if the server's console password was successfully changed.
-    def change_consolepass(vid, new_password)
-      perform_request(action: 'vserver-consolepass', vserverid: vid, consolepassword: new_password)
-    end
-
     # Public: Changes server VNC password.
     #
     # vid          - The virtual server ID in SolusVM
