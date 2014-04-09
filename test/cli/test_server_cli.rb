@@ -97,11 +97,11 @@ class TestServerCLI < Test::Unit::TestCase
   def test_should_delegate_server_add_ip_to_server
     SolusVM::Server.stubs(:new).with(@solusvm_params).returns(mock do
       expects(:successful?).returns(true)
-      expects(:add_ip).with("thevserverid").returns("theresult")
+      expects(:add_ip).with("thevserverid", "ipv4addr").returns("theresult")
     end)
 
     out = capture_stdout do
-      SolusVM::CLI.start(cli_expand_base_arguments(["server", "addip", "thevserverid"]))
+      SolusVM::CLI.start(cli_expand_base_arguments(["server", "addip", "thevserverid", "ipv4addr"]))
     end
     assert_match "theresult", out.string
   end

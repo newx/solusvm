@@ -170,10 +170,11 @@ module SolusVM
     # Public: Adds an IP address for a specific server.
     #
     # vid - The virtual server ID in SolusVM
+    # ip  - Specific IPv4 address to add (optional)
     #
     # Returns the IP as a String.
-    def add_ip(vid)
-      perform_request(action: 'vserver-addip', vserverid: vid)
+    def add_ip(vid, ip = nil)
+      perform_request(action: 'vserver-addip', vserverid: vid, ipv4addr: ip)
       returned_parameters['ipaddress']
     end
 
