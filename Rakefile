@@ -1,7 +1,7 @@
 require 'rake'
 require 'bundler/gem_tasks'
 require 'rake/testtask'
-require 'rake-tomdoc'
+require 'rake-tomdoc' unless RUBY_PLATFORM == 'java'
 
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
