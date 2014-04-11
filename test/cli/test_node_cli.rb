@@ -15,8 +15,10 @@ class TestNodeCLI < Test::Unit::TestCase
       expects(:available_ips).with("thevserverid").returns("theips")
     end)
 
-    $stdout.expects(:puts).with("theips")
-    SolusVM::CLI.start(cli_expand_base_arguments(["node", "available-ips", "thevserverid"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["node", "available-ips", "thevserverid"]))
+    end
+    assert_match "theips", out.string
   end
 
   def test_should_delegate_node_stats_to_node
@@ -25,8 +27,10 @@ class TestNodeCLI < Test::Unit::TestCase
       expects(:statistics).with("thevserverid").returns("thestats")
     end)
 
-    $stdout.expects(:puts).with("thestats")
-    SolusVM::CLI.start(cli_expand_base_arguments(["node", "stats", "thevserverid"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["node", "stats", "thevserverid"]))
+    end
+    assert_match "thestats", out.string
   end
 
   def test_should_delegate_node_xenresources_to_node
@@ -35,8 +39,10 @@ class TestNodeCLI < Test::Unit::TestCase
       expects(:xenresources).with("thevserverid").returns("theresources")
     end)
 
-    $stdout.expects(:puts).with("theresources")
-    SolusVM::CLI.start(cli_expand_base_arguments(["node", "xenresources", "thevserverid"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["node", "xenresources", "thevserverid"]))
+    end
+    assert_match "theresources", out.string
   end
 
   def test_should_delegate_node_virtualservers_to_node
@@ -45,8 +51,10 @@ class TestNodeCLI < Test::Unit::TestCase
       expects(:virtualservers).with("thevserverid").returns("thedata")
     end)
 
-    $stdout.expects(:puts).with("thedata")
-    SolusVM::CLI.start(cli_expand_base_arguments(["node", "virtualservers", "thevserverid"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["node", "virtualservers", "thevserverid"]))
+    end
+    assert_match "thedata", out.string
   end
 
   def test_should_delegate_nodes_list_to_node
@@ -55,8 +63,10 @@ class TestNodeCLI < Test::Unit::TestCase
       expects(:list).with("type").returns("thenodes")
     end)
 
-    $stdout.expects(:puts).with("thenodes")
-    SolusVM::CLI.start(cli_expand_base_arguments(["node", "list", "type"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["node", "list", "type"]))
+    end
+    assert_match "thenodes", out.string
   end
 
   def test_should_delegate_nodes_ids_to_node
@@ -65,8 +75,10 @@ class TestNodeCLI < Test::Unit::TestCase
       expects(:ids).with("type").returns("thenodes")
     end)
 
-    $stdout.expects(:puts).with("thenodes")
-    SolusVM::CLI.start(cli_expand_base_arguments(["node", "list-ids", "type"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["node", "list-ids", "type"]))
+    end
+    assert_match "thenodes", out.string
   end
 
 end

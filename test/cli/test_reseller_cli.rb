@@ -41,31 +41,33 @@ class TestResellerCLI < Test::Unit::TestCase
       end.returns("theresult")
     end)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments([
-      "reseller", "create",
-      "--username", "theusername",
-      "--password", "thepassword",
-      "--email", "theemail",
-      "--firstname", "thefirstname",
-      "--lastname", "thelastname",
-      "--company", "thecompany",
-      "--usernameprefix", "theusernameprefix",
-      "--maxvps", "themaxvps",
-      "--maxusers", "themaxusers",
-      "--maxmem", "themaxmem",
-      "--maxburst", "themaxburst",
-      "--maxdisk", "themaxdisk",
-      "--maxbw", "themaxbw",
-      "--maxipv4", "themaxipv4",
-      "--maxipv6", "themaxipv6",
-      "--nodegroups", "thenodegroups",
-      "--mediagroups", "themediagroups",
-      "--openvz", "theopenvz",
-      "--xenpv", "thexenpv",
-      "--xenhvm", "thexenhvm",
-      "--kvm", "thekvm"
-    ]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments([
+        "reseller", "create",
+        "--username", "theusername",
+        "--password", "thepassword",
+        "--email", "theemail",
+        "--firstname", "thefirstname",
+        "--lastname", "thelastname",
+        "--company", "thecompany",
+        "--usernameprefix", "theusernameprefix",
+        "--maxvps", "themaxvps",
+        "--maxusers", "themaxusers",
+        "--maxmem", "themaxmem",
+        "--maxburst", "themaxburst",
+        "--maxdisk", "themaxdisk",
+        "--maxbw", "themaxbw",
+        "--maxipv4", "themaxipv4",
+        "--maxipv6", "themaxipv6",
+        "--nodegroups", "thenodegroups",
+        "--mediagroups", "themediagroups",
+        "--openvz", "theopenvz",
+        "--xenpv", "thexenpv",
+        "--xenhvm", "thexenhvm",
+        "--kvm", "thekvm"
+      ]))
+    end
+    assert_match "theresult", out.string
   end
 
   def test_should_delegate_reseller_change_resources_to_reseller
@@ -93,24 +95,26 @@ class TestResellerCLI < Test::Unit::TestCase
       end.returns("theresult")
     end)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments([
-      "reseller", "change-resources",
-      "--maxvps", "themaxvps",
-      "--maxusers", "themaxusers",
-      "--maxmem", "themaxmem",
-      "--maxburst", "themaxburst",
-      "--maxdisk", "themaxdisk",
-      "--maxbw", "themaxbw",
-      "--maxipv4", "themaxipv4",
-      "--maxipv6", "themaxipv6",
-      "--nodegroups", "thenodegroups",
-      "--mediagroups", "themediagroups",
-      "--openvz", "theopenvz",
-      "--xenpv", "thexenpv",
-      "--xenhvm", "thexenhvm",
-      "--kvm", "thekvm"
-    ]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments([
+        "reseller", "change-resources",
+        "--maxvps", "themaxvps",
+        "--maxusers", "themaxusers",
+        "--maxmem", "themaxmem",
+        "--maxburst", "themaxburst",
+        "--maxdisk", "themaxdisk",
+        "--maxbw", "themaxbw",
+        "--maxipv4", "themaxipv4",
+        "--maxipv6", "themaxipv6",
+        "--nodegroups", "thenodegroups",
+        "--mediagroups", "themediagroups",
+        "--openvz", "theopenvz",
+        "--xenpv", "thexenpv",
+        "--xenhvm", "thexenhvm",
+        "--kvm", "thekvm"
+      ]))
+    end
+    assert_match "theresult", out.string
   end
 
   def test_should_delegate_reseller_info_to_reseller
@@ -119,8 +123,10 @@ class TestResellerCLI < Test::Unit::TestCase
       expects(:info).with("theusername").returns("theresult")
     end)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments(["reseller", "info", "theusername"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["reseller", "info", "theusername"]))
+    end
+    assert_match "theresult", out.string
   end
 
   def test_should_delegate_reseller_delete_to_reseller
@@ -129,8 +135,10 @@ class TestResellerCLI < Test::Unit::TestCase
       expects(:delete).with("theusername").returns("theresult")
     end)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments(["reseller", "delete", "theusername"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["reseller", "delete", "theusername"]))
+    end
+    assert_match "theresult", out.string
   end
 
   def test_should_delegate_reseller_list_to_reseller
@@ -139,7 +147,9 @@ class TestResellerCLI < Test::Unit::TestCase
      expects(:list).returns("theresult")
    end)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments(["reseller", "list"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["reseller", "list"]))
+    end
+    assert_match "theresult", out.string
   end
 end

@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.test_files   = Dir['test/**/*']
   s.executables  = "solusvm"
 
-  s.add_runtime_dependency 'thor', '~> 0.18.1'
+  s.add_runtime_dependency 'thor', '~> 0.19.1'
   s.add_runtime_dependency 'faraday', '~> 0.8.9'
 
   s.add_development_dependency 'mocha', '~> 1.0.0'
