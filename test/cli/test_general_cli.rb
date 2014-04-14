@@ -15,8 +15,10 @@ class TestGeneralCLI < Test::Unit::TestCase
       expects(:templates).with("type").returns("thetemplates")
     end)
 
-    $stdout.expects(:puts).with("thetemplates")
-    SolusVM::CLI.start(cli_expand_base_arguments(["general", "templates", "type"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["general", "templates", "type"]))
+    end
+    assert_match "thetemplates", out.string
   end
 
   def test_should_delegate_plans_to_general
@@ -25,8 +27,10 @@ class TestGeneralCLI < Test::Unit::TestCase
       expects(:plans).with("type").returns("theplans")
     end)
 
-    $stdout.expects(:puts).with("theplans")
-    SolusVM::CLI.start(cli_expand_base_arguments(["general", "plans", "type"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["general", "plans", "type"]))
+    end
+    assert_match "theplans", out.string
   end
 
   def test_should_delegate_isos_to_general
@@ -35,7 +39,9 @@ class TestGeneralCLI < Test::Unit::TestCase
       expects(:isos).with("type").returns("theisos")
     end)
 
-    $stdout.expects(:puts).with("theisos")
-    SolusVM::CLI.start(cli_expand_base_arguments(["general", "isos", "type"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["general", "isos", "type"]))
+    end
+    assert_match "theisos", out.string
   end
 end

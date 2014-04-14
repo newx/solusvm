@@ -27,16 +27,18 @@ class TestClientCLI < Test::Unit::TestCase
     end
     SolusVM::Client.expects(:new).with(solusvm_params).returns(api)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments([
-      "client", "create",
-      "--username", "theusername",
-      "--password", "thepassword",
-      "--email", "theemail",
-      "--firstname", "thefirstname",
-      "--lastname", "thelastname",
-      "--company", "thecompany"
-    ]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments([
+        "client", "create",
+        "--username", "theusername",
+        "--password", "thepassword",
+        "--email", "theemail",
+        "--firstname", "thefirstname",
+        "--lastname", "thelastname",
+        "--company", "thecompany"
+      ]))
+    end
+    assert_match "theresult", out.string
   end
 
   def test_should_delegate_client_change_password_to_client
@@ -45,8 +47,10 @@ class TestClientCLI < Test::Unit::TestCase
       expects(:change_password).with("theusername", "thepassword").returns("theresult")
     end)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments(["client", "change-password", "theusername", "thepassword"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["client", "change-password", "theusername", "thepassword"]))
+    end
+    assert_match "theresult", out.string
   end
 
   def test_should_delegate_client_authenticate_to_client
@@ -55,8 +59,10 @@ class TestClientCLI < Test::Unit::TestCase
       expects(:authenticate).with("theusername", "thepassword").returns("theresult")
     end)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments(["client", "authenticate", "theusername", "thepassword"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["client", "authenticate", "theusername", "thepassword"]))
+    end
+    assert_match "theresult", out.string
   end
 
   def test_should_delegate_client_check_exists_to_client
@@ -65,8 +71,10 @@ class TestClientCLI < Test::Unit::TestCase
       expects(:exists?).with("theusername").returns("theresult")
     end)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments(["client", "check-exists", "theusername"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["client", "check-exists", "theusername"]))
+    end
+    assert_match "theresult", out.string
   end
 
   def test_should_delegate_client_delete_to_client
@@ -75,8 +83,10 @@ class TestClientCLI < Test::Unit::TestCase
       expects(:delete).with("theusername").returns("theresult")
     end)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments(["client", "delete", "theusername"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["client", "delete", "theusername"]))
+    end
+    assert_match "theresult", out.string
   end
 
   def test_should_delegate_client_list_to_client
@@ -85,7 +95,9 @@ class TestClientCLI < Test::Unit::TestCase
       expects(:list).returns("theresult")
     end)
 
-    $stdout.expects(:puts).with("theresult")
-    SolusVM::CLI.start(cli_expand_base_arguments(["client", "list"]))
+    out = capture_stdout do
+      SolusVM::CLI.start(cli_expand_base_arguments(["client", "list"]))
+    end
+    assert_match "theresult", out.string
   end
 end

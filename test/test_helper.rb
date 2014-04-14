@@ -1,9 +1,24 @@
+require 'stringio'
 require 'test/unit'
 require 'solusvm'
 require 'mocha/setup'
 require 'sham_rack'
 require 'set'
 require 'json'
+
+module Kernel
+  # Public: Redirect $stdout to an instance of StringIO.
+  #
+  # Returns the captured output as a StringIO.
+  def capture_stdout
+    out = StringIO.new
+    $stdout = out
+    yield
+    return out
+  ensure
+    $stdout = STDOUT
+  end
+end
 
 class Test::Unit::TestCase
   # Public: Stubs a JSON reponse using ShamRack.
