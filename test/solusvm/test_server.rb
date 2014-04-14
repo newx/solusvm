@@ -146,6 +146,13 @@ class TestServer < Test::Unit::TestCase
     assert @server.successful?
   end
 
+  def test_add_specific_ip
+    stub_response 'server/add-ip'
+
+    assert_equal '123.123.123.123', @server.add_ip(1, '123.123.123.123')
+    assert @server.successful?
+  end
+
   def test_del_ip
     stub_response 'server/del-ip'
 

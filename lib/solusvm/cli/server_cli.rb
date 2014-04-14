@@ -56,9 +56,9 @@ module SolusVM
       output api.change_hostname(vserverid, newhostname)
     end
 
-    desc "addip VSERVERID", "Adds an ip to the server"
-    def addip(vserverid)
-      output api.add_ip(vserverid)
+    desc "addip VSERVERID [ip]", "Adds an ip to the server"
+    def addip(vserverid, ip = nil)
+      output api.add_ip(vserverid, ip)
     end
 
     desc "boot VSERVERID", "Boots up a server"
