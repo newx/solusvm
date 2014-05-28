@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.executables  = "solusvm"
 
   s.add_runtime_dependency 'thor',    '>= 0.19.1'
-  s.add_runtime_dependency 'faraday', '>= 0.9.0'
+  s.add_runtime_dependency 'faraday', '~> 0.9.0'
 
   s.add_development_dependency 'mocha', '~> 1.0.0'
   s.add_development_dependency 'rake', '~> 10.1.1'
