@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
   s.test_files   = Dir['test/**/*']
   s.executables  = "solusvm"
 
-  s.add_runtime_dependency 'thor', '~> 0.19.1'
-  s.add_runtime_dependency 'faraday', '~> 0.8.9'
+  s.add_runtime_dependency 'thor',    '>= 0.19.1'
+  s.add_runtime_dependency 'faraday', '>= 0.9.0'
 
   s.add_development_dependency 'mocha', '~> 1.0.0'
   s.add_development_dependency 'rake', '~> 10.1.1'
@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
 
   # JRuby
   if RUBY_PLATFORM == 'java'
-    s.add_runtime_dependency 'jruby-openssl', '~> 0.7.3'
+    s.add_runtime_dependency 'jruby-openssl', '>= 0.7.3'
   else
     s.add_development_dependency 'rake-tomdoc', '~> 0.0.2'
   end
