@@ -1,4 +1,5 @@
 require 'faraday'
+require 'json'
 
 require 'solusvm/hash'
 require 'solusvm/errors'
