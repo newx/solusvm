@@ -4,7 +4,6 @@ require 'solusvm'
 require 'mocha/setup'
 require 'sham_rack'
 require 'set'
-require 'json'
 
 module Kernel
   # Public: Redirect $stdout to an instance of StringIO.
