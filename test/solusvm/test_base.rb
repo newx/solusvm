@@ -75,13 +75,23 @@ class TestBase < Test::Unit::TestCase
     setup_sham_rack { "Node not found" }
 
     assert !@base.perform_request(action: 'nodeexist')
+    assert !@base.successful?
     assert_equal "Node does not exist", @base.statusmsg
+  end
+
+  def test_virtual_server_does_not_exist
+    setup_sham_rack { "Virtual server not found" }
+
+    assert !@base.perform_request(action: 'status')
+    assert !@base.successful?
+    assert_equal "Virtual server does not exist", @base.statusmsg
   end
 
   def test_invalid_http_status
     setup_sham_rack { status 404 }
 
     assert !@base.perform_request(action: 'httperror')
+    assert !@base.successful?
     assert_equal "Bad HTTP Status: 404", @base.statusmsg
   end
 end
