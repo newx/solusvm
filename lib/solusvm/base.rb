@@ -99,6 +99,8 @@ module SolusVM
           raise AuthenticationError, "Invalid ID or key"
         when /Node not found/i
           { "status" => "error", "statusmsg" => "Node does not exist" }
+        when /Virtual server not found/i
+          { "status" => "error", "statusmsg" => "Virtual server does not exist" }
         end
       else
         { "status" => "error", "statusmsg" => "Bad HTTP Status: #{status}" }
