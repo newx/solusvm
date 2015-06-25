@@ -4,14 +4,14 @@ SolusVM [![SolusVM Build Status][Build Icon]][Build Status]
 SolusVM allows for easy interaction with the [SolusVM Admin::API][].
 This library was first created for internal use at [Site5 LLC][].
 
-SolusVM has been tested on MRI versions 1.9.3, 2.0.0, 2.1.2 and 1.9-compatible
+SolusVM has been tested on MRI versions 2.0.0, 2.1.6, 2.2.2 and 1.9-compatible
 JRuby.
 
 Documentation is available in [TomDoc][] format.
 
 [Site5 LLC]: http://www.site5.com
-[SolusVM Admin::API]: http://docs.solusvm.com/v2/Default.htm#Developer/Admin-Api/Admin-Api.htm
-[Build Status]: http://travis-ci.org/site5/solusvm
+[SolusVM Admin::API]: https://documentation.solusvm.com/display/DOCS/Admin
+[Build Status]: https://travis-ci.org/site5/solusvm
 [Build Icon]: https://secure.travis-ci.org/site5/solusvm.png?branch=master
 [TomDoc]: http://site5.github.io/solusvm/
 
@@ -151,7 +151,7 @@ username: bob
 Installation
 ------------
 
-To install SolusVM using [Bundler](http://gembundler.com):
+To install SolusVM using [Bundler](http://bundler.io):
 
 ```
 echo "gem 'solusvm'" >> Gemfile
@@ -209,4 +209,4 @@ Note on Patches/Pull Requests
 Copyright
 ---------
 
-Copyright (c) 2010-2014 Site5.com. See LICENSE for details.
+Copyright (c) 2010-2015 Site5.com. See LICENSE for details.
