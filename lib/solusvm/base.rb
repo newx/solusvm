@@ -45,6 +45,7 @@ module SolusVM
       @conn ||= Faraday.new(ssl: ssl_option) do |c|
         c.request :retry if @config.fetch(:retry_request, false)
         c.adapter :net_http
+        c.options[:timeout] = 60
       end
     end
 
